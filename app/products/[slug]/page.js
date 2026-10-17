@@ -22,12 +22,20 @@ export async function generateMetadata({ params }) {
     };
   }
 
+  const siteUrl =
+    process.env.NEXT_PUBLIC_SITE_URL || 'https://jangid-tuff-glasses-pvt-ltd.vercel.app';
+  const url = `${siteUrl}/products/${slug}`;
+
   return {
     title: `${product.name} | Architectural & Interior Glass Jodhpur`,
     description: product.description,
+    alternates: {
+      canonical: url,
+    },
     openGraph: {
       title: `${product.name} | Jangid Tuff Glasses Private Limited`,
       description: product.description,
+      url,
       images: [{ url: product.image }],
     },
   };

@@ -20,8 +20,10 @@ const notoSansDevanagari = Noto_Sans_Devanagari({
   display: 'swap',
 });
 
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://jangid-tuff-glasses-pvt-ltd.vercel.app';
+
 export const metadata = {
-  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'https://jangidtuffglasses.in'),
+  metadataBase: new URL(SITE_URL),
   title: {
     default: `${COMPANY.name} | Architectural Glass, Mirrors & Partitions in Jodhpur`,
     template: `%s | ${COMPANY.nameShort}`,
@@ -39,10 +41,13 @@ export const metadata = {
   ],
   authors: [{ name: COMPANY.name }],
   creator: COMPANY.name,
+  alternates: {
+    canonical: SITE_URL,
+  },
   openGraph: {
     type: 'website',
     locale: 'en_IN',
-    url: 'https://jangidtuffglasses.in',
+    url: SITE_URL,
     title: `${COMPANY.name} | Premium Glass Solutions`,
     description: COMPANY.description,
     siteName: COMPANY.nameShort,
@@ -81,7 +86,7 @@ export const metadata = {
 };
 
 export default function RootLayout({ children }) {
-  const jsonLd = generateStructuredData();
+  const jsonLd = generateStructuredData(SITE_URL);
 
   return (
     <html lang="en" className={`${plusJakartaSans.variable} ${notoSansDevanagari.variable} h-full scroll-smooth`}>

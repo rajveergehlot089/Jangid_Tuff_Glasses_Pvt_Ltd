@@ -1,5 +1,5 @@
 export default function robots() {
-  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://jangidtuffglasses.in';
+  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://jangid-tuff-glasses-pvt-ltd.vercel.app';
 
   return {
     rules: {
