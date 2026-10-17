@@ -108,7 +108,7 @@ export default function Header() {
             className="flex items-center gap-1.5 text-sky-200 hover:text-white transition duration-500 font-semibold"
           >
             <Phone className="w-3.5 h-3.5 text-sky-400" aria-hidden="true" />
-            {CONTACT.phone}
+            <span>{CONTACT.contactPerson}: {CONTACT.phone}</span>
           </a>
         </div>
       </div>

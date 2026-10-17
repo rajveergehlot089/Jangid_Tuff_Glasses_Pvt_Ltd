@@ -50,7 +50,7 @@ export default function FAQPage() {
           </p>
           <div className="mt-8 flex flex-wrap justify-center gap-4">
             <a
-              href="https://wa.me/919251077483?text=Hello%20Jangid%20Tuff%20Glasses,%20I%20have%20a%20question."
+              href="https://wa.me/918107388885?text=Hello%20Jangid%20Tuff%20Glasses,%20I%20have%20a%20question."
               target="_blank"
               rel="noopener noreferrer"
               className="rounded-full bg-emerald-600 hover:bg-emerald-500 text-white px-7 py-3.5 font-bold text-sm transition"
@@ -58,10 +58,10 @@ export default function FAQPage() {
               Ask on WhatsApp
             </a>
             <a
-              href="tel:+919251077483"
+              href="tel:+918107388885"
               className="rounded-full border border-slate-300 text-[#08233f] px-7 py-3.5 font-bold text-sm hover:bg-slate-50 transition"
             >
-              Call +91 92510 77483
+              Call Karan Jangid (+91 81073 88885)
             </a>
           </div>
         </div>

@@ -319,6 +319,9 @@ export default function ContactPage() {
                   <span className="block text-xs font-bold uppercase tracking-wider text-slate-500">
                     Direct Phone / Call
                   </span>
+                  <p className="text-sm font-semibold text-[#0878d1] mt-0.5">
+                    {COMPANY.contactPerson}
+                  </p>
                   <a
                     href={`tel:${COMPANY.phoneRaw}`}
                     className="text-base font-bold text-[#08233f] hover:text-[#0878d1] transition block mt-0.5"
