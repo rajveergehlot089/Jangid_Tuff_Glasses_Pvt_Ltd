@@ -1,0 +1,21 @@
+{
+  "name": "Jangid Tuff Glasses Private Limited",
+  "short_name": "Jangid Tuff Glass",
+  "description": "Architectural toughened safety glass, partitions, bespoke mirrors and LED glass solutions in Jodhpur, Rajasthan.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#041323",
+  "theme_color": "#0878d1",
+  "icons": [
+    {
+      "src": "/logo.jpg",
+      "sizes": "192x192",
+      "type": "image/jpeg"
+    },
+    {
+      "src": "/logo.jpg",
+      "sizes": "512x512",
+      "type": "image/jpeg"
+    }
+  ]
+}
