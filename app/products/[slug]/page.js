@@ -51,8 +51,56 @@ export default async function ProductDetailPage({ params }) {
 
   const relatedProducts = PRODUCT_CATEGORIES.filter((p) => p.slug !== slug).slice(0, 3);
 
+  const siteUrl =
+    process.env.NEXT_PUBLIC_SITE_URL || 'https://jangid-tuff-glasses-pvt-ltd.vercel.app';
+  const url = `${siteUrl}/products/${slug}`;
+
+  const breadcrumbLd = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      {
+        '@type': 'ListItem',
+        position: 1,
+        name: 'Home',
+        item: siteUrl,
+      },
+      {
+        '@type': 'ListItem',
+        position: 2,
+        name: 'Products',
+        item: `${siteUrl}/products`,
+      },
+      {
+        '@type': 'ListItem',
+        position: 3,
+        name: product.name,
+        item: url,
+      },
+    ],
+  };
+
+  const itemPageLd = {
+    '@context': 'https://schema.org',
+    '@type': 'ItemPage',
+    name: `${product.name} | Jangid Tuff Glasses Private Limited`,
+    description: product.description,
+    url,
+    image: product.image,
+  };
+
   return (
     <div className="flex flex-col">
+      {/* Structured Data: ItemPage & Breadcrumbs */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(itemPageLd) }}
+      />
+
       {/* Breadcrumbs */}
       <div className="bg-[#f6f8fa] border-b border-slate-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3.5">

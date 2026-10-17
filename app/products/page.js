@@ -1,31 +1,66 @@
-'use client';
-
-import { useState } from 'react';
 import Link from 'next/link';
 import PageHero from '@/components/ui/PageHero';
-import ProductCard from '@/components/ui/ProductCard';
-import FilterBar from '@/components/ui/FilterBar';
+import ProductCatalogueSection from '@/components/ui/ProductCatalogueSection';
 import CTABanner from '@/components/ui/CTABanner';
 import { PRODUCT_CATEGORIES } from '@/lib/constants';
+import { generateMetadata as genMeta, getSiteUrl } from '@/lib/seo';
 
-const filterCategories = [
-  { label: 'All Products (9)', value: 'all' },
-  { label: 'Architectural', value: 'architectural' },
-  { label: 'Interior & Bath', value: 'interior' },
-  { label: 'Mirrors', value: 'mirrors' },
-  { label: 'Custom Fabricated', value: 'custom' },
-];
+export const metadata = genMeta('products');
 
 export default function ProductsPage() {
-  const [activeFilter, setActiveFilter] = useState('all');
+  const siteUrl = getSiteUrl();
 
-  const filteredProducts = PRODUCT_CATEGORIES.filter((product) => {
-    if (activeFilter === 'all') return true;
-    return product.categoryGroup === activeFilter || product.slug.includes(activeFilter);
-  });
+  const collectionLd = {
+    '@context': 'https://schema.org',
+    '@type': 'CollectionPage',
+    name: 'Engineered Glass Catalogue | Jangid Tuff Glasses Private Limited',
+    description:
+      'High-grade architectural, safety, and decorative glass solutions crafted for homes, retail showrooms, commercial facades, and offices across Jodhpur and Rajasthan.',
+    url: `${siteUrl}/products`,
+    mainEntity: {
+      '@type': 'ItemList',
+      name: 'Glass Product Categories',
+      numberOfItems: PRODUCT_CATEGORIES.length,
+      itemListElement: PRODUCT_CATEGORIES.map((product, index) => ({
+        '@type': 'ListItem',
+        position: index + 1,
+        name: product.name,
+        url: `${siteUrl}/products/${product.slug}`,
+      })),
+    },
+  };
+
+  const breadcrumbLd = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      {
+        '@type': 'ListItem',
+        position: 1,
+        name: 'Home',
+        item: siteUrl,
+      },
+      {
+        '@type': 'ListItem',
+        position: 2,
+        name: 'Products',
+        item: `${siteUrl}/products`,
+      },
+    ],
+  };
 
   return (
     <div className="flex flex-col">
+      {/* Structured Data: CollectionPage & BreadcrumbList (No invalid Product markup) */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(collectionLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbLd) }}
+      />
+
       {/* Page Hero */}
       <PageHero
         eyebrow="ENGINEERED GLASS CATALOGUE"
@@ -40,41 +75,7 @@ export default function ProductsPage() {
       />
 
       {/* Catalogue with Interactive Filters */}
-      <section className="py-16 sm:py-20 bg-[#f6f8fa]" aria-label="Product Catalogue">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          {/* Filter Bar */}
-          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-10 pb-6 border-b border-slate-200">
-            <div>
-              <h2 className="text-2xl font-extrabold text-[#08233f]">Explore Categories</h2>
-              <p className="text-xs text-slate-500 mt-1">Select a category below to filter products</p>
-            </div>
-            <FilterBar
-              categories={filterCategories}
-              activeCategory={activeFilter}
-              onCategoryChange={setActiveFilter}
-            />
-          </div>
-
-          {/* Product Grid */}
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
-            {filteredProducts.map((product, index) => (
-              <ProductCard key={product.slug} product={product} index={index} />
-            ))}
-          </div>
-
-          {filteredProducts.length === 0 && (
-            <div className="text-center py-16">
-              <p className="text-slate-500 text-sm">No products found in this category.</p>
-              <button
-                onClick={() => setActiveFilter('all')}
-                className="mt-4 text-[#0878d1] font-bold text-sm hover:underline cursor-pointer"
-              >
-                Reset to all products
-              </button>
-            </div>
-          )}
-        </div>
-      </section>
+      <ProductCatalogueSection />
 
       {/* Custom Requirement Prompt */}
       <section className="py-16 bg-white border-t border-slate-200/80">
