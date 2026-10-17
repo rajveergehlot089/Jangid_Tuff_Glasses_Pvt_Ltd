@@ -1,0 +1,97 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Jangid Tuff Glasses - Image Asset Manifest",
+  "description": "Registers all imagery used on the site, documenting provenance, permission status, and actual company work boolean.",
+  "assets": [
+    {
+      "filePath": "https://images.unsplash.com/photo-1487958449943-2429e8be8625",
+      "description": "Modern architectural glass building facade with geometric glazing patterns",
+      "source": "Unsplash (Licensed Free Commercial Use)",
+      "permissionStatus": "APPROVED_STOCK",
+      "altText": "Architectural glass facade with geometric glazing",
+      "isActualCompanyWork": false,
+      "pageUsage": ["home-hero", "about-story"]
+    },
+    {
+      "filePath": "https://images.unsplash.com/photo-1511818966892-d7d671e672a2",
+      "description": "Toughened structural glass exterior framing",
+      "source": "Unsplash (Licensed Free Commercial Use)",
+      "permissionStatus": "APPROVED_STOCK",
+      "altText": "Toughened safety glass facade installation",
+      "isActualCompanyWork": false,
+      "pageUsage": ["products-toughened-glass", "gallery-facades"]
+    },
+    {
+      "filePath": "https://images.unsplash.com/photo-1497366754035-f200968a6e72",
+      "description": "Minimalist interior glass office and meeting partition",
+      "source": "Unsplash (Licensed Free Commercial Use)",
+      "permissionStatus": "APPROVED_STOCK",
+      "altText": "Interior glass craftsmanship and partitions",
+      "isActualCompanyWork": false,
+      "pageUsage": ["about-hero", "products-float-glass", "services-hero"]
+    },
+    {
+      "filePath": "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6",
+      "description": "Contemporary backlit LED vanity mirror in luxury bathroom",
+      "source": "Unsplash (Licensed Free Commercial Use)",
+      "permissionStatus": "APPROVED_STOCK",
+      "altText": "Designer backlit LED mirror",
+      "isActualCompanyWork": false,
+      "pageUsage": ["products-mirrors", "gallery-mirrors"]
+    },
+    {
+      "filePath": "https://images.unsplash.com/photo-1497366811353-6870744d04b2",
+      "description": "Slim aluminum-framed interior glass partition wall",
+      "source": "Unsplash (Licensed Free Commercial Use)",
+      "permissionStatus": "APPROVED_STOCK",
+      "altText": "Slim glass partitions for office and residential spaces",
+      "isActualCompanyWork": false,
+      "pageUsage": ["products-partitions", "gallery-partitions"]
+    },
+    {
+      "filePath": "https://images.unsplash.com/photo-1620626011761-996317b8d101",
+      "description": "Frameless toughened glass shower enclosure",
+      "source": "Unsplash (Licensed Free Commercial Use)",
+      "permissionStatus": "APPROVED_STOCK",
+      "altText": "Frameless toughened glass shower enclosure",
+      "isActualCompanyWork": false,
+      "pageUsage": ["products-shower-enclosures", "gallery-showers"]
+    },
+    {
+      "filePath": "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c",
+      "description": "Glass balustrade railing with stainless steel spigots on balcony",
+      "source": "Unsplash (Licensed Free Commercial Use)",
+      "permissionStatus": "APPROVED_STOCK",
+      "altText": "Glass railing and balustrade installation",
+      "isActualCompanyWork": false,
+      "pageUsage": ["products-railings", "gallery-railings"]
+    },
+    {
+      "filePath": "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0",
+      "description": "Decorative fluted glass texture in modern interior",
+      "source": "Unsplash (Licensed Free Commercial Use)",
+      "permissionStatus": "APPROVED_STOCK",
+      "altText": "Decorative fluted glass panel",
+      "isActualCompanyWork": false,
+      "pageUsage": ["products-decorative", "gallery-decorative"]
+    },
+    {
+      "filePath": "https://images.unsplash.com/photo-1555041469-a586c61ea9bc",
+      "description": "Polished toughened glass table top surface",
+      "source": "Unsplash (Licensed Free Commercial Use)",
+      "permissionStatus": "APPROVED_STOCK",
+      "altText": "Custom cut toughened glass table top",
+      "isActualCompanyWork": false,
+      "pageUsage": ["products-table-tops"]
+    },
+    {
+      "filePath": "/assets/website-concept-mockup.png",
+      "description": "Generated concept visualization board",
+      "source": "Generated Concept",
+      "permissionStatus": "REFERENCE_ONLY",
+      "altText": "Concept mockup reference",
+      "isActualCompanyWork": false,
+      "pageUsage": ["internal-reference-only"]
+    }
+  ]
+}

@@ -1,0 +1,758 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta
+      name="description"
+      content="Jangid Tuff Glasses Private Limited in Jodhpur — toughened glass, mirrors, partitions and custom glass solutions."
+    />
+    <meta name="theme-color" content="#08233f" />
+    <title>Home | Jangid Tuff Glasses Private Limited</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              brand: {
+                navy: "#08233f",
+                blue: "#0878d1",
+                sky: "#eaf5ff",
+                ink: "#132b45",
+              },
+            },
+            boxShadow: { soft: "0 12px 36px rgba(8,35,63,.10)" },
+          },
+        },
+      };
+    </script>
+    <style>
+      html {
+        scroll-behavior: smooth;
+      }
+      body {
+        font-family:
+          Inter,
+          ui-sans-serif,
+          system-ui,
+          -apple-system,
+          BlinkMacSystemFont,
+          "Segoe UI",
+          sans-serif;
+      }
+      .hero-bg {
+        background-image:
+          linear-gradient(
+            90deg,
+            rgba(4, 25, 46, 0.93) 0%,
+            rgba(4, 25, 46, 0.75) 45%,
+            rgba(4, 25, 46, 0.12) 100%
+          ),
+          url("https://images.unsplash.com/photo-1487958449943-2429e8be8625?auto=format&fit=crop&w=2000&q=85");
+        background-size: cover;
+        background-position: center;
+      }
+      .page-hero {
+        background-image:
+          linear-gradient(90deg, rgba(4, 25, 46, 0.91), rgba(4, 25, 46, 0.48)),
+          url("https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=1800&q=85");
+        background-size: cover;
+        background-position: center;
+      }
+      .glass-card img {
+        transition: transform 0.45s ease;
+      }
+      .glass-card:hover img {
+        transform: scale(1.045);
+      }
+      .mobile-menu {
+        display: none;
+      }
+      .mobile-menu.open {
+        display: block;
+      }
+      :focus-visible {
+        outline: 3px solid #42a5ff;
+        outline-offset: 3px;
+      }
+    </style>
+  </head>
+  <body class="bg-white text-brand-ink antialiased">
+    <header
+      class="sticky top-0 z-50 bg-white/95 backdrop-blur border-b border-slate-200"
+    >
+      <div
+        class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-[76px] flex items-center justify-between gap-4"
+      >
+        <a
+          href="index.html"
+          class="flex items-center gap-3 min-w-0"
+          aria-label="Jangid Tuff Glasses home"
+        >
+          <span class="grid grid-cols-2 gap-0.5 w-10 h-10 shrink-0"
+            ><i class="bg-brand-blue rounded-sm"></i
+            ><i class="bg-sky-300 rounded-sm"></i
+            ><i class="bg-sky-500 rounded-sm"></i
+            ><i class="bg-brand-navy rounded-sm"></i
+          ></span>
+          <span class="leading-tight"
+            ><b class="block text-brand-navy text-sm sm:text-base tracking-wide"
+              >JANGID TUFF GLASSES</b
+            ><small
+              class="block text-[10px] tracking-[.22em] text-brand-blue font-bold"
+              >PRIVATE LIMITED</small
+            ></span
+          >
+        </a>
+        <nav
+          class="hidden lg:flex items-center gap-6 text-sm font-semibold text-slate-600"
+        >
+          <a class="hover:text-brand-blue" href="index.html">Home</a
+          ><a class="hover:text-brand-blue" href="about.html">About</a
+          ><a class="hover:text-brand-blue" href="products.html">Products</a
+          ><a class="hover:text-brand-blue" href="services.html">Services</a
+          ><a class="hover:text-brand-blue" href="gallery.html">Gallery</a
+          ><a class="hover:text-brand-blue" href="contact.html">Contact</a>
+        </nav>
+        <div class="hidden sm:flex items-center gap-3">
+          <a
+            href="tel:+919251077483"
+            class="text-sm font-semibold text-brand-navy"
+            >Call us</a
+          ><a
+            href="contact.html#quote"
+            class="rounded-full bg-brand-blue text-white px-5 py-3 text-sm font-bold shadow-soft hover:bg-brand-navy transition"
+            >Get a Quote <span aria-hidden="true">→</span></a
+          >
+        </div>
+        <button
+          id="menuToggle"
+          class="lg:hidden rounded-lg border border-slate-200 px-3 py-2 text-brand-navy"
+          aria-label="Toggle navigation"
+          aria-expanded="false"
+        >
+          ☰
+        </button>
+      </div>
+      <div
+        id="mobileMenu"
+        class="mobile-menu lg:hidden border-t bg-white px-5 py-4 space-y-3 text-sm font-semibold"
+      >
+        <a class="block" href="index.html">Home</a
+        ><a class="block" href="about.html">About</a
+        ><a class="block" href="products.html">Products</a
+        ><a class="block" href="services.html">Services</a
+        ><a class="block" href="gallery.html">Gallery</a
+        ><a class="block" href="contact.html">Contact</a
+        ><a class="block text-brand-blue" href="contact.html#quote"
+          >Get a Quote →</a
+        >
+      </div>
+    </header>
+
+    <main>
+      <section class="hero-bg text-white">
+        <div
+          class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 min-h-[570px] flex items-center py-20"
+        >
+          <div class="max-w-2xl">
+            <p
+              class="text-xs sm:text-sm uppercase tracking-[.22em] text-blue-200 font-bold"
+            >
+              Jodhpur • Rajasthan • Glass solutions
+            </p>
+            <h1
+              class="text-4xl sm:text-5xl lg:text-6xl font-extrabold leading-[1.08] mt-5"
+            >
+              Glass that brings<br /><span class="text-sky-300"
+                >your vision to life.</span
+              >
+            </h1>
+            <p class="text-lg text-slate-200 leading-8 mt-6 max-w-xl">
+              Toughened glass, mirrors, partitions and custom glass solutions
+              for residential, commercial and architectural spaces.
+            </p>
+            <div class="flex flex-wrap gap-3 mt-8">
+              <a
+                href="products.html"
+                class="rounded-full bg-brand-blue px-6 py-3.5 font-bold hover:bg-blue-500"
+                >Explore products →</a
+              ><a
+                href="contact.html#quote"
+                class="rounded-full border border-white/60 px-6 py-3.5 font-bold hover:bg-white hover:text-brand-navy"
+                >Get a project quote</a
+              >
+            </div>
+            <div
+              class="grid grid-cols-2 sm:grid-cols-3 gap-5 mt-12 pt-6 border-t border-white/25 max-w-xl"
+            >
+              <div>
+                <b class="block">Made for your space</b
+                ><span class="text-sm text-slate-300">Custom requirements</span>
+              </div>
+              <div>
+                <b class="block">Product guidance</b
+                ><span class="text-sm text-slate-300"
+                  >Discuss your application</span
+                >
+              </div>
+              <div class="hidden sm:block">
+                <b class="block">Local contact</b
+                ><span class="text-sm text-slate-300">Jodhpur, Rajasthan</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section class="py-16 sm:py-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div
+            class="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-8"
+          >
+            <div>
+              <p
+                class="text-brand-blue font-bold text-xs uppercase tracking-[.2em]"
+              >
+                Explore our range
+              </p>
+              <h2 class="text-3xl sm:text-4xl font-extrabold mt-2">
+                Glass for every kind of space
+              </h2>
+              <p class="text-slate-600 mt-3 max-w-2xl">
+                Explore popular product categories, then contact us to confirm
+                the right specifications for your project.
+              </p>
+            </div>
+            <a
+              href="products.html"
+              class="font-bold text-brand-blue whitespace-nowrap"
+              >View all products →</a
+            >
+          </div>
+          <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
+            <article
+              data-category="Architectural"
+              class="glass-card bg-white rounded-2xl overflow-hidden border border-slate-200 shadow-sm hover:shadow-soft transition"
+            >
+              <div class="h-48 overflow-hidden">
+                <img
+                  loading="lazy"
+                  class="w-full h-full object-cover"
+                  src="https://images.unsplash.com/photo-1511818966892-d7d671e672a2?auto=format&fit=crop&w=900&q=80"
+                  alt="Toughened Glass glass application"
+                />
+              </div>
+              <div class="p-5">
+                <p
+                  class="text-xs uppercase tracking-widest text-brand-blue font-bold"
+                >
+                  Architectural solutions
+                </p>
+                <h3 class="font-bold text-lg mt-2">Toughened Glass</h3>
+                <p class="text-sm text-slate-600 leading-6 mt-2">
+                  Safety-focused glass for doors, partitions, facades and custom
+                  applications.
+                </p>
+                <a
+                  href="contact.html#quote"
+                  class="inline-flex mt-4 text-sm font-bold text-brand-blue hover:text-brand-navy"
+                  >Enquire about this →</a
+                >
+              </div>
+            </article>
+            <article
+              data-category="Interior"
+              class="glass-card bg-white rounded-2xl overflow-hidden border border-slate-200 shadow-sm hover:shadow-soft transition"
+            >
+              <div class="h-48 overflow-hidden">
+                <img
+                  loading="lazy"
+                  class="w-full h-full object-cover"
+                  src="https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&w=900&q=80"
+                  alt="Mirrors & LED Mirrors glass application"
+                />
+              </div>
+              <div class="p-5">
+                <p
+                  class="text-xs uppercase tracking-widest text-brand-blue font-bold"
+                >
+                  Interior solutions
+                </p>
+                <h3 class="font-bold text-lg mt-2">Mirrors & LED Mirrors</h3>
+                <p class="text-sm text-slate-600 leading-6 mt-2">
+                  Mirror solutions for bathrooms, bedrooms, retail and
+                  hospitality interiors.
+                </p>
+                <a
+                  href="contact.html#quote"
+                  class="inline-flex mt-4 text-sm font-bold text-brand-blue hover:text-brand-navy"
+                  >Enquire about this →</a
+                >
+              </div>
+            </article>
+            <article
+              data-category="Interior"
+              class="glass-card bg-white rounded-2xl overflow-hidden border border-slate-200 shadow-sm hover:shadow-soft transition"
+            >
+              <div class="h-48 overflow-hidden">
+                <img
+                  loading="lazy"
+                  class="w-full h-full object-cover"
+                  src="https://images.unsplash.com/photo-1497366811353-6870744d04b2?auto=format&fit=crop&w=900&q=80"
+                  alt="Glass Partitions glass application"
+                />
+              </div>
+              <div class="p-5">
+                <p
+                  class="text-xs uppercase tracking-widest text-brand-blue font-bold"
+                >
+                  Interior solutions
+                </p>
+                <h3 class="font-bold text-lg mt-2">Glass Partitions</h3>
+                <p class="text-sm text-slate-600 leading-6 mt-2">
+                  Create bright, flexible workspaces and interiors with glass
+                  partitions.
+                </p>
+                <a
+                  href="contact.html#quote"
+                  class="inline-flex mt-4 text-sm font-bold text-brand-blue hover:text-brand-navy"
+                  >Enquire about this →</a
+                >
+              </div>
+            </article>
+            <article
+              data-category="Interior"
+              class="glass-card bg-white rounded-2xl overflow-hidden border border-slate-200 shadow-sm hover:shadow-soft transition"
+            >
+              <div class="h-48 overflow-hidden">
+                <img
+                  loading="lazy"
+                  class="w-full h-full object-cover"
+                  src="https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=900&q=80"
+                  alt="Decorative Glass glass application"
+                />
+              </div>
+              <div class="p-5">
+                <p
+                  class="text-xs uppercase tracking-widest text-brand-blue font-bold"
+                >
+                  Interior solutions
+                </p>
+                <h3 class="font-bold text-lg mt-2">Decorative Glass</h3>
+                <p class="text-sm text-slate-600 leading-6 mt-2">
+                  Bring pattern, texture and character to residential and
+                  commercial spaces.
+                </p>
+                <a
+                  href="contact.html#quote"
+                  class="inline-flex mt-4 text-sm font-bold text-brand-blue hover:text-brand-navy"
+                  >Enquire about this →</a
+                >
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+      <section class="bg-slate-50 py-16 sm:py-20">
+        <div
+          class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid lg:grid-cols-2 gap-12 items-center"
+        >
+          <img
+            loading="lazy"
+            class="w-full h-[390px] object-cover rounded-3xl shadow-soft"
+            src="https://images.unsplash.com/photo-1487958449943-2429e8be8625?auto=format&fit=crop&w=1200&q=85"
+            alt="Contemporary architecture with extensive glass"
+          />
+          <div>
+            <p
+              class="text-brand-blue font-bold text-xs uppercase tracking-[.2em]"
+            >
+              About our company
+            </p>
+            <h2 class="text-3xl sm:text-4xl font-extrabold mt-3">
+              A glass partner for ideas big and small.
+            </h2>
+            <p class="text-slate-600 leading-7 mt-5">
+              Jangid Tuff Glasses Private Limited serves customers in Jodhpur
+              and surrounding areas with a focus on glass products and project
+              requirements. We aim to make it easier to explore options, share
+              dimensions and discuss your project with our team.
+            </p>
+            <p class="text-slate-600 leading-7 mt-3">
+              From mirrors and partitions to architectural glass applications,
+              start with your intended use and we’ll help you take the next
+              step.
+            </p>
+            <a
+              href="about.html"
+              class="inline-flex mt-6 rounded-full bg-brand-navy text-white px-6 py-3 font-bold hover:bg-brand-blue"
+              >Learn about us →</a
+            >
+          </div>
+        </div>
+      </section>
+      <section class="py-16 sm:py-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <p
+            class="text-brand-blue font-bold text-xs uppercase tracking-[.2em]"
+          >
+            How we can help
+          </p>
+          <h2 class="text-3xl sm:text-4xl font-extrabold mt-2">
+            Services built around your project
+          </h2>
+          <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-5 mt-8">
+            <article
+              class="rounded-2xl border border-slate-200 p-6 hover:shadow-soft transition"
+            >
+              <div
+                class="w-12 h-12 rounded-xl bg-brand-sky text-brand-blue grid place-items-center text-2xl"
+              >
+                ▦
+              </div>
+              <h3 class="font-bold text-lg mt-4">Product guidance</h3>
+              <p class="text-sm leading-6 text-slate-600 mt-2">
+                Discuss the application, finish and glass type that may suit
+                your space.
+              </p>
+            </article>
+            <article
+              class="rounded-2xl border border-slate-200 p-6 hover:shadow-soft transition"
+            >
+              <div
+                class="w-12 h-12 rounded-xl bg-brand-sky text-brand-blue grid place-items-center text-2xl"
+              >
+                ✂
+              </div>
+              <h3 class="font-bold text-lg mt-4">Custom requirements</h3>
+              <p class="text-sm leading-6 text-slate-600 mt-2">
+                Share drawings or measurements for a project-specific
+                discussion.
+              </p>
+            </article>
+            <article
+              class="rounded-2xl border border-slate-200 p-6 hover:shadow-soft transition"
+            >
+              <div
+                class="w-12 h-12 rounded-xl bg-brand-sky text-brand-blue grid place-items-center text-2xl"
+              >
+                ⌂
+              </div>
+              <h3 class="font-bold text-lg mt-4">Project coordination</h3>
+              <p class="text-sm leading-6 text-slate-600 mt-2">
+                Talk through site conditions, timelines and installation needs.
+              </p>
+            </article>
+            <article
+              class="rounded-2xl border border-slate-200 p-6 hover:shadow-soft transition"
+            >
+              <div
+                class="w-12 h-12 rounded-xl bg-brand-sky text-brand-blue grid place-items-center text-2xl"
+              >
+                ◇
+              </div>
+              <h3 class="font-bold text-lg mt-4">Design support</h3>
+              <p class="text-sm leading-6 text-slate-600 mt-2">
+                Explore options for partitions, mirrors and architectural
+                applications.
+              </p>
+            </article>
+          </div>
+          <div class="mt-7">
+            <a href="services.html" class="font-bold text-brand-blue"
+              >Explore our services →</a
+            >
+          </div>
+        </div>
+      </section>
+      <section class="bg-brand-navy text-white py-16">
+        <div
+          class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid md:grid-cols-2 gap-10 items-center"
+        >
+          <div>
+            <p
+              class="text-blue-300 uppercase tracking-[.2em] text-xs font-bold"
+            >
+              Why work with us
+            </p>
+            <h2 class="text-3xl sm:text-4xl font-extrabold mt-3">
+              Clear communication.<br />Thoughtful glass solutions.
+            </h2>
+            <p class="text-slate-300 leading-7 mt-5">
+              We believe every project starts with understanding how the glass
+              will be used. Share your brief, dimensions, preferred look and
+              timeline so the team can guide the conversation.
+            </p>
+            <a
+              href="contact.html#quote"
+              class="inline-flex mt-6 rounded-full bg-white text-brand-navy px-6 py-3 font-bold"
+              >Discuss your project →</a
+            >
+          </div>
+          <div class="grid grid-cols-2 gap-4">
+            <div class="rounded-2xl border border-white/15 bg-white/5 p-5">
+              <b>01</b>
+              <h3 class="font-bold mt-3">Understand</h3>
+              <p class="text-sm text-slate-300 mt-2">
+                Tell us your application and requirements.
+              </p>
+            </div>
+            <div class="rounded-2xl border border-white/15 bg-white/5 p-5">
+              <b>02</b>
+              <h3 class="font-bold mt-3">Explore</h3>
+              <p class="text-sm text-slate-300 mt-2">
+                Discuss suitable products and finishes.
+              </p>
+            </div>
+            <div class="rounded-2xl border border-white/15 bg-white/5 p-5">
+              <b>03</b>
+              <h3 class="font-bold mt-3">Plan</h3>
+              <p class="text-sm text-slate-300 mt-2">
+                Confirm dimensions and project details.
+              </p>
+            </div>
+            <div class="rounded-2xl border border-white/15 bg-white/5 p-5">
+              <b>04</b>
+              <h3 class="font-bold mt-3">Connect</h3>
+              <p class="text-sm text-slate-300 mt-2">
+                Follow up directly with our team.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section class="py-16 sm:py-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div class="flex justify-between items-end gap-4">
+            <div>
+              <p
+                class="text-brand-blue font-bold text-xs uppercase tracking-[.2em]"
+              >
+                Visual inspiration
+              </p>
+              <h2 class="text-3xl sm:text-4xl font-extrabold mt-2">
+                Ideas in glass
+              </h2>
+            </div>
+            <a href="gallery.html" class="font-bold text-brand-blue"
+              >View gallery →</a
+            >
+          </div>
+          <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mt-8">
+            <img
+              loading="lazy"
+              class="rounded-2xl h-52 w-full object-cover"
+              src="https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=600&q=80"
+              alt="Glass office interior"
+            /><img
+              loading="lazy"
+              class="rounded-2xl h-52 w-full object-cover"
+              src="https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&w=600&q=80"
+              alt="Mirror in a modern interior"
+            /><img
+              loading="lazy"
+              class="rounded-2xl h-52 w-full object-cover"
+              src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=600&q=80"
+              alt="Modern home with glass elements"
+            /><img
+              loading="lazy"
+              class="rounded-2xl h-52 w-full object-cover"
+              src="https://images.unsplash.com/photo-1620626011761-996317b8d101?auto=format&fit=crop&w=600&q=80"
+              alt="Contemporary bathroom glass"
+            />
+          </div>
+          <p class="text-xs text-slate-500 mt-3">
+            Illustrative inspiration images; replace with verified photos of
+            your actual products and projects before launch.
+          </p>
+        </div>
+      </section>
+      <section class="bg-slate-50 py-16">
+        <div class="max-w-3xl mx-auto px-4 text-center">
+          <p
+            class="text-brand-blue font-bold text-xs uppercase tracking-[.2em]"
+          >
+            Let's get started
+          </p>
+          <h2 class="text-3xl sm:text-4xl font-extrabold mt-3">
+            Have dimensions or a design in mind?
+          </h2>
+          <p class="text-slate-600 mt-4 leading-7">
+            Send your requirements and our team can follow up to discuss the
+            next steps.
+          </p>
+          <div class="flex flex-wrap justify-center gap-3 mt-7">
+            <a
+              href="contact.html#quote"
+              class="rounded-full bg-brand-blue text-white px-6 py-3 font-bold"
+              >Request a quote</a
+            ><a
+              href="https://wa.me/919251077483"
+              target="_blank"
+              rel="noopener"
+              class="rounded-full border border-slate-300 px-6 py-3 font-bold"
+              >Chat on WhatsApp</a
+            >
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <section class="bg-brand-blue text-white">
+      <div
+        class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 flex flex-col md:flex-row md:items-center justify-between gap-5"
+      >
+        <div>
+          <p class="text-xs uppercase tracking-[.2em] text-blue-100 font-bold">
+            Have a project in mind?
+          </p>
+          <h2 class="text-2xl sm:text-3xl font-bold mt-2">
+            Let's build something beautiful with glass.
+          </h2>
+          <p class="text-blue-100 mt-2">
+            Tell us what you need. We'll help you explore the right solution.
+          </p>
+        </div>
+        <a
+          href="contact.html#quote"
+          class="inline-flex justify-center rounded-full bg-white text-brand-navy px-6 py-3 font-bold hover:bg-blue-50"
+          >Request a Quote →</a
+        >
+      </div>
+    </section>
+    <footer class="bg-[#06192d] text-slate-300">
+      <div
+        class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 grid sm:grid-cols-2 lg:grid-cols-4 gap-9"
+      >
+        <div>
+          <div class="text-white font-extrabold tracking-wide">
+            JANGID TUFF GLASSES
+          </div>
+          <div
+            class="text-[10px] tracking-[.22em] text-blue-300 font-bold mt-1"
+          >
+            PRIVATE LIMITED
+          </div>
+          <p class="text-sm leading-6 mt-4 max-w-xs">
+            Glass solutions for modern homes, commercial spaces and
+            architectural projects in Jodhpur, Rajasthan.
+          </p>
+        </div>
+        <div>
+          <h3 class="text-white font-bold mb-4">Explore</h3>
+          <div class="space-y-2 text-sm">
+            <a class="block hover:text-white" href="about.html">About us</a
+            ><a class="block hover:text-white" href="products.html">Products</a
+            ><a class="block hover:text-white" href="services.html">Services</a
+            ><a class="block hover:text-white" href="gallery.html">Gallery</a>
+          </div>
+        </div>
+        <div>
+          <h3 class="text-white font-bold mb-4">Contact</h3>
+          <div class="space-y-3 text-sm">
+            <p>21 Narnadi, Boranada, Pal, Jodhpur, Rajasthan 342017</p>
+            <a class="block hover:text-white" href="tel:+919251077483"
+              >+91 92510 77483</a
+            ><a
+              class="block hover:text-white"
+              href="https://www.instagram.com/jangidglassco/"
+              target="_blank"
+              rel="noopener"
+              >Instagram @jangidglassco</a
+            >
+            <p>Hours: Please call to confirm</p>
+          </div>
+        </div>
+        <div>
+          <h3 class="text-white font-bold mb-4">Start a project</h3>
+          <p class="text-sm leading-6 mb-4">
+            Share your dimensions, glass type and project location for a more
+            useful estimate.
+          </p>
+          <a
+            href="contact.html#quote"
+            class="inline-block border border-slate-500 rounded-full px-4 py-2 text-sm font-semibold hover:bg-white hover:text-brand-navy"
+            >Send an enquiry →</a
+          >
+        </div>
+      </div>
+      <div class="border-t border-white/10">
+        <div
+          class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-5 flex flex-col sm:flex-row justify-between gap-2 text-xs"
+        >
+          <span
+            >© <span id="year"></span> Jangid Tuff Glasses Private Limited. All
+            rights reserved.</span
+          >
+          <div class="flex gap-4">
+            <a href="privacy.html" class="hover:text-white">Privacy</a
+            ><a href="contact.html" class="hover:text-white">Contact</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+    <div
+      id="toast"
+      role="status"
+      aria-live="polite"
+      class="hidden fixed bottom-5 left-1/2 -translate-x-1/2 z-[60] rounded-xl bg-brand-navy text-white px-5 py-3 shadow-soft text-sm"
+    ></div>
+    <script>
+      const menuToggle = document.getElementById("menuToggle"),
+        mobileMenu = document.getElementById("mobileMenu");
+      if (menuToggle && mobileMenu) {
+        menuToggle.addEventListener("click", () => {
+          const open = mobileMenu.classList.toggle("open");
+          menuToggle.setAttribute("aria-expanded", String(open));
+          menuToggle.textContent = open ? "✕" : "☰";
+        });
+      }
+      document.querySelectorAll("[data-filter]").forEach((btn) =>
+        btn.addEventListener("click", () => {
+          const group = btn.closest("[data-gallery]");
+          group
+            .querySelectorAll("[data-filter]")
+            .forEach((b) => b.classList.remove("bg-brand-blue", "text-white"));
+          btn.classList.add("bg-brand-blue", "text-white");
+          const filter = btn.dataset.filter;
+          group
+            .querySelectorAll("[data-category]")
+            .forEach((card) =>
+              card.classList.toggle(
+                "hidden",
+                filter !== "all" && card.dataset.category !== filter,
+              ),
+            );
+        }),
+      );
+      document.querySelectorAll("[data-enquiry-form]").forEach((form) =>
+        form.addEventListener("submit", (e) => {
+          e.preventDefault();
+          if (!form.reportValidity()) return;
+          const data = new FormData(form);
+          const lines = [
+            "Hello Jangid Tuff Glasses Private Limited, I would like to enquire about a glass project.",
+            "",
+            ...Array.from(data.entries()).map(([k, v]) => k + ": " + v),
+          ];
+          const message = encodeURIComponent(lines.join("\\n"));
+          window.open(
+            "https://wa.me/919251077483?text=" + message,
+            "_blank",
+            "noopener",
+          );
+          const toast = document.getElementById("toast");
+          if (toast) {
+            toast.textContent =
+              "Your enquiry is ready to send in WhatsApp. Please review and send it there.";
+            toast.classList.remove("hidden");
+            setTimeout(() => toast.classList.add("hidden"), 6000);
+          }
+        }),
+      );
+      const year = document.getElementById("year");
+      if (year) year.textContent = new Date().getFullYear();
+    </script>
+  </body>
+</html>

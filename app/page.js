@@ -1,0 +1,224 @@
+'use client';
+
+import Image from 'next/image';
+import Link from 'next/link';
+import { motion } from 'framer-motion';
+import { ArrowRight, Phone, MessageSquare, Shield, Clock, MapPin, Sparkles, CheckCircle2, ChevronRight } from 'lucide-react';
+import ProductCard from '@/components/ui/ProductCard';
+import ServiceCard from '@/components/ui/ServiceCard';
+import CTABanner from '@/components/ui/CTABanner';
+import PageHero from '@/components/ui/PageHero';
+import { COMPANY, PRODUCT_CATEGORIES, SERVICES } from '@/lib/constants';
+
+export default function HomePage() {
+  const featuredProducts = PRODUCT_CATEGORIES.slice(0, 6);
+  const coreServices = SERVICES.slice(0, 4);
+
+  return (
+    <div className="flex flex-col min-h-screen">
+      {/* ─── Hero Section Replicated Exactly from Reference Design ─── */}
+      <PageHero
+        eyebrow="PREMIUM GLASS SOLUTIONS"
+        title="Transforming Spaces"
+        titleAccent="with Glass"
+        description="Modern glass solutions for residential, commercial and industrial spaces. From toughened glass to custom interiors, we bring clarity, elegance and strength to your vision."
+        primaryAction={{ label: 'Explore Products', href: '/products' }}
+        secondaryAction={{ label: 'Our Services', href: '/services' }}
+        backgroundImage="/hero-exact.png"
+        showCategories={true}
+        showWatchWork={true}
+      />
+
+      {/* ─── Product Categories Preview ─── */}
+      <section className="py-20 sm:py-28 bg-gradient-to-b from-[#f8fafc] via-[#f1f5f9] to-[#ffffff]">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
+            <div>
+              <p className="text-[#0878d1] font-bold text-xs uppercase tracking-[0.25em]">
+                Comprehensive Catalogue
+              </p>
+              <h2 className="text-3xl sm:text-4xl font-extrabold text-[#08233f] mt-2 tracking-tight">
+                Engineered Glass for Every Application
+              </h2>
+              <p className="text-slate-600 mt-3 max-w-2xl text-sm sm:text-base leading-relaxed">
+                Explore our core glass solutions manufactured and supplied for modern architecture, interiors, and safety installations.
+              </p>
+            </div>
+            <Link
+              href="/products"
+              className="inline-flex items-center gap-2 font-bold text-[#0878d1] hover:text-[#08233f] transition duration-500 group shrink-0 text-sm"
+            >
+              <span>View full product catalogue</span>
+              <ArrowRight className="w-4 h-4 transform group-hover:translate-x-1 transition duration-500" />
+            </Link>
+          </div>
+
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
+            {featuredProducts.map((product, index) => (
+              <ProductCard key={product.slug} product={product} index={index} />
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ─── About Company Section ─── */}
+      <section className="py-20 sm:py-28 bg-white relative overflow-hidden">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid lg:grid-cols-2 gap-16 items-center">
+          {/* Left: Image with Jodhpur badge */}
+          <div className="relative">
+            <div className="rounded-3xl overflow-hidden shadow-2xl border border-slate-100 aspect-[4/3] relative group">
+              <Image
+                src="https://images.unsplash.com/photo-1487958449943-2429e8be8625?auto=format&fit=crop&w=1200&q=85"
+                alt="Architectural Glass Craftsmanship"
+                fill
+                sizes="(max-width: 1024px) 100vw, 50vw"
+                className="object-cover group-hover:scale-110 transition-transform duration-700 ease-out"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-[#08233f]/70 via-[#08233f]/20 to-transparent transition-opacity duration-500" />
+            </div>
+
+            <div className="absolute -bottom-6 -right-6 sm:bottom-6 sm:right-6 bg-gradient-to-br from-[#08233f] to-[#041323] text-white p-6 rounded-3xl shadow-2xl max-w-xs border border-white/15 hidden sm:block animate-float-gentle">
+              <span className="block text-2xl font-black text-transparent bg-clip-text bg-gradient-to-r from-sky-400 to-sky-200">
+                Jodhpur Hub
+              </span>
+              <span className="text-xs text-slate-300 mt-1.5 block leading-relaxed">
+                Rooted in Boranada / Pal, catering to high-precision residential, retail & commercial developments.
+              </span>
+            </div>
+          </div>
+
+          {/* Right: Narrative */}
+          <div>
+            <p className="text-[#0878d1] font-bold text-xs uppercase tracking-[0.25em]">Company Profile</p>
+            <h2 className="text-3xl sm:text-4xl font-extrabold text-[#08233f] mt-3 leading-tight tracking-tight">
+              A Trusted Glass Partner in Jodhpur, Rajasthan
+            </h2>
+            <p className="text-slate-600 leading-relaxed mt-6 text-sm sm:text-base">
+              <strong>{COMPANY.name}</strong> ({COMPANY.nameHindi}) operates from {COMPANY.address.street} in {COMPANY.address.city}. We focus on providing modern glass solutions tailored to architectural and interior project specifications.
+            </p>
+            <p className="text-slate-600 leading-relaxed mt-4 text-sm sm:text-base">
+              Whether you are an architect designing an office partition, a builder requiring toughened structural glass, or a homeowner seeking a custom LED mirror, our team works directly with your drawings and site measurements to ensure precise fit and finish.
+            </p>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-8">
+              <div className="p-5 rounded-2xl bg-gradient-to-br from-[#eaf5ff] to-[#f3f9ff] border border-blue-100/80 shadow-sm">
+                <span className="text-[#08233f] font-bold block text-sm">Verified Address</span>
+                <span className="text-xs text-slate-600 mt-1 block leading-relaxed">{COMPANY.address.full}</span>
+              </div>
+              <div className="p-5 rounded-2xl bg-gradient-to-br from-[#eaf5ff] to-[#f3f9ff] border border-blue-100/80 shadow-sm">
+                <span className="text-[#08233f] font-bold block text-sm">Direct Contact</span>
+                <span className="text-xs text-slate-600 mt-1 block leading-relaxed">{COMPANY.phone} • Fast phone & WhatsApp response</span>
+              </div>
+            </div>
+
+            <div className="mt-8 flex flex-wrap items-center gap-4">
+              <Link
+                href="/about"
+                className="btn-gradient text-white px-7 py-3.5 rounded-full font-bold text-sm inline-flex items-center gap-2 shadow-md transition duration-500"
+              >
+                <span>Read More About Us</span>
+                <ArrowRight className="w-4 h-4" />
+              </Link>
+              <Link
+                href="/contact"
+                className="rounded-full border border-slate-300 text-[#132b45] px-7 py-3.5 font-bold hover:bg-slate-50 transition duration-500 text-sm"
+              >
+                Contact & Directions
+              </Link>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ─── Services Overview ─── */}
+      <section className="py-20 sm:py-28 bg-gradient-to-b from-[#f8fafc] via-[#f1f5f9] to-[#ffffff]">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center max-w-3xl mx-auto mb-16">
+            <p className="text-[#0878d1] font-bold text-xs uppercase tracking-[0.25em]">Our Process & Services</p>
+            <h2 className="text-3xl sm:text-4xl font-extrabold text-[#08233f] mt-2 tracking-tight">
+              Comprehensive Support From Enquiry to Execution
+            </h2>
+            <p className="text-slate-600 mt-3 text-sm sm:text-base">
+              We make glass procurement straightforward, consultative, and transparent for clients and contractors.
+            </p>
+          </div>
+
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            {coreServices.map((service, index) => (
+              <ServiceCard key={service.id || index} service={service} index={index} />
+            ))}
+          </div>
+
+          <div className="mt-12 text-center">
+            <Link
+              href="/services"
+              className="inline-flex items-center gap-2 font-bold text-[#0878d1] hover:text-[#08233f] text-sm group transition duration-500"
+            >
+              <span>View all services and project stages</span>
+              <ArrowRight className="w-4 h-4 transform group-hover:translate-x-1 transition duration-500" />
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* ─── Visual Inspiration Preview ─── */}
+      <section className="py-20 sm:py-28 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
+            <div>
+              <p className="text-[#0878d1] font-bold text-xs uppercase tracking-[0.25em]">Visual Inspiration</p>
+              <h2 className="text-3xl sm:text-4xl font-extrabold text-[#08233f] mt-2 tracking-tight">
+                Modern Glass Applications
+              </h2>
+              <p className="text-slate-600 mt-2 text-xs sm:text-sm max-w-xl">
+                Explore architectural and interior concepts. Note: photography shown is illustrative of design possibilities.
+              </p>
+            </div>
+            <Link
+              href="/gallery"
+              className="inline-flex items-center gap-2 font-bold text-[#0878d1] hover:text-[#08233f] text-sm group shrink-0 transition duration-500"
+            >
+              <span>Explore full gallery</span>
+              <ArrowRight className="w-4 h-4 transform group-hover:translate-x-1 transition duration-500" />
+            </Link>
+          </div>
+
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
+            {[
+              { title: 'Toughened Facades', src: 'https://images.unsplash.com/photo-1511818966892-d7d671e672a2?auto=format&fit=crop&w=600&q=80', tag: 'Architectural' },
+              { title: 'Slim Partitions', src: 'https://images.unsplash.com/photo-1497366811353-6870744d04b2?auto=format&fit=crop&w=600&q=80', tag: 'Office & Home' },
+              { title: 'LED Mirrors', src: 'https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&w=600&q=80', tag: 'Interior' },
+              { title: 'Shower Glass', src: 'https://images.unsplash.com/photo-1620626011761-996317b8d101?auto=format&fit=crop&w=600&q=80', tag: 'Bath Spaces' },
+            ].map((item, index) => (
+              <div key={index} className="group relative rounded-3xl overflow-hidden aspect-[3/4] bg-slate-100 shadow-sm border border-slate-200/80 hover:shadow-xl hover:-translate-y-1 transition duration-500">
+                <Image
+                  src={item.src}
+                  alt={item.title}
+                  fill
+                  sizes="(max-width: 640px) 50vw, 25vw"
+                  className="object-cover transition-transform duration-500 ease-out group-hover:scale-108"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#041323]/85 via-black/20 to-transparent flex flex-col justify-end p-5">
+                  <span className="text-[10px] uppercase font-bold text-sky-300 tracking-wider">
+                    {item.tag}
+                  </span>
+                  <span className="text-white font-bold text-sm sm:text-base mt-1">
+                    {item.title}
+                  </span>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ─── Bottom CTA Banner ─── */}
+      <CTABanner
+        title="Ready to Build Something with Glass?"
+        description="Share your requirements, rough dimensions, or architectural elevations. We will evaluate the specifications and guide you on the best options."
+        primaryAction={{ label: 'Request a Project Quote', href: '/contact#quote' }}
+        secondaryAction={{ label: `Call ${COMPANY.phone}`, href: `tel:${COMPANY.phoneRaw}` }}
+      />
+    </div>
+  );
+}

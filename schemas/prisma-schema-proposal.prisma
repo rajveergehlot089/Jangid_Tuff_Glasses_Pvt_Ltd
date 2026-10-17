@@ -1,0 +1,151 @@
+// Proposed schema only. Configure DATABASE_URL in a local environment before use.
+// This file does not imply a database is currently connected.
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum EnquiryStatus {
+  NEW
+  CONTACTED
+  QUALIFIED
+  QUOTED
+  WON
+  LOST
+  SPAM
+}
+
+enum MediaSourceType {
+  OWNER_UPLOAD
+  LICENSED_STOCK
+  GENERATED_CONCEPT
+}
+
+enum PermissionStatus {
+  PENDING
+  APPROVED
+  REJECTED
+}
+
+model Product {
+  id              String   @id @default(uuid())
+  slug            String   @unique
+  name            String
+  shortDescription String
+  description     String
+  category        String
+  applications    String[]
+  specifications  Json?
+  isPublished     Boolean  @default(false)
+  sortOrder       Int      @default(0)
+  media           ProductMedia[]
+  enquiries       Enquiry[]
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+}
+
+model Service {
+  id          String   @id @default(uuid())
+  slug        String   @unique
+  name        String
+  summary     String
+  description String
+  isPublished Boolean  @default(false)
+  enquiries   Enquiry[]
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model Project {
+  id             String   @id @default(uuid())
+  slug           String   @unique
+  title          String
+  locationLabel  String?
+  category       String
+  brief          String
+  solution       String
+  completionDate DateTime?
+  isPublished    Boolean  @default(false)
+  media          ProjectMedia[]
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+}
+
+model MediaAsset {
+  id                   String           @id @default(uuid())
+  url                  String
+  altText              String
+  caption              String?
+  sourceType           MediaSourceType
+  sourceUrl            String?
+  permissionStatus     PermissionStatus @default(PENDING)
+  isActualCompanyWork  Boolean          @default(false)
+  width                Int?
+  height               Int?
+  productLinks         ProductMedia[]
+  projectLinks         ProjectMedia[]
+  createdAt            DateTime         @default(now())
+  updatedAt            DateTime         @updatedAt
+}
+
+model ProductMedia {
+  productId String
+  mediaId   String
+  sortOrder Int        @default(0)
+  product   Product    @relation(fields: [productId], references: [id], onDelete: Cascade)
+  media     MediaAsset @relation(fields: [mediaId], references: [id], onDelete: Cascade)
+
+  @@id([productId, mediaId])
+}
+
+model ProjectMedia {
+  projectId String
+  mediaId   String
+  sortOrder Int        @default(0)
+  project   Project    @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  media     MediaAsset @relation(fields: [mediaId], references: [id], onDelete: Cascade)
+
+  @@id([projectId, mediaId])
+}
+
+model Enquiry {
+  id             String        @id @default(uuid())
+  name           String
+  phone          String
+  email          String?
+  customerType   String?
+  productInterest String?
+  projectLocation String?
+  dimensions     String?
+  quantity       String?
+  timeline       String?
+  message        String
+  sourcePage     String?
+  consentAt      DateTime?
+  status         EnquiryStatus @default(NEW)
+  productId      String?
+  serviceId      String?
+  product        Product?      @relation(fields: [productId], references: [id], onDelete: SetNull)
+  service        Service?      @relation(fields: [serviceId], references: [id], onDelete: SetNull)
+  createdAt      DateTime      @default(now())
+  updatedAt      DateTime      @updatedAt
+
+  @@index([status, createdAt])
+  @@index([phone])
+}
+
+model FAQ {
+  id        String   @id @default(uuid())
+  question  String
+  answer    String
+  category  String
+  sortOrder Int      @default(0)
+  isPublished Boolean @default(false)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}

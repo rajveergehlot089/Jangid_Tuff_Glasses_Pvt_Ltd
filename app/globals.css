@@ -1,0 +1,184 @@
+@import "tailwindcss";
+
+/* Brand Design Tokens & Smooth Modern Gradients */
+:root {
+  --brand-navy: #08233f;
+  --brand-navy-dark: #041323;
+  --brand-blue: #0878d1;
+  --brand-blue-glow: #1a90ee;
+  --brand-sky: #eaf5ff;
+  --brand-sky-light: #f3f9ff;
+  --brand-ink: #132b45;
+  --brand-slate: #64748b;
+  --brand-neutral: #f8fafc;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-sans), 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  background-color: #ffffff;
+  color: #132b45;
+}
+
+.font-hindi {
+  font-family: var(--font-hindi), 'Noto Sans Devanagari', sans-serif;
+}
+
+/* Universal Smooth Transition Easing & Standard Durations */
+a, button, input, select, textarea, .transition-all, .transition {
+  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter;
+  transition-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+  transition-duration: 500ms;
+}
+
+/* Accessible focus outline */
+:focus-visible {
+  outline: 2px solid var(--brand-blue);
+  outline-offset: 3px;
+  transition-duration: 400ms;
+}
+
+/* Selection */
+::selection {
+  background: linear-gradient(135deg, #0878d1 0%, #1a90ee 100%);
+  color: #ffffff;
+}
+
+/* Glass Card & Interactive Tile Motion with smooth 500ms easing */
+.glass-card {
+  transition: transform 550ms cubic-bezier(0.16, 1, 0.3, 1), box-shadow 550ms cubic-bezier(0.16, 1, 0.3, 1), border-color 500ms ease;
+  will-change: transform, box-shadow;
+}
+
+.glass-card:hover {
+  transform: translateY(-7px);
+  box-shadow: 0 25px 40px -12px rgba(8, 120, 209, 0.2), 0 14px 24px -8px rgba(8, 35, 63, 0.1);
+}
+
+/* Ultra-smooth Image Hover Scaling */
+.glass-card img, .group:hover img, .group img {
+  transition: transform 750ms cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+/* Subtle Shimmer & Glow for Gradient Buttons */
+.btn-gradient {
+  background: linear-gradient(135deg, #0878d1 0%, #0660a9 50%, #08233f 100%);
+  background-size: 200% 200%;
+  position: relative;
+  overflow: hidden;
+  transition: background-position 650ms cubic-bezier(0.16, 1, 0.3, 1), transform 500ms cubic-bezier(0.16, 1, 0.3, 1), box-shadow 550ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.btn-gradient::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 60%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.25), transparent);
+  transform: skewX(-20deg);
+  transition: left 750ms ease;
+  pointer-events: none;
+}
+
+.btn-gradient:hover::before {
+  left: 140%;
+}
+
+.btn-gradient:hover {
+  background-position: 100% 100%;
+  transform: translateY(-3px) scale(1.01);
+  box-shadow: 0 14px 30px -6px rgba(8, 120, 209, 0.5);
+}
+
+.btn-gradient:active {
+  transform: translateY(-1px) scale(0.99);
+}
+
+.btn-gradient-emerald {
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+  position: relative;
+  overflow: hidden;
+  transition: transform 500ms cubic-bezier(0.16, 1, 0.3, 1), box-shadow 550ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.btn-gradient-emerald::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 60%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.25), transparent);
+  transform: skewX(-20deg);
+  transition: left 750ms ease;
+  pointer-events: none;
+}
+
+.btn-gradient-emerald:hover::before {
+  left: 140%;
+}
+
+.btn-gradient-emerald:hover {
+  transform: translateY(-3px) scale(1.01);
+  box-shadow: 0 14px 30px -6px rgba(16, 185, 129, 0.5);
+}
+
+.btn-gradient-emerald:active {
+  transform: translateY(-1px) scale(0.99);
+}
+
+/* Subtle Interactive Animations */
+@keyframes floatGentle {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-6px);
+  }
+}
+
+.animate-float-gentle {
+  animation: floatGentle 5s ease-in-out infinite;
+}
+
+@keyframes pulseGlow {
+  0%, 100% {
+    opacity: 0.85;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.04);
+  }
+}
+
+.animate-pulse-glow {
+  animation: pulseGlow 4s ease-in-out infinite;
+}
+
+/* Arrow micro-interaction transitions */
+.group:hover .group-hover\:translate-x-1 {
+  transform: translateX(4px);
+  transition-duration: 500ms;
+}
+
+.group:hover .group-hover\:translate-x-1\.5 {
+  transform: translateX(6px);
+  transition-duration: 500ms;
+}
+
+/* Reduced motion compliance */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
