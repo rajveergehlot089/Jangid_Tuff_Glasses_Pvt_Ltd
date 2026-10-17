@@ -173,6 +173,16 @@ a, button, input, select, textarea, .transition-all, .transition {
   transition-duration: 500ms;
 }
 
+/* Hide scrollbar across all browsers */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
 /* Reduced motion compliance */
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {

@@ -60,7 +60,7 @@ export default function PageHero({
 }) {
   return (
     <section
-      className="relative min-h-[680px] lg:min-h-[760px] w-full text-white overflow-hidden flex flex-col justify-between bg-[#040e1a]"
+      className="relative min-h-[640px] sm:min-h-[700px] lg:min-h-[760px] w-full text-white overflow-hidden flex flex-col justify-between bg-[#040e1a]"
       aria-label="Hero Banner"
     >
       {/* Background Photography with Architectural Depth */}
@@ -81,15 +81,12 @@ export default function PageHero({
         {/* Top subtle fade from dark header */}
         <div className="absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-[#020912]/80 to-transparent" />
 
-        {/* Bottom deep fade into content & ticker bar */}
-        <div className="absolute inset-x-0 bottom-0 h-44 bg-gradient-to-t from-[#020810] via-[#041323]/70 to-transparent" />
-
         {/* Soft Ambient Radial Blue Glow */}
         <div className="absolute top-1/3 left-10 w-96 h-96 bg-[#0878d1]/20 rounded-full blur-3xl pointer-events-none" />
       </div>
 
       {/* Main Content Area */}
-      <div className="relative z-10 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 pt-20 sm:pt-28 lg:pt-32 pb-16 flex-1 flex flex-col justify-center">
+      <div className="relative z-10 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 pt-16 sm:pt-24 lg:pt-28 pb-8 flex-1 flex flex-col justify-center">
         <div className="max-w-2xl lg:max-w-xl">
           {/* Eyebrow badge */}
           {eyebrow && (
@@ -162,55 +159,57 @@ export default function PageHero({
         </div>
       </div>
 
-      {/* Bottom Horizontal Glass Feature Bar Exactly Like Reference Image */}
+      {/* Embedded Floating Glass Feature Bar (Inside the Hero background image, no scrollbar) */}
       {showCategories && (
-        <div className="relative z-10 w-full border-t border-white/15 bg-[#030e1a]/80 backdrop-blur-md">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 sm:py-5 flex flex-col lg:flex-row items-center justify-between gap-4">
-            {/* Feature Category Chips */}
-            <div className="w-full lg:w-auto grid grid-cols-2 sm:grid-cols-3 lg:flex items-center gap-2.5 sm:gap-4 overflow-x-auto pb-1 lg:pb-0">
-              {categories.map((item, idx) => {
-                const IconComponent = item.icon || ShieldCheck;
-                return (
-                  <Link
-                    key={idx}
-                    href={item.href || '/products'}
-                    className="flex items-center gap-3 p-2.5 sm:px-4 sm:py-2.5 rounded-2xl bg-white/5 hover:bg-white/15 border border-white/10 hover:border-sky-400/40 transition duration-500 group shrink-0"
-                  >
-                    <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-[#0878d1]/40 to-sky-400/20 border border-sky-400/30 flex items-center justify-center text-sky-300 group-hover:scale-105 group-hover:text-white transition duration-500 shrink-0">
-                      <IconComponent className="w-4 h-4" />
-                    </div>
-                    <div className="flex flex-col text-left">
-                      <span className="text-xs sm:text-sm font-bold text-white group-hover:text-sky-300 transition duration-500 leading-tight">
-                        {item.label}
-                      </span>
-                      <span className="text-[10px] text-slate-400 group-hover:text-slate-200 transition duration-500 hidden sm:block">
-                        {item.sublabel}
-                      </span>
-                    </div>
-                  </Link>
-                );
-              })}
-            </div>
+        <div className="relative z-10 w-full pb-6 pt-4">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="flex flex-col lg:flex-row items-center justify-between gap-3.5">
+              {/* Feature Category Chips with hidden scrollbars */}
+              <div className="w-full lg:w-auto flex items-center gap-2.5 sm:gap-3 overflow-x-auto no-scrollbar scroll-smooth py-1">
+                {categories.map((item, idx) => {
+                  const IconComponent = item.icon || ShieldCheck;
+                  return (
+                    <Link
+                      key={idx}
+                      href={item.href || '/products'}
+                      className="flex items-center gap-3 px-3.5 py-2.5 sm:px-4 sm:py-3 rounded-2xl bg-[#030e1a]/65 hover:bg-[#030e1a]/85 border border-white/15 hover:border-sky-400/50 backdrop-blur-md transition-all duration-500 group shrink-0 shadow-lg shadow-black/20"
+                    >
+                      <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-xl bg-gradient-to-br from-[#0878d1]/50 to-sky-400/25 border border-sky-400/30 flex items-center justify-center text-sky-300 group-hover:scale-105 group-hover:text-white transition duration-500 shrink-0">
+                        <IconComponent className="w-4 h-4" />
+                      </div>
+                      <div className="flex flex-col text-left">
+                        <span className="text-xs sm:text-sm font-bold text-white group-hover:text-sky-300 transition duration-500 leading-tight whitespace-nowrap">
+                          {item.label}
+                        </span>
+                        <span className="text-[10px] text-slate-300 group-hover:text-slate-100 transition duration-500 whitespace-nowrap">
+                          {item.sublabel}
+                        </span>
+                      </div>
+                    </Link>
+                  );
+                })}
+              </div>
 
-            {/* Right: Watch Our Work / Quick Project Tour */}
-            {showWatchWork && (
-              <Link
-                href="/gallery"
-                className="flex items-center gap-3 px-4 py-2 rounded-2xl bg-white/5 hover:bg-white/15 border border-white/10 hover:border-sky-400/40 transition duration-500 group shrink-0"
-              >
-                <div className="w-9 h-9 rounded-full bg-gradient-to-br from-[#0878d1] to-sky-400 flex items-center justify-center text-white shadow-md group-hover:scale-110 transition duration-500">
-                  <Play className="w-4 h-4 fill-current ml-0.5" />
-                </div>
-                <div className="flex flex-col text-left">
-                  <span className="text-xs font-bold text-white group-hover:text-sky-300 transition duration-500">
-                    Watch Our Work
-                  </span>
-                  <span className="text-[10px] text-slate-400">
-                    Inspiration Gallery
-                  </span>
-                </div>
-              </Link>
-            )}
+              {/* Right: Watch Our Work / Quick Project Tour */}
+              {showWatchWork && (
+                <Link
+                  href="/gallery"
+                  className="flex items-center gap-3 px-4 py-2.5 rounded-2xl bg-[#030e1a]/65 hover:bg-[#030e1a]/85 border border-white/15 hover:border-sky-400/50 backdrop-blur-md transition-all duration-500 group shrink-0 shadow-lg shadow-black/20"
+                >
+                  <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-gradient-to-br from-[#0878d1] to-sky-400 flex items-center justify-center text-white shadow-md group-hover:scale-110 transition duration-500">
+                    <Play className="w-4 h-4 fill-current ml-0.5" />
+                  </div>
+                  <div className="flex flex-col text-left">
+                    <span className="text-xs font-bold text-white group-hover:text-sky-300 transition duration-500 whitespace-nowrap">
+                      Watch Our Work
+                    </span>
+                    <span className="text-[10px] text-slate-300 whitespace-nowrap">
+                      Inspiration Gallery
+                    </span>
+                  </div>
+                </Link>
+              )}
+            </div>
           </div>
         </div>
       )}
