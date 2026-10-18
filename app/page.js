@@ -173,7 +173,7 @@ export default function HomePage() {
                 Architectural Hardware, Profiles & Interior Solutions
               </h2>
               <p className="text-slate-600 mt-3 max-w-2xl text-sm sm:text-base leading-relaxed">
-                From hydraulic floor springs and frameless shower hinges to ultra-slim partition channels, our glass processing guarantees exact cutout tolerances for seamless hardware installation.
+                From hydraulic floor springs and frameless shower hinges to ultra-slim partition channels, our glass processing is engineered for precise cutout tolerances for seamless hardware installation.
               </p>
             </div>
             <Link

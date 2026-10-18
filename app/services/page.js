@@ -90,7 +90,7 @@ export default function ServicesPage() {
               {
                 title: 'Shower Enclosure Hardware',
                 category: 'Bathroom Spaces',
-                points: ['90° & 180° solid brass shower hinges', 'Anti-leak magnetic seals & drip sweeps', 'Top roller tubular sliding track kits', 'Wall-to-glass rigid stabilizer header bars'],
+                points: ['90° & 180° solid brass shower hinges', 'Water-deflecting magnetic seals & drip sweeps', 'Top roller tubular sliding track kits', 'Wall-to-glass rigid stabilizer header bars'],
               },
               {
                 title: 'Slim Partition Profiles',

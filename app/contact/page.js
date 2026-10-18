@@ -146,7 +146,7 @@ export default async function ContactPage({ searchParams }) {
               </p>
             </div>
 
-            <ContactQuoteForm initialProduct={initialProduct} />
+            <ContactQuoteForm key={initialProduct || 'default'} initialProduct={initialProduct} />
           </div>
         </div>
       </section>
