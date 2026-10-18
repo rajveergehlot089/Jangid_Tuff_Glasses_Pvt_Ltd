@@ -427,6 +427,82 @@ export default async function ProductDetailPage({ params }) {
         </div>
       </section>
 
+      {/* Specific Jodhpur Regional Supply & Contractor Hub for Toughened Glass */}
+      {product.slug === 'toughened-glass' && (
+        <section className="py-16 sm:py-20 bg-white border-t border-slate-200">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="grid lg:grid-cols-2 gap-12 items-center">
+              <div>
+                <span className="text-[#0878d1] font-bold text-xs uppercase tracking-[0.2em]">
+                  Jodhpur Regional Supply Hub
+                </span>
+                <h2 className="text-3xl font-extrabold text-[#08233f] mt-2">
+                  Toughened Glass Supply for Jodhpur Builders, Architects & Contractors
+                </h2>
+                <p className="text-slate-600 text-sm sm:text-base leading-relaxed mt-4">
+                  Located strategically at <strong>21 Narnadi, Boranada, Pal, Jodhpur</strong>, Jangid Tuff Glasses Private Limited serves as the dedicated regional fabrication and tempering resource for Western Rajasthan. 
+                </p>
+                <div className="mt-6 space-y-3 text-xs sm:text-sm text-slate-600">
+                  <div className="p-4 rounded-2xl bg-slate-50 border border-slate-200">
+                    <strong className="text-[#08233f] block text-sm mb-1">Architectural & Commercial Glazing:</strong>
+                    Direct supply for frameless glass shopfronts, spider glazing facades, high-span curtain walls, and showroom double doors.
+                  </div>
+                  <div className="p-4 rounded-2xl bg-slate-50 border border-slate-200">
+                    <strong className="text-[#08233f] block text-sm mb-1">Residential & Interior Fit-outs:</strong>
+                    Toughened glass for frameless bathroom shower cubicles, acoustic room partitions, staircase safety balustrades, and dining table surfaces.
+                  </div>
+                  <div className="p-4 rounded-2xl bg-slate-50 border border-slate-200">
+                    <strong className="text-[#08233f] block text-sm mb-1">Contractor & Bulk Order Coordination:</strong>
+                    Scheduled crated vehicle dispatches directly to project sites across Jodhpur, Pali, Barmer, Nagaur, and surrounding districts.
+                  </div>
+                </div>
+              </div>
+
+              <div className="bg-gradient-to-br from-[#08233f] to-[#041323] text-white p-8 sm:p-10 rounded-3xl shadow-xl border border-white/10">
+                <span className="text-xs uppercase font-extrabold tracking-widest text-sky-400 block mb-2">
+                  Technical Checklist
+                </span>
+                <h3 className="text-2xl font-bold">How to Specify Toughened Glass</h3>
+                <ul className="mt-6 space-y-3.5 text-xs text-slate-300">
+                  <li className="flex items-start gap-2.5">
+                    <span className="text-sky-400 font-bold">1.</span>
+                    <span><strong>Determine Thickness:</strong> 8mm–10mm for shower doors/partitions; 12mm–15mm for frameless entrance doors; 12mm+ or laminated for exterior railings.</span>
+                  </li>
+                  <li className="flex items-start gap-2.5">
+                    <span className="text-sky-400 font-bold">2.</span>
+                    <span><strong>Finalize Notches & Cutouts:</strong> Confirm floor spring cutout models (Ozone/Dorma compatible) before tempering furnace cycle.</span>
+                  </li>
+                  <li className="flex items-start gap-2.5">
+                    <span className="text-sky-400 font-bold">3.</span>
+                    <span><strong>Select Edge Treatment:</strong> High-gloss machine flat-polish with arris for exposed glass borders.</span>
+                  </li>
+                  <li className="flex items-start gap-2.5">
+                    <span className="text-sky-400 font-bold">4.</span>
+                    <span><strong>Share Elevation Drawings:</strong> Send CAD drawing (.dwg/.pdf) or verified site measurements for itemized review.</span>
+                  </li>
+                </ul>
+
+                <div className="mt-8 pt-6 border-t border-white/10 flex flex-wrap gap-4">
+                  <Link
+                    href="/contact?product=toughened-glass#quote"
+                    className="btn-gradient text-white text-xs font-bold px-6 py-3 rounded-full shadow-md transition-all duration-200 ease-out hover:-translate-y-0.5 inline-flex items-center gap-2"
+                  >
+                    <span>Request Toughened Glass Quote</span>
+                    <ArrowRight className="w-3.5 h-3.5" />
+                  </Link>
+                  <a
+                    href={`tel:${COMPANY.phoneRaw}`}
+                    className="rounded-full bg-white/10 hover:bg-white hover:text-[#08233f] text-white px-5 py-3 text-xs font-bold transition-all duration-200 ease-out inline-flex items-center gap-1.5"
+                  >
+                    <span>Call Karan Jangid: {COMPANY.phone}</span>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      )}
+
       {/* Related Products */}
       {relatedProducts.length > 0 && (
         <section className="py-16 bg-[#f6f8fa] border-t border-slate-200">
