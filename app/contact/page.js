@@ -9,9 +9,33 @@ export const metadata = genMeta('contact');
 export default async function ContactPage({ searchParams }) {
   const resolvedParams = await searchParams;
   const initialProduct = resolvedParams?.product || '';
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://jangid-tuff-glasses-pvt-ltd.vercel.app';
+
+  const breadcrumbLd = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      {
+        '@type': 'ListItem',
+        position: 1,
+        name: 'Home',
+        item: siteUrl,
+      },
+      {
+        '@type': 'ListItem',
+        position: 2,
+        name: 'Contact Us',
+        item: `${siteUrl}/contact`,
+      },
+    ],
+  };
 
   return (
     <div className="flex flex-col">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbLd) }}
+      />
       {/* Page Hero - Strictly preserved original hero image */}
       <PageHero
         eyebrow="DIRECT FACTORY CONSULTATION"
@@ -147,6 +171,17 @@ export default async function ContactPage({ searchParams }) {
             </div>
 
             <ContactQuoteForm key={initialProduct || 'default'} initialProduct={initialProduct} />
+
+            {/* Practical Guidance on Quotation Details */}
+            <div className="mt-8 p-5 rounded-2xl bg-white border border-slate-200/80 text-xs text-slate-600 space-y-2.5">
+              <span className="font-bold text-[#08233f] text-sm block">How to get an accurate estimate quickly:</span>
+              <ul className="space-y-1.5 list-disc pl-4 text-slate-600">
+                <li>Include <strong>width & height</strong> in mm, inches, or feet.</li>
+                <li>Mention the <strong>application</strong> (e.g. bathroom shower partition, office door, balcony railing).</li>
+                <li>Specify if you need <strong>hardware fittings</strong> (hinges, floor spring, aluminum channels) or glass only.</li>
+                <li>Photos of the site space can be attached directly in WhatsApp after launching.</li>
+              </ul>
+            </div>
           </div>
         </div>
       </section>

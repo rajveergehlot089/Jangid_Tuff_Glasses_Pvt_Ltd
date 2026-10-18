@@ -27,16 +27,36 @@ export async function generateMetadata({ params }) {
   const url = `${siteUrl}/products/${slug}`;
 
   return {
-    title: `${product.name} | Architectural & Interior Glass Jodhpur`,
-    description: product.description,
+    title: `${product.name} in Jodhpur | Architectural & Interior Glass`,
+    description: `${product.description} Sourced and fabricated for architects, builders, and homes across Jodhpur and Rajasthan.`,
+    keywords: [
+      `${product.name} Jodhpur`,
+      `${product.name} manufacturer Rajasthan`,
+      'Boranada glass factory',
+      'architectural glass Jodhpur',
+      'toughened glass quotation',
+    ],
     alternates: {
       canonical: url,
     },
     openGraph: {
-      title: `${product.name} | Jangid Tuff Glasses Private Limited`,
+      title: `${product.name} in Jodhpur | Jangid Tuff Glasses Private Limited`,
       description: product.description,
       url,
-      images: [{ url: product.image }],
+      images: [
+        {
+          url: product.image,
+          width: 900,
+          height: 600,
+          alt: `${product.name} - Jangid Tuff Glasses Jodhpur`,
+        },
+      ],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: `${product.name} in Jodhpur | Jangid Tuff Glasses`,
+      description: product.description,
+      images: [product.image],
     },
   };
 }
@@ -290,6 +310,118 @@ export default async function ProductDetailPage({ params }) {
                 <MessageSquare className="w-4 h-4 group-hover:scale-110 transition-transform duration-200 ease-out" />
                 <span>Instant WhatsApp</span>
               </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Pricing Variables, Measurement Guide & Local Jodhpur Supply Section */}
+      <section className="py-16 bg-[#f8fafc] border-t border-slate-200">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="max-w-3xl mb-12">
+            <span className="text-[#0878d1] font-bold text-xs uppercase tracking-[0.2em]">
+              Transparent Quotations & Sizing
+            </span>
+            <h2 className="text-2xl sm:text-3xl font-extrabold text-[#08233f] mt-2">
+              Understanding Your {product.name} Quotation
+            </h2>
+            <p className="text-slate-600 text-sm mt-3 leading-relaxed">
+              We believe in honest, upfront specifications. Architectural glass pricing is determined by engineering parameters rather than arbitrary figures. Here is what influences your quotation and what we need for an exact estimate.
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-8">
+            {/* Card 1: Pricing Factors */}
+            <div className="bg-white rounded-2xl p-6 sm:p-7 border border-slate-200/80 shadow-sm flex flex-col justify-between">
+              <div>
+                <div className="w-10 h-10 rounded-xl bg-[#eaf5ff] text-[#0878d1] flex items-center justify-center font-bold text-sm mb-4">
+                  1
+                </div>
+                <h3 className="font-bold text-base text-[#08233f] mb-2">Key Pricing Variables</h3>
+                <ul className="text-xs text-slate-600 space-y-2.5">
+                  <li className="flex items-start gap-2">
+                    <span className="w-1.5 h-1.5 rounded-full bg-[#0878d1] shrink-0 mt-1" />
+                    <span><strong>Glass Thickness & Type:</strong> Monolithic (e.g. 8mm/10mm/12mm) vs laminated or ultra-clear low-iron glass.</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="w-1.5 h-1.5 rounded-full bg-[#0878d1] shrink-0 mt-1" />
+                    <span><strong>Edge Processing:</strong> Standard seamed edge vs machine flat-polish, pencil round, or beveling.</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="w-1.5 h-1.5 rounded-full bg-[#0878d1] shrink-0 mt-1" />
+                    <span><strong>CNC Machining:</strong> Number and complexity of hinge cutouts, patch notches, holes, and waterjet shapes.</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="w-1.5 h-1.5 rounded-full bg-[#0878d1] shrink-0 mt-1" />
+                    <span><strong>Hardware Grade:</strong> SS 304 vs 316 grade fittings, floor springs, or custom partition aluminum channels.</span>
+                  </li>
+                </ul>
+              </div>
+              <div className="mt-6 pt-4 border-t border-slate-100 text-[11px] text-slate-500">
+                Quotes are clear and itemized so you know exactly what is included.
+              </div>
+            </div>
+
+            {/* Card 2: Measurement Checklist */}
+            <div className="bg-white rounded-2xl p-6 sm:p-7 border border-slate-200/80 shadow-sm flex flex-col justify-between">
+              <div>
+                <div className="w-10 h-10 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center font-bold text-sm mb-4">
+                  2
+                </div>
+                <h3 className="font-bold text-base text-[#08233f] mb-2">Site Measurement Checklist</h3>
+                <ul className="text-xs text-slate-600 space-y-2.5">
+                  <li className="flex items-start gap-2">
+                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 shrink-0 mt-1" />
+                    <span><strong>Opening Dimensions:</strong> Measure width & height at 3 points (top, middle, bottom) in millimeters (mm).</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 shrink-0 mt-1" />
+                    <span><strong>Plumbness & Level:</strong> Note whether walls or floor tiles are out of plumb (affects glass squareness).</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 shrink-0 mt-1" />
+                    <span><strong>Clearance Gaps:</strong> Allow for hinge swing clearances, silicone joints (typically 3–5mm), and bottom sweeps.</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 shrink-0 mt-1" />
+                    <span><strong>Site Access:</strong> Confirm staircase or lift clearance for large panels over 2.4 meters.</span>
+                  </li>
+                </ul>
+              </div>
+              <div className="mt-6 pt-4 border-t border-slate-100 text-[11px] text-slate-500">
+                You can share rough tape measurements or CAD drawings on WhatsApp.
+              </div>
+            </div>
+
+            {/* Card 3: Scope & Jodhpur Supply */}
+            <div className="bg-white rounded-2xl p-6 sm:p-7 border border-slate-200/80 shadow-sm flex flex-col justify-between">
+              <div>
+                <div className="w-10 h-10 rounded-xl bg-sky-50 text-sky-700 flex items-center justify-center font-bold text-sm mb-4">
+                  3
+                </div>
+                <h3 className="font-bold text-base text-[#08233f] mb-2">Scope & Jodhpur Supply</h3>
+                <ul className="text-xs text-slate-600 space-y-2.5">
+                  <li className="flex items-start gap-2">
+                    <span className="w-1.5 h-1.5 rounded-full bg-sky-500 shrink-0 mt-1" />
+                    <span><strong>What Is Included:</strong> Precision fabrication to confirmed drawing, polished edges, protective packaging.</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="w-1.5 h-1.5 rounded-full bg-sky-500 shrink-0 mt-1" />
+                    <span><strong>Local Dispatch:</strong> Direct crated transport across Jodhpur, Boranada, Pal Road, and Western Rajasthan.</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="w-1.5 h-1.5 rounded-full bg-sky-500 shrink-0 mt-1" />
+                    <span><strong>Installation Guidance:</strong> Detailed cutout templates provided; installer coordination available upon request.</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="w-1.5 h-1.5 rounded-full bg-sky-500 shrink-0 mt-1" />
+                    <span><strong>Payment Transparency:</strong> Advance deposit for custom tempering with clear commercial GST invoicing.</span>
+                  </li>
+                </ul>
+              </div>
+              <div className="mt-6 pt-4 border-t border-slate-100 text-[11px] text-slate-500">
+                Direct factory support: call Karan Jangid (+91 81073 88855) for advice.
+              </div>
             </div>
           </div>
         </div>

@@ -232,6 +232,62 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* ─── Local Jodhpur Value & Transparent Pricing Section ─── */}
+      <section className="py-20 sm:py-28 bg-[#f1f5f9] border-t border-slate-200/80">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="max-w-3xl mb-14">
+            <p className="text-[#0878d1] font-bold text-xs uppercase tracking-[0.25em]">Direct Factory Value</p>
+            <h2 className="text-3xl sm:text-4xl font-extrabold text-[#08233f] mt-2 tracking-tight">
+              Honest Quotations & Local Jodhpur Reliability
+            </h2>
+            <p className="text-slate-600 mt-3 text-sm sm:text-base leading-relaxed">
+              We operate right here in Boranada / Pal, Jodhpur. By coordinating directly with our local fabrication team, you avoid multiple dealer markups, eliminate transit delays, and receive clear, itemized pricing based on exact engineering specifications.
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-8">
+            <div className="bg-white p-7 rounded-3xl border border-slate-200 shadow-sm flex flex-col justify-between">
+              <div>
+                <span className="w-10 h-10 rounded-xl bg-[#eaf5ff] text-[#0878d1] font-bold text-sm flex items-center justify-center mb-4">
+                  01
+                </span>
+                <h3 className="font-bold text-lg text-[#08233f] mb-2">Transparent Cost Factors</h3>
+                <p className="text-xs text-slate-600 leading-relaxed">
+                  Glass rates depend on panel thickness (5mm to 19mm), edge finish (seamed vs machine flat-polish), hole cutouts, and hardware grade (SS 304 vs 316). We provide fully broken-down estimates so you know exactly what is included.
+                </p>
+              </div>
+              <span className="text-[11px] font-semibold text-[#0878d1] mt-6 block">No hidden fabrication charges</span>
+            </div>
+
+            <div className="bg-white p-7 rounded-3xl border border-slate-200 shadow-sm flex flex-col justify-between">
+              <div>
+                <span className="w-10 h-10 rounded-xl bg-emerald-50 text-emerald-600 font-bold text-sm flex items-center justify-center mb-4">
+                  02
+                </span>
+                <h3 className="font-bold text-lg text-[#08233f] mb-2">Fast Measurement & Quote</h3>
+                <p className="text-xs text-slate-600 leading-relaxed">
+                  Measure height and width in millimeters at three points (top, middle, bottom), check wall plumbness, and share a photo on WhatsApp. Our Jodhpur technical desk prepares a structured quote with zero sales pressure.
+                </p>
+              </div>
+              <span className="text-[11px] font-semibold text-emerald-700 mt-6 block">Direct WhatsApp consultation</span>
+            </div>
+
+            <div className="bg-white p-7 rounded-3xl border border-slate-200 shadow-sm flex flex-col justify-between">
+              <div>
+                <span className="w-10 h-10 rounded-xl bg-sky-50 text-sky-700 font-bold text-sm flex items-center justify-center mb-4">
+                  03
+                </span>
+                <h3 className="font-bold text-lg text-[#08233f] mb-2">Local Rajasthan Dispatch</h3>
+                <p className="text-xs text-slate-600 leading-relaxed">
+                  Avoid out-of-state transit breakage risks. We crate and deliver toughened glass panels directly across Jodhpur, Pali, Barmer, Nagaur, and greater Rajasthan with scheduled site coordination.
+                </p>
+              </div>
+              <span className="text-[11px] font-semibold text-sky-700 mt-6 block">Factory-direct delivery in Jodhpur</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* ─── Visual Inspiration Preview ─── */}
       <section className="py-20 sm:py-28 bg-[#f8fafc]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

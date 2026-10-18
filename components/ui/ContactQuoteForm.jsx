@@ -5,6 +5,7 @@ import { MessageSquare } from 'lucide-react';
 import Toast from '@/components/ui/Toast';
 import { PRODUCT_CATEGORIES } from '@/lib/constants';
 import { buildWhatsAppUrl } from '@/lib/utils';
+import { trackQuoteFormStart, trackQuoteFormSubmit } from '@/lib/analytics';
 
 export default function ContactQuoteForm({ initialProduct = '' }) {
   const resolveProduct = (param) => {
@@ -36,7 +37,13 @@ export default function ContactQuoteForm({ initialProduct = '' }) {
   const [popupBlockedUrl, setPopupBlockedUrl] = useState('');
   const [formErrors, setFormErrors] = useState({});
 
+  const [hasStartedForm, setHasStartedForm] = useState(false);
+
   const handleChange = (e) => {
+    if (!hasStartedForm) {
+      setHasStartedForm(true);
+      trackQuoteFormStart(formData.product);
+    }
     const { name, value, type, checked } = e.target;
     setFormData((prev) => ({
       ...prev,
@@ -75,6 +82,9 @@ export default function ContactQuoteForm({ initialProduct = '' }) {
       setShowToast(true);
       return;
     }
+
+    // Track submission with non-sensitive metadata only (category & timeline, NO PII)
+    trackQuoteFormSubmit(formData.product, formData.timeline);
 
     // Build WhatsApp URL with clean sanitized fields
     const fields = {

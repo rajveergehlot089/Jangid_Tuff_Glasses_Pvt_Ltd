@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion';
 import { CONTACT } from '@/lib/constants';
+import { trackWhatsAppClick } from '@/lib/analytics';
 
 export default function WhatsAppFloat() {
   const whatsappUrl = `https://wa.me/${CONTACT.whatsapp}?text=${encodeURIComponent(
@@ -13,6 +14,7 @@ export default function WhatsAppFloat() {
       href={whatsappUrl}
       target="_blank"
       rel="noopener noreferrer"
+      onClick={() => trackWhatsAppClick('floating_button')}
       className="fixed bottom-6 right-6 z-40 flex items-center gap-2.5 bg-gradient-to-r from-emerald-500 via-emerald-600 to-teal-700 hover:from-emerald-600 hover:to-teal-800 text-white pl-4 pr-4 md:pr-5 py-3 rounded-full shadow-xl shadow-emerald-600/30 transition-colors duration-200 ease-out border border-white/20 group"
       whileHover={{ scale: 1.04, y: -2, transition: { duration: 0.2, ease: 'easeOut' } }}
       whileTap={{ scale: 0.95 }}
