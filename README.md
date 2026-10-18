@@ -72,7 +72,7 @@ Modern, responsive, conversion-focused website for **Jangid Tuff Glasses Private
 | Company Name | ✅ Verified | Jangid Tuff Glasses Private Limited |
 | Hindi Name | ✅ Verified | जांगिड़ टफ ग्लासेस प्राइवेट लिमिटेड |
 | Address | ✅ Verified | 21 Narnadi, Boranada, Pal, Jodhpur, Rajasthan 342017, India |
-| Phone / WhatsApp | ✅ Verified | +91 92510 77483 |
+| Phone / WhatsApp | ✅ Verified | +91 81073 88855 |
 | CIN Number | ✅ Verified | U23109RJ2025PTC102882 (ZaubaCorp / MCA listing) |
 | Instagram | ✅ Verified | [@jangidglassco](https://www.instagram.com/jangidglassco/) |
 | Facebook | ✅ Verified | [Jangid Tuff Glasses](https://www.facebook.com/people/Jangid-Tuff-Glasses/61591863797429/) |
@@ -115,7 +115,7 @@ The site will be available at `http://localhost:3000`.
 2. **Product Filtering:** Instant category switching across Architectural, Interior & Bath, Mirrors, and Custom Fabricated without page reload.
 3. **Modal Lightbox:** Fullscreen image viewer with keyboard navigation (`Esc`, `ArrowLeft`, `ArrowRight`) and backdrop click dismiss.
 4. **Interactive FAQ Accordions:** Smooth animated expanding/collapsing with chevron rotation.
-5. **WhatsApp Enquiry Generator:** Validates input fields and formats them into a clean, pre-filled WhatsApp message sent to `+91 92510 77483`.
+5. **WhatsApp Enquiry Generator:** Validates input fields and formats them into a clean, pre-filled WhatsApp message sent to `+91 81073 88855`.
 6. **URL Parameter Autofill:** Navigating from any product card to `/contact?product=...` pre-selects the product in the quote form.
 7. **LocalBusiness JSON-LD Schema:** Embedded in root layout for enhanced Google Local search appearance.
 8. **Dynamic Sitemap & Robots:** Automatically generated at `/sitemap.xml` and `/robots.txt`.

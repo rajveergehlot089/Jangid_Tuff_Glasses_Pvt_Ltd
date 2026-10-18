@@ -17,7 +17,7 @@ Use the following information as the starting point. Verify details with the bus
 - Business name: Jangid Tuff Glasses Private Limited
 - Hindi name: जांगिड़ टफ ग्लासेस प्राइवेट लिमिटेड
 - Location: 21 Narnadi, Boranada, Pal, Jodhpur, Rajasthan 342017, India
-- Public contact number supplied: +91 92510 77483
+- Public contact number supplied: +91 81073 88855
 - Instagram: https://www.instagram.com/jangidglassco/
 - Ozone India store listing:
   https://stores.ozone.in/ozone-india-jangid-glass-shilp-gram-pal-road-jodhpur-ozdlr30034
