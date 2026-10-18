@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useCallback } from 'react';
+import { useEffect, useCallback, useRef } from 'react';
 import Image from 'next/image';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, ChevronLeft, ChevronRight } from 'lucide-react';
@@ -14,6 +14,9 @@ export default function Lightbox({
   onPrev,
 }) {
   const currentImage = images[currentIndex];
+  const closeButtonRef = useRef(null);
+  const previouslyFocusedElementRef = useRef(null);
+  const touchStartXRef = useRef(null);
 
   const handleKeyDown = useCallback(
     (e) => {
@@ -26,15 +29,42 @@ export default function Lightbox({
   );
 
   useEffect(() => {
-    window.addEventListener('keydown', handleKeyDown);
     if (isOpen) {
+      previouslyFocusedElementRef.current = document.activeElement;
+      window.addEventListener('keydown', handleKeyDown);
       document.body.style.overflow = 'hidden';
+      // Focus close button on mount
+      setTimeout(() => {
+        closeButtonRef.current?.focus();
+      }, 50);
+    } else {
+      if (previouslyFocusedElementRef.current) {
+        previouslyFocusedElementRef.current.focus?.();
+      }
     }
     return () => {
       window.removeEventListener('keydown', handleKeyDown);
       document.body.style.overflow = '';
     };
   }, [isOpen, handleKeyDown]);
+
+  const handleTouchStart = (e) => {
+    touchStartXRef.current = e.touches[0].clientX;
+  };
+
+  const handleTouchEnd = (e) => {
+    if (touchStartXRef.current === null) return;
+    const touchEndX = e.changedTouches[0].clientX;
+    const diff = touchStartXRef.current - touchEndX;
+    if (Math.abs(diff) > 45) {
+      if (diff > 0 && onNext) {
+        onNext();
+      } else if (diff < 0 && onPrev) {
+        onPrev();
+      }
+    }
+    touchStartXRef.current = null;
+  };
 
   if (!isOpen || !currentImage) return null;
 
@@ -47,14 +77,17 @@ export default function Lightbox({
         transition={{ duration: 0.2 }}
         className="fixed inset-0 z-50 flex items-center justify-center bg-black/90 p-4 sm:p-6"
         onClick={onClose}
+        onTouchStart={handleTouchStart}
+        onTouchEnd={handleTouchEnd}
         role="dialog"
         aria-modal="true"
         aria-label="Image viewer"
       >
         {/* Close button */}
         <button
+          ref={closeButtonRef}
           onClick={onClose}
-          className="absolute top-4 right-4 z-10 text-white/80 hover:text-white p-2 rounded-full bg-white/10 hover:bg-white/20 transition cursor-pointer"
+          className="absolute top-4 right-4 z-10 text-white/80 hover:text-white p-2 rounded-full bg-white/10 hover:bg-white/20 transition cursor-pointer focus:outline-none focus:ring-2 focus:ring-sky-400"
           aria-label="Close image viewer"
         >
           <X className="w-6 h-6" />

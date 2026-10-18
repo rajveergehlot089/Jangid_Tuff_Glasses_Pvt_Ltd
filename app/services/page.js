@@ -67,22 +67,114 @@ export default function ServicesPage() {
         </div>
       </section>
 
-      {/* Hardware & Ozone Compatibility */}
-      <section className="py-16 bg-[#eaf5ff]/50 border-t border-b border-blue-100">
-        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <span className="text-[#0878d1] font-bold text-xs uppercase tracking-[0.2em]">Hardware Integration</span>
-          <h2 className="text-2xl sm:text-3xl font-extrabold text-[#08233f] mt-2">
-            Engineered for Compatibility
-          </h2>
-          <p className="text-slate-600 text-sm mt-3 leading-relaxed max-w-2xl mx-auto">
-            Our glass panels are cut, drilled, and tempered with strict tolerance controls to ensure 100% compatibility with industry-standard fittings — including Ozone India architectural hardware, spider fittings, sliding shower channels, and stainless steel spigots.
-          </p>
-          <div className="mt-8 flex flex-wrap justify-center gap-4 text-xs font-bold text-[#08233f]">
-            <span className="bg-white px-4 py-2 rounded-full border border-blue-200">✓ Patch Fittings</span>
-            <span className="bg-white px-4 py-2 rounded-full border border-blue-200">✓ Floor Springs</span>
-            <span className="bg-white px-4 py-2 rounded-full border border-blue-200">✓ Spider Glazing</span>
-            <span className="bg-white px-4 py-2 rounded-full border border-blue-200">✓ Shower Channels</span>
-            <span className="bg-white px-4 py-2 rounded-full border border-blue-200">✓ Railing Spigots</span>
+      {/* Architectural Hardware & System Compatibility */}
+      <section className="py-20 bg-[#f8fafc] border-t border-b border-slate-200">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center max-w-3xl mx-auto mb-16">
+            <span className="text-[#0878d1] font-bold text-xs uppercase tracking-[0.2em]">Hardware & Profiles</span>
+            <h2 className="text-3xl sm:text-4xl font-extrabold text-[#08233f] mt-2">
+              Architectural Hardware & Framing Systems
+            </h2>
+            <p className="text-slate-600 text-sm sm:text-base mt-3 leading-relaxed">
+              Glass performance depends fundamentally on precision hardware coordination. We fabricate panels to exact tolerance cutouts for leading architectural systems, including Ozone-compatible fittings, floor springs, and slim partition channels.
+            </p>
+          </div>
+
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            {[
+              {
+                title: 'Door Controls & Patch Fittings',
+                category: 'Entrance Systems',
+                points: ['Top & bottom patch fittings (SS 304/316)', 'Hydraulic floor springs (75kg–120kg)', 'Concealed overhead transom pivots', 'Security bottom euro-cylinder patch locks'],
+              },
+              {
+                title: 'Shower Enclosure Hardware',
+                category: 'Bathroom Spaces',
+                points: ['90° & 180° solid brass shower hinges', 'Anti-leak magnetic seals & drip sweeps', 'Top roller tubular sliding track kits', 'Wall-to-glass rigid stabilizer header bars'],
+              },
+              {
+                title: 'Slim Partition Profiles',
+                category: 'Commercial & Office',
+                points: ['25mm to 45mm visible face aluminum channels', 'Crittall-style aesthetic grid transoms', 'Acoustic EPDM vibration gaskets', 'Concealed door jambs with magnetic latching'],
+              },
+              {
+                title: 'Balustrade & Railing Mounts',
+                category: 'Structural Balustrades',
+                points: ['Duplex 2205 / SS 316 heavy spigots', 'Continuous aluminum base shoe channels', 'Point-fixed architectural standoff pins', 'Slotted stainless steel & wood top rails'],
+              },
+            ].map((hw, idx) => (
+              <div key={idx} className="bg-white rounded-3xl p-6 border border-slate-200/90 shadow-sm flex flex-col justify-between">
+                <div>
+                  <span className="text-[10px] font-bold uppercase tracking-wider text-[#0878d1] block mb-1">
+                    {hw.category}
+                  </span>
+                  <h3 className="font-extrabold text-base text-[#08233f] mb-4">
+                    {hw.title}
+                  </h3>
+                  <ul className="space-y-2 text-xs text-slate-600">
+                    {hw.points.map((pt, pIdx) => (
+                      <li key={pIdx} className="flex items-start gap-2">
+                        <span className="text-[#0878d1] font-bold mt-0.5">✓</span>
+                        <span>{pt}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Interior Design & Project Collaboration */}
+      <section className="py-20 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+            <div>
+              <span className="text-[#0878d1] font-bold text-xs uppercase tracking-[0.2em]">Project Collaboration</span>
+              <h2 className="text-3xl sm:text-4xl font-extrabold text-[#08233f] mt-3">
+                Working With Architects & Interior Designers
+              </h2>
+              <p className="text-slate-600 text-sm sm:text-base leading-relaxed mt-5">
+                We bridge the gap between architectural drawings and glass manufacturing. Whether you are executing a high-end villa in Jodhpur or a commercial workspace across Rajasthan, our technical team works directly with your elevation plans.
+              </p>
+              
+              <div className="mt-8 space-y-4">
+                {[
+                  { title: 'Drawing & Elevation Review', desc: 'Send CAD drawings (.dwg/.pdf) or rough elevation sketches to verify cutout tolerances and tempering constraints.' },
+                  { title: 'Material & Texture Guidance', desc: 'Sample review for clear float, extra-clear low-iron, fluted textures, lacquered backsplashes, and tint options.' },
+                  { title: 'Logistics & Crated Safe Dispatch', desc: 'Specialized protective wooden crating and scheduled site vehicle delivery across the Jodhpur region.' },
+                ].map((item, idx) => (
+                  <div key={idx} className="p-4 rounded-2xl bg-slate-50 border border-slate-200/80">
+                    <h3 className="font-bold text-sm text-[#08233f]">{item.title}</h3>
+                    <p className="text-xs text-slate-600 mt-1 leading-relaxed">{item.desc}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <div className="space-y-6">
+              <div className="p-8 rounded-3xl bg-gradient-to-br from-[#08233f] to-[#041323] text-white shadow-xl border border-white/10">
+                <span className="text-xs uppercase font-extrabold tracking-widest text-sky-400 block mb-2">Technical Guidance</span>
+                <h3 className="text-2xl font-bold">Have a Project Elevation Ready?</h3>
+                <p className="text-sm text-slate-300 mt-3 leading-relaxed">
+                  Send your drawings, approximate opening dimensions, and desired glass thickness directly to our technical desk via WhatsApp for rapid feasibility evaluation.
+                </p>
+                <div className="mt-6 flex flex-wrap gap-3">
+                  <Link
+                    href="/contact#quote"
+                    className="btn-gradient text-white text-xs font-bold px-6 py-3 rounded-full shadow-md"
+                  >
+                    Send Drawings for Review →
+                  </Link>
+                </div>
+              </div>
+
+              <div className="p-5 rounded-2xl bg-amber-50 border border-amber-200 text-amber-950 text-xs leading-relaxed">
+                <strong className="block font-bold mb-1">Installation Transparency:</strong>
+                Our core specialty is high-precision glass processing and supply. For site installation, we provide detailed technical placement documentation and hardware templates, and can connect contractors with experienced regional glazing specialists.
+              </div>
+            </div>
           </div>
         </div>
       </section>

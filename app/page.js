@@ -161,8 +161,79 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* ─── Architectural Hardware & Profile Systems Highlight ─── */}
+      <section className="py-20 sm:py-24 bg-white border-t border-b border-slate-200/80">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
+            <div>
+              <p className="text-[#0878d1] font-bold text-xs uppercase tracking-[0.25em]">
+                Engineered Integration
+              </p>
+              <h2 className="text-3xl sm:text-4xl font-extrabold text-[#08233f] mt-2 tracking-tight">
+                Architectural Hardware, Profiles & Interior Solutions
+              </h2>
+              <p className="text-slate-600 mt-3 max-w-2xl text-sm sm:text-base leading-relaxed">
+                From hydraulic floor springs and frameless shower hinges to ultra-slim partition channels, our glass processing guarantees exact cutout tolerances for seamless hardware installation.
+              </p>
+            </div>
+            <Link
+              href="/services"
+              className="inline-flex items-center gap-2 font-bold text-[#0878d1] hover:text-[#08233f] transition duration-500 group shrink-0 text-sm"
+            >
+              <span>Explore hardware systems</span>
+              <ArrowRight className="w-4 h-4 transform group-hover:translate-x-1 transition duration-500" />
+            </Link>
+          </div>
+
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            {[
+              {
+                title: 'Door Controls & Patch Fittings',
+                desc: 'Top/bottom patch fittings, hydraulic floor springs, and bottom euro-locks for commercial and residential frameless entrances.',
+                icon: Shield,
+              },
+              {
+                title: 'Frameless Shower Hardware',
+                desc: '304/316 grade stainless steel hinges, magnetic water-stops, stabilizing header bars, and sliding roller tracks.',
+                icon: Sparkles,
+              },
+              {
+                title: 'Slim Partition Profiles',
+                desc: 'Minimalist 25mm–45mm aluminum channels, acoustic gaskets, and concealed door frames for modern workspaces.',
+                icon: Clock,
+              },
+              {
+                title: 'Balustrade & Railing Mounts',
+                desc: 'Duplex core-drilled spigots, continuous base shoe profiles, and point-fixed standoffs engineered for safety.',
+                icon: CheckCircle2,
+              },
+            ].map((item, idx) => {
+              const IconComp = item.icon;
+              return (
+                <div
+                  key={idx}
+                  className="p-6 rounded-3xl bg-[#f8fafc] border border-slate-200/90 shadow-sm flex flex-col justify-between hover:shadow-md hover:border-[#0878d1]/30 transition duration-500"
+                >
+                  <div>
+                    <div className="w-10 h-10 rounded-xl bg-[#eaf5ff] text-[#0878d1] flex items-center justify-center mb-4">
+                      <IconComp className="w-5 h-5" />
+                    </div>
+                    <h3 className="font-bold text-base text-[#08233f] mb-2">
+                      {item.title}
+                    </h3>
+                    <p className="text-xs text-slate-600 leading-relaxed">
+                      {item.desc}
+                    </p>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
       {/* ─── Visual Inspiration Preview ─── */}
-      <section className="py-20 sm:py-28 bg-white">
+      <section className="py-20 sm:py-28 bg-[#f8fafc]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
             <div>

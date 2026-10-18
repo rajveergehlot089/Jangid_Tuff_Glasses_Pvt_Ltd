@@ -150,6 +150,57 @@ export default async function ProductDetailPage({ params }) {
               {product.description}
             </p>
 
+            {/* Technical Highlights / Summary */}
+            {product.technicalSummary && (
+              <div className="mt-6 p-5 rounded-2xl bg-[#eaf5ff]/70 border border-blue-100 text-xs text-[#08233f] leading-relaxed">
+                <span className="font-bold uppercase tracking-wider text-[#0878d1] block mb-1">
+                  Engineering & Material Summary
+                </span>
+                {product.technicalSummary}
+              </div>
+            )}
+
+            {/* Thickness Spectrum */}
+            {product.thicknessOptions && product.thicknessOptions.length > 0 && (
+              <div className="mt-8">
+                <h2 className="text-sm font-bold uppercase tracking-wider text-[#08233f] mb-3">
+                  Available Thickness Options
+                </h2>
+                <div className="flex flex-wrap gap-2">
+                  {product.thicknessOptions.map((th, i) => (
+                    <span
+                      key={i}
+                      className="px-3.5 py-1.5 rounded-full bg-slate-100 text-[#08233f] font-bold text-xs border border-slate-200/80 shadow-2xs"
+                    >
+                      {th}
+                    </span>
+                  ))}
+                </div>
+                <p className="text-[11px] text-slate-500 mt-2 italic">
+                  Note: Availability depends on structural calculations, spans, and fabrication schedule. Contact our Jodhpur team to verify current stock.
+                </p>
+              </div>
+            )}
+
+            {/* Available Finishes */}
+            {product.availableFinishes && product.availableFinishes.length > 0 && (
+              <div className="mt-8">
+                <h2 className="text-sm font-bold uppercase tracking-wider text-[#08233f] mb-3">
+                  Glass Finishes & Treatments
+                </h2>
+                <div className="flex flex-wrap gap-2">
+                  {product.availableFinishes.map((fn, i) => (
+                    <span
+                      key={i}
+                      className="px-3 py-1.5 rounded-xl bg-white text-slate-700 font-medium text-xs border border-slate-200"
+                    >
+                      {fn}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            )}
+
             {/* Features */}
             {product.features && product.features.length > 0 && (
               <div className="mt-8">
@@ -187,10 +238,42 @@ export default async function ProductDetailPage({ params }) {
               </div>
             )}
 
+            {/* Compatible Hardware */}
+            {product.compatibleHardware && product.compatibleHardware.length > 0 && (
+              <div className="mt-8 p-5 rounded-2xl bg-slate-50 border border-slate-200">
+                <h2 className="text-sm font-bold uppercase tracking-wider text-[#08233f] mb-3">
+                  Recommended Hardware & Fittings
+                </h2>
+                <ul className="space-y-1.5 text-xs text-slate-600">
+                  {product.compatibleHardware.map((hw, i) => (
+                    <li key={i} className="flex items-center gap-2">
+                      <span className="text-[#0878d1] font-bold">✓</span>
+                      <span>{hw}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
+
+            {/* Fabrication Constraint / Safety Warning */}
+            {product.fabricationConstraints && (
+              <div className="mt-6 p-4 rounded-2xl bg-amber-50 border border-amber-200 text-amber-950 text-xs leading-relaxed">
+                <span className="font-bold block mb-1">Fabrication Planning Notice:</span>
+                {product.fabricationConstraints}
+              </div>
+            )}
+
+            {/* Structural Guidance */}
+            {product.structuralGuidance && (
+              <div className="mt-3 text-[11px] text-slate-500 leading-normal">
+                <strong>Structural Note:</strong> {product.structuralGuidance}
+              </div>
+            )}
+
             {/* Action Buttons */}
             <div className="mt-10 pt-6 border-t border-slate-100 flex flex-wrap items-center gap-4">
               <Link
-                href={`/contact?product=${encodeURIComponent(product.name)}#quote`}
+                href={`/contact?product=${encodeURIComponent(product.slug)}#quote`}
                 className="btn-gradient rounded-full text-white px-8 py-4 font-bold text-sm shadow-lg inline-flex items-center gap-2 group"
               >
                 <span>Request Custom Quote</span>
@@ -261,7 +344,7 @@ export default async function ProductDetailPage({ params }) {
         description="Share your project drawings, site measurements, or rough requirements on WhatsApp for an immediate technical assessment and quotation."
         primaryAction={{
           label: 'Get a Fast Estimate',
-          href: `/contact?product=${encodeURIComponent(product.name)}#quote`,
+          href: `/contact?product=${encodeURIComponent(product.slug)}#quote`,
         }}
       />
     </div>

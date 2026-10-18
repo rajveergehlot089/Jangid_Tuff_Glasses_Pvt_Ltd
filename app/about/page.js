@@ -135,8 +135,12 @@ export default function AboutPage() {
             Registered Business Entity
           </h2>
           <p className="text-slate-600 text-sm mt-3 leading-relaxed">
-            Jangid Tuff Glasses Private Limited is officially registered under Corporate Identity Number (CIN) <strong>U23109RJ2025PTC102882</strong> in Rajasthan, India. All business operations, consultations, and dispatches are handled directly through our verified Jodhpur hub.
+            Jangid Tuff Glasses Private Limited is officially registered under Corporate Identity Number (CIN) <strong>{COMPANY.cin}</strong> in Rajasthan, India. All business operations, consultations, and dispatches are handled directly through our verified Jodhpur hub.
           </p>
+          <div className="mt-4 p-4 rounded-2xl bg-slate-50 border border-slate-200/80 text-xs text-slate-500 max-w-2xl mx-auto text-left leading-relaxed">
+            <strong className="text-[#08233f] block mb-1">Registration Disclosure:</strong>
+            {COMPANY.cinNote}
+          </div>
 
           <div className="mt-8 flex flex-wrap justify-center gap-4">
             <Link

@@ -85,6 +85,15 @@
       "pageUsage": ["products-table-tops"]
     },
     {
+      "filePath": "https://images.unsplash.com/photo-1513694203232-719a280e022f",
+      "description": "Minimalist interior glass partition with black architectural hardware fittings",
+      "source": "Unsplash (Licensed Free Commercial Use)",
+      "permissionStatus": "APPROVED_STOCK",
+      "altText": "Architectural patch fittings and glass hardware integration",
+      "isActualCompanyWork": false,
+      "pageUsage": ["gallery-hardware", "services-hardware"]
+    },
+    {
       "filePath": "/assets/website-concept-mockup.png",
       "description": "Generated concept visualization board",
       "source": "Generated Concept",

@@ -66,7 +66,7 @@ export default function PrivacyPage() {
             <p className="font-bold">{COMPANY.name}</p>
             <p>{COMPANY.address.full}</p>
             <p>Phone: {COMPANY.phone}</p>
-            <p>CIN: U23109RJ2025PTC102882</p>
+            <p>CIN: {COMPANY.cin}</p>
           </div>
         </div>
       </section>
