@@ -32,14 +32,14 @@ export default function ThankYouPage() {
         <div className="mt-8 flex flex-col sm:flex-row gap-3 justify-center">
           <Link
             href="/products"
-            className="rounded-full bg-[#0878d1] hover:bg-sky-600 text-white px-6 py-3 font-bold text-xs transition inline-flex items-center justify-center gap-2"
+            className="btn-gradient rounded-full text-white px-6 py-3 font-bold text-xs transition-all duration-200 ease-out hover:-translate-y-0.5 inline-flex items-center justify-center gap-2 shadow-md group"
           >
             <span>Explore Products</span>
-            <ArrowRight className="w-4 h-4" />
+            <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-200 ease-out" />
           </Link>
           <Link
             href="/"
-            className="rounded-full border border-slate-300 text-[#08233f] px-6 py-3 font-bold text-xs hover:bg-slate-50 transition inline-flex items-center justify-center"
+            className="rounded-full border border-slate-300 text-[#08233f] px-6 py-3 font-bold text-xs hover:bg-slate-50 hover:-translate-y-0.5 hover:border-slate-400 transition-all duration-200 ease-out inline-flex items-center justify-center shadow-xs"
           >
             Return to Homepage
           </Link>

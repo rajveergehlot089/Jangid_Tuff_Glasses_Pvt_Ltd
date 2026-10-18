@@ -53,13 +53,13 @@ export default function FAQPage() {
               href={`https://wa.me/${COMPANY.whatsapp}?text=Hello%20Jangid%20Tuff%20Glasses,%20I%20have%20a%20question.`}
               target="_blank"
               rel="noopener noreferrer"
-              className="rounded-full bg-emerald-600 hover:bg-emerald-500 text-white px-7 py-3.5 font-bold text-sm transition"
+              className="rounded-full bg-emerald-600 hover:bg-emerald-500 text-white px-7 py-3.5 font-bold text-sm transition-all duration-200 ease-out hover:-translate-y-0.5 shadow-md"
             >
               Ask on WhatsApp
             </a>
             <a
               href={`tel:${COMPANY.phoneRaw}`}
-              className="rounded-full border border-slate-300 text-[#08233f] px-7 py-3.5 font-bold text-sm hover:bg-slate-50 transition"
+              className="rounded-full border border-slate-300 text-[#08233f] px-7 py-3.5 font-bold text-sm hover:bg-slate-50 hover:-translate-y-0.5 hover:border-slate-400 transition-all duration-200 ease-out shadow-xs"
             >
               Call {COMPANY.contactPerson} ({COMPANY.phone})
             </a>

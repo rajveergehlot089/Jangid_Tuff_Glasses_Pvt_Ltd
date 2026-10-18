@@ -274,10 +274,10 @@ export default async function ProductDetailPage({ params }) {
             <div className="mt-10 pt-6 border-t border-slate-100 flex flex-wrap items-center gap-4">
               <Link
                 href={`/contact?product=${encodeURIComponent(product.slug)}#quote`}
-                className="btn-gradient rounded-full text-white px-8 py-4 font-bold text-sm shadow-lg inline-flex items-center gap-2 group"
+                className="btn-gradient rounded-full text-white px-8 py-4 font-bold text-sm shadow-lg inline-flex items-center gap-2 group transition-all duration-200 ease-out hover:-translate-y-0.5"
               >
                 <span>Request Custom Quote</span>
-                <ArrowRight className="w-4 h-4 transform group-hover:translate-x-1.5 transition duration-500" />
+                <ArrowRight className="w-4 h-4 transform group-hover:translate-x-1.5 transition-transform duration-200 ease-out" />
               </Link>
               <a
                 href={`https://wa.me/${COMPANY.whatsapp}?text=${encodeURIComponent(
@@ -285,9 +285,9 @@ export default async function ProductDetailPage({ params }) {
                 )}`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="btn-gradient-emerald rounded-full text-white px-7 py-4 font-bold text-sm inline-flex items-center gap-2.5 shadow-lg group"
+                className="btn-gradient-emerald rounded-full text-white px-7 py-4 font-bold text-sm inline-flex items-center gap-2.5 shadow-lg group transition-all duration-200 ease-out hover:-translate-y-0.5"
               >
-                <MessageSquare className="w-4 h-4 group-hover:scale-110 transition duration-500" />
+                <MessageSquare className="w-4 h-4 group-hover:scale-110 transition-transform duration-200 ease-out" />
                 <span>Instant WhatsApp</span>
               </a>
             </div>
@@ -307,7 +307,7 @@ export default async function ProductDetailPage({ params }) {
                 <Link
                   key={p.slug}
                   href={`/products/${p.slug}`}
-                  className="group bg-white rounded-2xl overflow-hidden border border-slate-200 shadow-sm hover:shadow-md transition flex flex-col"
+                  className="group bg-white rounded-2xl overflow-hidden border border-slate-200 shadow-sm hover:shadow-lg hover:-translate-y-1 hover:border-[#0878d1]/40 transition-all duration-300 ease-out flex flex-col"
                 >
                   <div className="aspect-video relative overflow-hidden bg-slate-100">
                     <Image
@@ -315,12 +315,12 @@ export default async function ProductDetailPage({ params }) {
                       alt={p.name}
                       fill
                       sizes="(max-width: 768px) 100vw, 33vw"
-                      className="object-cover group-hover:scale-105 transition duration-300"
+                      className="object-cover group-hover:scale-105 transition-transform duration-500 ease-out"
                     />
                   </div>
                   <div className="p-5 flex-1 flex flex-col justify-between">
                     <div>
-                      <h3 className="font-bold text-base text-[#08233f] group-hover:text-[#0878d1] transition">
+                      <h3 className="font-bold text-base text-[#08233f] group-hover:text-[#0878d1] transition-colors duration-200 ease-out">
                         {p.name}
                       </h3>
                       <p className="text-xs text-slate-500 mt-1 line-clamp-2 leading-relaxed">

@@ -87,7 +87,7 @@ export default function Lightbox({
         <button
           ref={closeButtonRef}
           onClick={onClose}
-          className="absolute top-4 right-4 z-10 text-white/80 hover:text-white p-2 rounded-full bg-white/10 hover:bg-white/20 transition cursor-pointer focus:outline-none focus:ring-2 focus:ring-sky-400"
+          className="absolute top-4 right-4 z-10 text-white/80 hover:text-white p-2 rounded-full bg-white/10 hover:bg-white/25 hover:scale-105 transition-all duration-200 ease-out cursor-pointer focus:outline-none focus:ring-2 focus:ring-sky-400"
           aria-label="Close image viewer"
         >
           <X className="w-6 h-6" />
@@ -100,7 +100,7 @@ export default function Lightbox({
               e.stopPropagation();
               onPrev();
             }}
-            className="absolute left-4 top-1/2 -translate-y-1/2 z-10 text-white/80 hover:text-white p-3 rounded-full bg-white/10 hover:bg-white/20 transition cursor-pointer"
+            className="absolute left-4 top-1/2 -translate-y-1/2 z-10 text-white/80 hover:text-white p-3 rounded-full bg-white/10 hover:bg-white/25 hover:scale-105 transition-all duration-200 ease-out cursor-pointer"
             aria-label="Previous image"
           >
             <ChevronLeft className="w-6 h-6" />
@@ -114,7 +114,7 @@ export default function Lightbox({
               e.stopPropagation();
               onNext();
             }}
-            className="absolute right-4 top-1/2 -translate-y-1/2 z-10 text-white/80 hover:text-white p-3 rounded-full bg-white/10 hover:bg-white/20 transition cursor-pointer"
+            className="absolute right-4 top-1/2 -translate-y-1/2 z-10 text-white/80 hover:text-white p-3 rounded-full bg-white/10 hover:bg-white/25 hover:scale-105 transition-all duration-200 ease-out cursor-pointer"
             aria-label="Next image"
           >
             <ChevronRight className="w-6 h-6" />

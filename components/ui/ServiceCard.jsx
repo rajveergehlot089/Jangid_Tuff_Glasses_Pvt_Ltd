@@ -9,25 +9,25 @@ export default function ServiceCard({ service, index = 0 }) {
   const href = service.href || `/contact?product=${encodeURIComponent(title || '')}#quote`;
 
   return (
-    <article className="glass-card group relative flex flex-col p-6 sm:p-8 bg-white rounded-3xl border border-slate-200/80 shadow-sm hover:border-[#0878d1]/40 overflow-hidden">
+    <article className="glass-card group relative flex flex-col p-6 sm:p-8 bg-white rounded-3xl border border-slate-200/80 shadow-sm hover:border-[#0878d1]/40 hover:shadow-lg transition-all duration-300 ease-out overflow-hidden">
       {/* Top accent gradient bar on hover */}
-      <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-[#0878d1] via-sky-400 to-[#08233f] opacity-0 group-hover:opacity-100 transition-opacity duration-600" />
+      <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-[#0878d1] via-sky-400 to-[#08233f] opacity-0 group-hover:opacity-100 transition-opacity duration-300 ease-out" />
 
       {/* Number badge with gradient */}
       <div className="flex items-center justify-between mb-6">
         <span
-          className="flex items-center justify-center w-12 h-12 rounded-2xl bg-gradient-to-br from-[#eaf5ff] to-[#d6ebff] text-base font-black text-[#0878d1] group-hover:bg-gradient-to-br group-hover:from-[#0878d1] group-hover:to-[#041323] group-hover:text-white group-hover:scale-105 transition-all duration-600 shadow-sm"
+          className="flex items-center justify-center w-12 h-12 rounded-2xl bg-gradient-to-br from-[#eaf5ff] to-[#d6ebff] text-base font-black text-[#0878d1] group-hover:bg-gradient-to-br group-hover:from-[#0878d1] group-hover:to-[#041323] group-hover:text-white group-hover:scale-105 transition-all duration-300 ease-out shadow-sm"
           aria-hidden="true"
         >
           {number}
         </span>
-        <span className="text-[11px] font-bold tracking-widest uppercase text-slate-400 group-hover:text-[#0878d1] transition-colors duration-500">
+        <span className="text-[11px] font-bold tracking-widest uppercase text-slate-400 group-hover:text-[#0878d1] transition-colors duration-200 ease-out">
           Stage {number}
         </span>
       </div>
 
       {/* Title */}
-      <h3 className="text-xl font-black text-[#08233f] mb-2.5 group-hover:text-[#0878d1] transition duration-500 tracking-tight">
+      <h3 className="text-xl font-black text-[#08233f] mb-2.5 group-hover:text-[#0878d1] transition-colors duration-200 ease-out tracking-tight">
         {title}
       </h3>
 
@@ -60,10 +60,10 @@ export default function ServiceCard({ service, index = 0 }) {
       {/* CTA Button with gradient hover */}
       <Link
         href={href}
-        className="w-full py-3 px-4 rounded-xl bg-slate-50 group-hover:bg-gradient-to-r group-hover:from-[#0878d1] group-hover:to-sky-600 group-hover:text-white text-[#08233f] text-xs font-bold text-center transition duration-500 flex items-center justify-center gap-2 border border-slate-200/80 group-hover:border-transparent group-hover:shadow-md"
+        className="w-full py-3 px-4 rounded-xl bg-slate-50 group-hover:bg-gradient-to-r group-hover:from-[#0878d1] group-hover:to-sky-600 group-hover:text-white hover:-translate-y-0.5 text-[#08233f] text-xs font-bold text-center transition-all duration-200 ease-out flex items-center justify-center gap-2 border border-slate-200/80 group-hover:border-transparent group-hover:shadow-md"
       >
         <span>Enquire About Service</span>
-        <ArrowRight className="w-3.5 h-3.5 transform group-hover:translate-x-1 transition duration-500" />
+        <ArrowRight className="w-3.5 h-3.5 transform group-hover:translate-x-1 transition-transform duration-200 ease-out" />
       </Link>
     </article>
   );

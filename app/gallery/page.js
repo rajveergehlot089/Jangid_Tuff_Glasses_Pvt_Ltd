@@ -84,7 +84,7 @@ export default function GalleryPage() {
               <div
                 key={item.id || index}
                 onClick={() => openLightbox(index)}
-                className="group relative rounded-3xl overflow-hidden aspect-[3/4] bg-slate-100 shadow-sm hover:shadow-xl transition-all duration-300 cursor-pointer border border-slate-200/80"
+                className="group relative rounded-3xl overflow-hidden aspect-[3/4] bg-slate-100 shadow-sm hover:shadow-xl hover:-translate-y-1.5 transition-all duration-300 ease-out cursor-pointer border border-slate-200/80"
                 role="button"
                 tabIndex={0}
                 onKeyDown={(e) => {
@@ -100,9 +100,9 @@ export default function GalleryPage() {
                   alt={item.title}
                   fill
                   sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
-                  className="object-cover transition-transform duration-700 ease-out group-hover:scale-110"
+                  className="object-cover transition-transform duration-500 ease-out group-hover:scale-105"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/30 to-transparent flex flex-col justify-end p-5 opacity-90 group-hover:opacity-100 transition-opacity duration-500">
+                <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/30 to-transparent flex flex-col justify-end p-5 opacity-90 group-hover:opacity-100 transition-opacity duration-300 ease-out">
                   <span className="text-[10px] uppercase font-bold text-sky-300 tracking-wider">
                     {item.tag || item.category}
                   </span>

@@ -57,7 +57,7 @@ export default function Footer() {
                   href={url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center justify-center w-10 h-10 rounded-xl bg-white/5 border border-white/10 text-slate-300 hover:bg-gradient-to-tr hover:from-[#0878d1] hover:to-sky-400 hover:text-white transition duration-500 shadow-sm"
+                  className="flex items-center justify-center w-10 h-10 rounded-xl bg-white/5 border border-white/10 text-slate-300 hover:bg-gradient-to-tr hover:from-[#0878d1] hover:to-sky-400 hover:text-white hover:-translate-y-0.5 transition-all duration-200 ease-out shadow-sm"
                   aria-label={`Follow us on ${platform}`}
                 >
                   <SocialIcon platform={platform} />
@@ -76,7 +76,7 @@ export default function Footer() {
                 <li key={link.href}>
                   <Link
                     href={link.href}
-                    className="text-xs sm:text-sm text-slate-400 hover:text-white hover:translate-x-1 inline-flex items-center gap-1.5 transition duration-500"
+                    className="text-xs sm:text-sm text-slate-400 hover:text-white hover:translate-x-1 inline-flex items-center gap-1.5 transition-all duration-200 ease-out"
                   >
                     <span>{link.label}</span>
                   </Link>
@@ -85,7 +85,7 @@ export default function Footer() {
               <li>
                 <Link
                   href="/faq"
-                  className="text-xs sm:text-sm text-slate-400 hover:text-white hover:translate-x-1 inline-flex items-center gap-1.5 transition duration-500"
+                  className="text-xs sm:text-sm text-slate-400 hover:text-white hover:translate-x-1 inline-flex items-center gap-1.5 transition-all duration-200 ease-out"
                 >
                   FAQ & Support
                 </Link>
@@ -103,7 +103,7 @@ export default function Footer() {
                 <li key={link.href}>
                   <Link
                     href={link.href}
-                    className="text-xs sm:text-sm text-slate-400 hover:text-sky-300 hover:translate-x-1 inline-flex items-center gap-1.5 transition duration-500"
+                    className="text-xs sm:text-sm text-slate-400 hover:text-sky-300 hover:translate-x-1 inline-flex items-center gap-1.5 transition-all duration-200 ease-out"
                   >
                     <span>{link.label}</span>
                   </Link>
@@ -121,9 +121,9 @@ export default function Footer() {
               <li>
                 <a
                   href={`tel:${CONTACT.phoneRaw}`}
-                  className="flex items-start gap-2.5 hover:text-white transition duration-500 group"
+                  className="flex items-start gap-2.5 hover:text-white transition-colors duration-200 ease-out group"
                 >
-                  <Phone className="w-4 h-4 mt-0.5 text-sky-400 shrink-0 group-hover:scale-110 transition duration-500" />
+                  <Phone className="w-4 h-4 mt-0.5 text-sky-400 shrink-0 group-hover:scale-110 transition-transform duration-200 ease-out" />
                   <span className="font-semibold text-white">{CONTACT.phone}</span>
                 </a>
               </li>
@@ -132,7 +132,7 @@ export default function Footer() {
                   href={`https://wa.me/${CONTACT.whatsapp}?text=Hello%20Jangid%20Tuff%20Glasses,%20I%20have%20an%20enquiry.`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-start gap-2.5 hover:text-emerald-400 transition duration-500 group"
+                  className="flex items-start gap-2.5 hover:text-emerald-400 transition-colors duration-200 ease-out group"
                 >
                   <span className="w-2 h-2 rounded-full bg-emerald-400 mt-1.5 shrink-0 animate-pulse" />
                   <span>Instant WhatsApp Chat</span>
@@ -143,9 +143,9 @@ export default function Footer() {
                   href={COMPANY.mapsQuery}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-start gap-2.5 hover:text-white transition duration-500 group"
+                  className="flex items-start gap-2.5 hover:text-white transition-colors duration-200 ease-out group"
                 >
-                  <MapPin className="w-4 h-4 mt-0.5 text-sky-400 shrink-0 group-hover:scale-110 transition duration-500" />
+                  <MapPin className="w-4 h-4 mt-0.5 text-sky-400 shrink-0 group-hover:scale-110 transition-transform duration-200 ease-out" />
                   <span className="leading-snug">{CONTACT.address}</span>
                 </a>
               </li>
@@ -154,10 +154,10 @@ export default function Footer() {
             <div className="mt-6 pt-5 border-t border-white/10">
               <Link
                 href="/contact#quote"
-                className="btn-gradient w-full py-2.5 px-4 rounded-xl text-center text-xs font-bold text-white flex items-center justify-center gap-2 shadow-md"
+                className="btn-gradient w-full py-2.5 px-4 rounded-xl text-center text-xs font-bold text-white flex items-center justify-center gap-2 shadow-md transition-all duration-200 ease-out hover:-translate-y-0.5"
               >
                 <span>Request Project Estimate</span>
-                <ArrowRight className="w-3.5 h-3.5" />
+                <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform duration-200 ease-out" />
               </Link>
             </div>
           </div>
@@ -167,13 +167,13 @@ export default function Footer() {
         <div className="border-t border-white/10 mt-12 pt-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500">
           <p>© {year} {BUSINESS.name} Pvt Ltd. All rights reserved.</p>
           <div className="flex items-center gap-6">
-            <Link href="/privacy" className="hover:text-slate-300 transition duration-500">
+            <Link href="/privacy" className="hover:text-slate-300 transition-colors duration-200 ease-out">
               Privacy Policy
             </Link>
-            <Link href="/terms" className="hover:text-slate-300 transition duration-500">
+            <Link href="/terms" className="hover:text-slate-300 transition-colors duration-200 ease-out">
               Terms & Conditions
             </Link>
-            <Link href="/contact" className="hover:text-slate-300 transition duration-500">
+            <Link href="/contact" className="hover:text-slate-300 transition-colors duration-200 ease-out">
               Contact
             </Link>
           </div>

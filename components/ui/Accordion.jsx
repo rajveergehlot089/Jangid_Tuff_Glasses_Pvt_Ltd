@@ -18,11 +18,11 @@ export default function Accordion({ items }) {
         return (
           <div
             key={index}
-            className="rounded-2xl border border-slate-200/80 bg-white overflow-hidden transition shadow-sm"
+            className="rounded-2xl border border-slate-200/80 bg-white overflow-hidden transition-all duration-200 ease-out hover:border-[#0878d1]/30 shadow-sm"
           >
             <button
               onClick={() => toggle(index)}
-              className="w-full text-left p-6 flex justify-between items-center gap-4 cursor-pointer focus-visible:outline-2 focus-visible:outline-[#0878d1]"
+              className="w-full text-left p-6 flex justify-between items-center gap-4 cursor-pointer hover:bg-slate-50/70 transition-colors duration-200 ease-out focus-visible:outline-2 focus-visible:outline-[#0878d1]"
               aria-expanded={isOpen}
               aria-controls={`accordion-content-${index}`}
             >

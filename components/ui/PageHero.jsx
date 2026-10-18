@@ -139,20 +139,20 @@ export default function PageHero({
             {primaryAction && (
               <Link
                 href={primaryAction.href}
-                className="btn-gradient inline-flex items-center gap-2 px-7 py-3.5 sm:px-8 sm:py-4 rounded-full text-white text-sm sm:text-base font-bold shadow-lg shadow-[#0878d1]/30 group"
+                className="btn-gradient inline-flex items-center gap-2 px-7 py-3.5 sm:px-8 sm:py-4 rounded-full text-white text-sm sm:text-base font-bold shadow-lg shadow-[#0878d1]/30 transition-all duration-200 ease-out hover:-translate-y-0.5 group"
               >
                 <span>{primaryAction.label}</span>
-                <ArrowRight className="w-4 h-4 transform group-hover:translate-x-1 transition duration-500" />
+                <ArrowRight className="w-4 h-4 transform group-hover:translate-x-1 transition-transform duration-200 ease-out" />
               </Link>
             )}
 
             {secondaryAction && (
               <Link
                 href={secondaryAction.href}
-                className="inline-flex items-center gap-2 px-7 py-3.5 sm:px-8 sm:py-4 rounded-full bg-white/10 hover:bg-white hover:text-[#08233f] text-white border border-white/30 backdrop-blur-md text-sm sm:text-base font-bold transition duration-500 shadow-sm group"
+                className="inline-flex items-center gap-2 px-7 py-3.5 sm:px-8 sm:py-4 rounded-full bg-white/10 hover:bg-white hover:text-[#08233f] text-white border border-white/30 backdrop-blur-md text-sm sm:text-base font-bold transition-all duration-200 ease-out hover:-translate-y-0.5 shadow-sm group"
               >
                 <span>{secondaryAction.label}</span>
-                <ArrowRight className="w-4 h-4 transform group-hover:translate-x-1 transition duration-500" />
+                <ArrowRight className="w-4 h-4 transform group-hover:translate-x-1 transition-transform duration-200 ease-out" />
               </Link>
             )}
           </motion.div>
@@ -172,16 +172,16 @@ export default function PageHero({
                     <Link
                       key={idx}
                       href={item.href || '/products'}
-                      className="flex items-center gap-3 px-3.5 py-2.5 sm:px-4 sm:py-3 rounded-2xl bg-[#030e1a]/65 hover:bg-[#030e1a]/85 border border-white/15 hover:border-sky-400/50 backdrop-blur-md transition-all duration-500 group shrink-0 shadow-lg shadow-black/20"
+                      className="flex items-center gap-3 px-3.5 py-2.5 sm:px-4 sm:py-3 rounded-2xl bg-[#030e1a]/65 hover:bg-[#030e1a]/85 border border-white/15 hover:border-sky-400/50 backdrop-blur-md transition-all duration-200 ease-out hover:-translate-y-0.5 group shrink-0 shadow-lg shadow-black/20"
                     >
-                      <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-xl bg-gradient-to-br from-[#0878d1]/50 to-sky-400/25 border border-sky-400/30 flex items-center justify-center text-sky-300 group-hover:scale-105 group-hover:text-white transition duration-500 shrink-0">
+                      <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-xl bg-gradient-to-br from-[#0878d1]/50 to-sky-400/25 border border-sky-400/30 flex items-center justify-center text-sky-300 group-hover:scale-105 group-hover:text-white transition-all duration-200 ease-out shrink-0">
                         <IconComponent className="w-4 h-4" />
                       </div>
                       <div className="flex flex-col text-left">
-                        <span className="text-xs sm:text-sm font-bold text-white group-hover:text-sky-300 transition duration-500 leading-tight whitespace-nowrap">
+                        <span className="text-xs sm:text-sm font-bold text-white group-hover:text-sky-300 transition-colors duration-200 ease-out leading-tight whitespace-nowrap">
                           {item.label}
                         </span>
-                        <span className="text-[10px] text-slate-300 group-hover:text-slate-100 transition duration-500 whitespace-nowrap">
+                        <span className="text-[10px] text-slate-300 group-hover:text-slate-100 transition-colors duration-200 ease-out whitespace-nowrap">
                           {item.sublabel}
                         </span>
                       </div>
@@ -194,13 +194,13 @@ export default function PageHero({
               {showWatchWork && (
                 <Link
                   href="/gallery"
-                  className="flex items-center gap-3 px-4 py-2.5 rounded-2xl bg-[#030e1a]/65 hover:bg-[#030e1a]/85 border border-white/15 hover:border-sky-400/50 backdrop-blur-md transition-all duration-500 group shrink-0 shadow-lg shadow-black/20"
+                  className="flex items-center gap-3 px-4 py-2.5 rounded-2xl bg-[#030e1a]/65 hover:bg-[#030e1a]/85 border border-white/15 hover:border-sky-400/50 backdrop-blur-md transition-all duration-200 ease-out hover:-translate-y-0.5 group shrink-0 shadow-lg shadow-black/20"
                 >
-                  <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-gradient-to-br from-[#0878d1] to-sky-400 flex items-center justify-center text-white shadow-md group-hover:scale-110 transition duration-500">
+                  <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-gradient-to-br from-[#0878d1] to-sky-400 flex items-center justify-center text-white shadow-md group-hover:scale-105 transition-transform duration-200 ease-out">
                     <Play className="w-4 h-4 fill-current ml-0.5" />
                   </div>
                   <div className="flex flex-col text-left">
-                    <span className="text-xs font-bold text-white group-hover:text-sky-300 transition duration-500 whitespace-nowrap">
+                    <span className="text-xs font-bold text-white group-hover:text-sky-300 transition-colors duration-200 ease-out whitespace-nowrap">
                       Watch Our Work
                     </span>
                     <span className="text-[10px] text-slate-300 whitespace-nowrap">

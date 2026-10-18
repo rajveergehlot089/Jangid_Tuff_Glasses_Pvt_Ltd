@@ -145,7 +145,7 @@ export default function AboutPage() {
           <div className="mt-8 flex flex-wrap justify-center gap-4">
             <Link
               href="/contact"
-              className="btn-gradient rounded-full text-white px-8 py-3.5 font-bold text-sm shadow-md transition duration-500"
+              className="btn-gradient rounded-full text-white px-8 py-3.5 font-bold text-sm shadow-md transition-all duration-200 ease-out hover:-translate-y-0.5"
             >
               Get in Touch
             </Link>
@@ -153,7 +153,7 @@ export default function AboutPage() {
               href={COMPANY.mapsQuery}
               target="_blank"
               rel="noopener noreferrer"
-              className="rounded-full border border-slate-300 text-[#08233f] px-7 py-3 font-bold text-sm hover:bg-slate-50 transition"
+              className="rounded-full border border-slate-300 text-[#08233f] px-7 py-3.5 font-bold text-sm hover:bg-slate-50 hover:-translate-y-0.5 hover:border-slate-400 transition-all duration-200 ease-out shadow-xs"
             >
               Find Us on Google Maps
             </a>

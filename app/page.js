@@ -114,14 +114,14 @@ export default function HomePage() {
             <div className="mt-8 flex flex-wrap items-center gap-4">
               <Link
                 href="/about"
-                className="btn-gradient text-white px-7 py-3.5 rounded-full font-bold text-sm inline-flex items-center gap-2 shadow-md transition duration-500"
+                className="btn-gradient text-white px-7 py-3.5 rounded-full font-bold text-sm inline-flex items-center gap-2 shadow-md transition-all duration-200 ease-out hover:-translate-y-0.5"
               >
                 <span>Read More About Us</span>
-                <ArrowRight className="w-4 h-4" />
+                <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-200 ease-out" />
               </Link>
               <Link
                 href="/contact"
-                className="rounded-full border border-slate-300 text-[#132b45] px-7 py-3.5 font-bold hover:bg-slate-50 transition duration-500 text-sm"
+                className="rounded-full border border-slate-300 text-[#132b45] px-7 py-3.5 font-bold hover:bg-slate-50 hover:-translate-y-0.5 transition-all duration-200 ease-out text-sm shadow-xs"
               >
                 Contact & Directions
               </Link>
@@ -152,10 +152,10 @@ export default function HomePage() {
           <div className="mt-12 text-center">
             <Link
               href="/services"
-              className="inline-flex items-center gap-2 font-bold text-[#0878d1] hover:text-[#08233f] text-sm group transition duration-500"
+              className="inline-flex items-center gap-2 font-bold text-[#0878d1] hover:text-[#08233f] text-sm group transition-colors duration-200 ease-out"
             >
               <span>View all services and project stages</span>
-              <ArrowRight className="w-4 h-4 transform group-hover:translate-x-1 transition duration-500" />
+              <ArrowRight className="w-4 h-4 transform group-hover:translate-x-1 transition-transform duration-200 ease-out" />
             </Link>
           </div>
         </div>
@@ -178,10 +178,10 @@ export default function HomePage() {
             </div>
             <Link
               href="/services"
-              className="inline-flex items-center gap-2 font-bold text-[#0878d1] hover:text-[#08233f] transition duration-500 group shrink-0 text-sm"
+              className="inline-flex items-center gap-2 font-bold text-[#0878d1] hover:text-[#08233f] transition-colors duration-200 ease-out group shrink-0 text-sm"
             >
               <span>Explore hardware systems</span>
-              <ArrowRight className="w-4 h-4 transform group-hover:translate-x-1 transition duration-500" />
+              <ArrowRight className="w-4 h-4 transform group-hover:translate-x-1 transition-transform duration-200 ease-out" />
             </Link>
           </div>
 
@@ -212,10 +212,10 @@ export default function HomePage() {
               return (
                 <div
                   key={idx}
-                  className="p-6 rounded-3xl bg-[#f8fafc] border border-slate-200/90 shadow-sm flex flex-col justify-between hover:shadow-md hover:border-[#0878d1]/30 transition duration-500"
+                  className="p-6 rounded-3xl bg-[#f8fafc] border border-slate-200/90 shadow-sm flex flex-col justify-between hover:shadow-lg hover:-translate-y-1.5 hover:border-[#0878d1]/30 transition-all duration-300 ease-out"
                 >
                   <div>
-                    <div className="w-10 h-10 rounded-xl bg-[#eaf5ff] text-[#0878d1] flex items-center justify-center mb-4">
+                    <div className="w-10 h-10 rounded-xl bg-[#eaf5ff] text-[#0878d1] flex items-center justify-center mb-4 transition-transform duration-200 ease-out">
                       <IconComp className="w-5 h-5" />
                     </div>
                     <h3 className="font-bold text-base text-[#08233f] mb-2">
@@ -247,10 +247,10 @@ export default function HomePage() {
             </div>
             <Link
               href="/gallery"
-              className="inline-flex items-center gap-2 font-bold text-[#0878d1] hover:text-[#08233f] text-sm group shrink-0 transition duration-500"
+              className="inline-flex items-center gap-2 font-bold text-[#0878d1] hover:text-[#08233f] text-sm group shrink-0 transition-colors duration-200 ease-out"
             >
               <span>Explore full gallery</span>
-              <ArrowRight className="w-4 h-4 transform group-hover:translate-x-1 transition duration-500" />
+              <ArrowRight className="w-4 h-4 transform group-hover:translate-x-1 transition-transform duration-200 ease-out" />
             </Link>
           </div>
 
@@ -261,13 +261,13 @@ export default function HomePage() {
               { title: 'LED Mirrors', src: 'https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&w=600&q=80', tag: 'Interior' },
               { title: 'Shower Glass', src: 'https://images.unsplash.com/photo-1620626011761-996317b8d101?auto=format&fit=crop&w=600&q=80', tag: 'Bath Spaces' },
             ].map((item, index) => (
-              <div key={index} className="group relative rounded-3xl overflow-hidden aspect-[3/4] bg-slate-100 shadow-sm border border-slate-200/80 hover:shadow-xl hover:-translate-y-1 transition duration-500">
+              <div key={index} className="group relative rounded-3xl overflow-hidden aspect-[3/4] bg-slate-100 shadow-sm border border-slate-200/80 hover:shadow-xl hover:-translate-y-1.5 transition-all duration-300 ease-out">
                 <Image
                   src={item.src}
                   alt={item.title}
                   fill
                   sizes="(max-width: 640px) 50vw, 25vw"
-                  className="object-cover transition-transform duration-500 ease-out group-hover:scale-108"
+                  className="object-cover transition-transform duration-500 ease-out group-hover:scale-105"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-[#041323]/85 via-black/20 to-transparent flex flex-col justify-end p-5">
                   <span className="text-[10px] uppercase font-bold text-sky-300 tracking-wider">

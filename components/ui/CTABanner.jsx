@@ -31,15 +31,15 @@ export default function CTABanner({
         <div className="mt-8 flex flex-wrap justify-center gap-4">
           <Link
             href={primaryAction.href}
-            className="btn-gradient rounded-full text-white px-8 py-3.5 font-bold text-sm shadow-xl inline-flex items-center gap-2 group transition duration-500"
+            className="btn-gradient rounded-full text-white px-8 py-3.5 font-bold text-sm shadow-xl inline-flex items-center gap-2 group transition-all duration-200 ease-out hover:-translate-y-0.5"
           >
             <span>{primaryAction.label}</span>
-            <ArrowRight className="w-4 h-4 transform group-hover:translate-x-1 transition duration-500" />
+            <ArrowRight className="w-4 h-4 transform group-hover:translate-x-1 transition-transform duration-200 ease-out" />
           </Link>
 
           <a
             href={secondaryAction.href}
-            className="rounded-full bg-white/10 hover:bg-white hover:text-[#08233f] text-white border border-white/30 px-8 py-3.5 font-bold text-sm transition duration-500 inline-flex items-center gap-2 shadow-sm"
+            className="rounded-full bg-white/10 hover:bg-white hover:text-[#08233f] text-white border border-white/30 px-8 py-3.5 font-bold text-sm transition-all duration-200 ease-out hover:-translate-y-0.5 inline-flex items-center gap-2 shadow-sm"
           >
             <Phone className="w-4 h-4 text-sky-400" />
             <span>{secondaryAction.label}</span>

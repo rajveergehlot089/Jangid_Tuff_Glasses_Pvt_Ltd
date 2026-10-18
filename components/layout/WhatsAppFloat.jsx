@@ -13,14 +13,14 @@ export default function WhatsAppFloat() {
       href={whatsappUrl}
       target="_blank"
       rel="noopener noreferrer"
-      className="fixed bottom-6 right-6 z-40 flex items-center gap-2.5 bg-gradient-to-r from-emerald-500 via-emerald-600 to-teal-700 hover:from-emerald-600 hover:to-teal-800 text-white pl-4 pr-4 md:pr-5 py-3 rounded-full shadow-xl shadow-emerald-600/30 transition duration-500 border border-white/20 group"
-      whileHover={{ scale: 1.06, y: -2 }}
+      className="fixed bottom-6 right-6 z-40 flex items-center gap-2.5 bg-gradient-to-r from-emerald-500 via-emerald-600 to-teal-700 hover:from-emerald-600 hover:to-teal-800 text-white pl-4 pr-4 md:pr-5 py-3 rounded-full shadow-xl shadow-emerald-600/30 transition-colors duration-200 ease-out border border-white/20 group"
+      whileHover={{ scale: 1.04, y: -2, transition: { duration: 0.2, ease: 'easeOut' } }}
       whileTap={{ scale: 0.95 }}
       aria-label="Chat on WhatsApp"
     >
       {/* WhatsApp SVG icon */}
       <svg
-        className="w-5 h-5 shrink-0 group-hover:rotate-12 transition duration-500"
+        className="w-5 h-5 shrink-0 group-hover:rotate-12 transition-transform duration-200 ease-out"
         viewBox="0 0 24 24"
         fill="currentColor"
         aria-hidden="true"

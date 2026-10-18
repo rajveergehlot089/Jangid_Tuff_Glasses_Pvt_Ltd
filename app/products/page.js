@@ -90,7 +90,7 @@ export default function ProductsPage() {
           <div className="mt-8">
             <Link
               href="/contact?product=Custom+Glass#quote"
-              className="rounded-full bg-[#0878d1] hover:bg-sky-600 text-white px-8 py-3.5 font-bold text-sm transition inline-block shadow-md"
+              className="btn-gradient rounded-full text-white px-8 py-3.5 font-bold text-sm transition-all duration-200 ease-out hover:-translate-y-0.5 inline-block shadow-md"
             >
               Ask for Technical Guidance →
             </Link>

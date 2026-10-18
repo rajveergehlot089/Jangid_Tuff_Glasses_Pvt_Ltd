@@ -103,7 +103,7 @@ export default function ServicesPage() {
                 points: ['Duplex 2205 / SS 316 heavy spigots', 'Continuous aluminum base shoe channels', 'Point-fixed architectural standoff pins', 'Slotted stainless steel & wood top rails'],
               },
             ].map((hw, idx) => (
-              <div key={idx} className="bg-white rounded-3xl p-6 border border-slate-200/90 shadow-sm flex flex-col justify-between">
+              <div key={idx} className="bg-white rounded-3xl p-6 border border-slate-200/90 shadow-sm flex flex-col justify-between hover:shadow-lg hover:-translate-y-1 hover:border-[#0878d1]/30 transition-all duration-300 ease-out">
                 <div>
                   <span className="text-[10px] font-bold uppercase tracking-wider text-[#0878d1] block mb-1">
                     {hw.category}
@@ -145,7 +145,7 @@ export default function ServicesPage() {
                   { title: 'Material & Texture Guidance', desc: 'Sample review for clear float, extra-clear low-iron, fluted textures, lacquered backsplashes, and tint options.' },
                   { title: 'Logistics & Crated Safe Dispatch', desc: 'Specialized protective wooden crating and scheduled site vehicle delivery across the Jodhpur region.' },
                 ].map((item, idx) => (
-                  <div key={idx} className="p-4 rounded-2xl bg-slate-50 border border-slate-200/80">
+                  <div key={idx} className="p-4 rounded-2xl bg-slate-50 border border-slate-200/80 hover:border-[#0878d1]/40 hover:bg-slate-50/80 transition-all duration-200 ease-out">
                     <h3 className="font-bold text-sm text-[#08233f]">{item.title}</h3>
                     <p className="text-xs text-slate-600 mt-1 leading-relaxed">{item.desc}</p>
                   </div>
@@ -163,9 +163,10 @@ export default function ServicesPage() {
                 <div className="mt-6 flex flex-wrap gap-3">
                   <Link
                     href="/contact#quote"
-                    className="btn-gradient text-white text-xs font-bold px-6 py-3 rounded-full shadow-md"
+                    className="btn-gradient text-white text-xs font-bold px-6 py-3 rounded-full shadow-md transition-all duration-200 ease-out hover:-translate-y-0.5 inline-flex items-center gap-1.5"
                   >
-                    Send Drawings for Review →
+                    <span>Send Drawings for Review</span>
+                    <span aria-hidden="true">→</span>
                   </Link>
                 </div>
               </div>
