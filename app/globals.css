@@ -13,9 +13,7 @@
   --brand-neutral: #f8fafc;
 }
 
-html {
-  scroll-behavior: smooth;
-}
+/* Smooth scroll handled natively / by GSAP */
 
 body {
   font-family: var(--font-sans), 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;

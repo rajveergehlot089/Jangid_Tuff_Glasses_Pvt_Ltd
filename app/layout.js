@@ -94,7 +94,7 @@ export default function RootLayout({ children }) {
       lang="en"
       suppressHydrationWarning
       data-scroll-behavior="smooth"
-      className={`${plusJakartaSans.variable} ${notoSansDevanagari.variable} h-full scroll-smooth`}
+      className={`${plusJakartaSans.variable} ${notoSansDevanagari.variable} h-full`}
     >
       <head>
         <script
