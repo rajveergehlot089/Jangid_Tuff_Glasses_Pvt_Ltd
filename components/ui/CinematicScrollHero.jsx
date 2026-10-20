@@ -341,265 +341,6 @@ export default function CinematicScrollHero() {
           applyStages(playhead.frame / (TOTAL_FRAMES - 1));
         },
       });
-<<<<<<< HEAD
-=======
-
-      // ─── STAGE 1: Balcony Glass Railings (Frames 0 to 18 | 0% to 15%) ───
-      if (textStage1Ref.current) {
-        gsap.fromTo(
-          textStage1Ref.current,
-          { autoAlpha: 1, y: 0, xPercent: 0, pointerEvents: 'auto' },
-          {
-            autoAlpha: 0,
-            y: -25,
-            xPercent: -35,
-            pointerEvents: 'none',
-            ease: 'power1.out',
-            scrollTrigger: {
-              trigger: container,
-              start: 'top top',
-              end: '15% top',
-              scrub: 0.5,
-            },
-          }
-        );
-      }
-
-      // ─── STAGE 2: Architectural Glass Profiles (Frames 19 to 36 | 16% to 34%) ───
-      // Emerges directly from CENTER OF WEBSITE (y: 0, scale 0.2 -> 1.0) -> Exits to RIGHT
-      if (textStage2Ref.current) {
-        gsap.fromTo(
-          textStage2Ref.current,
-          {
-            autoAlpha: 0,
-            scale: 0.2,
-            xPercent: 0,
-            y: 0,
-            rotate: 0,
-            transformOrigin: '50% 50%',
-            pointerEvents: 'none',
-          },
-          {
-            autoAlpha: 1,
-            scale: 1,
-            xPercent: 0,
-            y: 0,
-            rotate: 0,
-            pointerEvents: 'auto',
-            ease: 'power2.out',
-            scrollTrigger: {
-              trigger: container,
-              start: '16% top',
-              end: '21% top',
-              scrub: 0.5,
-            },
-          }
-        );
-        gsap.to(textStage2Ref.current, {
-          xPercent: 130,
-          scale: 0.85,
-          autoAlpha: 0,
-          rotate: 4,
-          pointerEvents: 'none',
-          ease: 'power1.in',
-          immediateRender: false,
-          scrollTrigger: {
-            trigger: container,
-            start: '29% top',
-            end: '34% top',
-            scrub: 0.5,
-          },
-        });
-      }
-
-      // ─── STAGE 3: Floating Staircase Glass Balustrades (Frames 37 to 56 | 34% to 52%) ───
-      // Emerges directly from CENTER OF WEBSITE (y: 0, scale 0.2 -> 1.0) -> Exits to LEFT
-      if (textStage3Ref.current) {
-        gsap.fromTo(
-          textStage3Ref.current,
-          {
-            autoAlpha: 0,
-            scale: 0.2,
-            xPercent: 0,
-            y: 0,
-            rotate: 0,
-            transformOrigin: '50% 50%',
-            pointerEvents: 'none',
-          },
-          {
-            autoAlpha: 1,
-            scale: 1,
-            xPercent: 0,
-            y: 0,
-            rotate: 0,
-            pointerEvents: 'auto',
-            ease: 'power2.out',
-            scrollTrigger: {
-              trigger: container,
-              start: '34% top',
-              end: '39% top',
-              scrub: 0.5,
-            },
-          }
-        );
-        gsap.to(textStage3Ref.current, {
-          xPercent: -130,
-          scale: 0.85,
-          autoAlpha: 0,
-          rotate: -4,
-          pointerEvents: 'none',
-          ease: 'power1.in',
-          immediateRender: false,
-          scrollTrigger: {
-            trigger: container,
-            start: '47% top',
-            end: '52% top',
-            scrub: 0.5,
-          },
-        });
-      }
-
-      // ─── STAGE 4: Acoustic Office Partitions (Frames 57 to 72 | 52% to 70%) ───
-      // Emerges directly from CENTER OF WEBSITE (y: 0, scale 0.2 -> 1.0) -> Exits to RIGHT
-      if (textStage4Ref.current) {
-        gsap.fromTo(
-          textStage4Ref.current,
-          {
-            autoAlpha: 0,
-            scale: 0.2,
-            xPercent: 0,
-            y: 0,
-            rotate: 0,
-            transformOrigin: '50% 50%',
-            pointerEvents: 'none',
-          },
-          {
-            autoAlpha: 1,
-            scale: 1,
-            xPercent: 0,
-            y: 0,
-            rotate: 0,
-            pointerEvents: 'auto',
-            ease: 'power2.out',
-            scrollTrigger: {
-              trigger: container,
-              start: '52% top',
-              end: '57% top',
-              scrub: 0.5,
-            },
-          }
-        );
-        gsap.to(textStage4Ref.current, {
-          xPercent: 130,
-          scale: 0.85,
-          autoAlpha: 0,
-          rotate: 4,
-          pointerEvents: 'none',
-          ease: 'power1.in',
-          immediateRender: false,
-          scrollTrigger: {
-            trigger: container,
-            start: '65% top',
-            end: '70% top',
-            scrub: 0.5,
-          },
-        });
-      }
-
-      // ─── STAGE 5: Smart LED Mirrors & Offerings (Frames 73 to 94 | 70% to 88%) ───
-      // Emerges directly from CENTER OF WEBSITE (y: 0, scale 0.2 -> 1.0) -> Exits to LEFT
-      if (textStage5Ref.current) {
-        gsap.fromTo(
-          textStage5Ref.current,
-          {
-            autoAlpha: 0,
-            scale: 0.2,
-            xPercent: 0,
-            y: 0,
-            rotate: 0,
-            transformOrigin: '50% 50%',
-            pointerEvents: 'none',
-          },
-          {
-            autoAlpha: 1,
-            scale: 1,
-            xPercent: 0,
-            y: 0,
-            rotate: 0,
-            pointerEvents: 'auto',
-            ease: 'power2.out',
-            scrollTrigger: {
-              trigger: container,
-              start: '70% top',
-              end: '75% top',
-              scrub: 0.5,
-            },
-          }
-        );
-        gsap.to(textStage5Ref.current, {
-          xPercent: -130,
-          scale: 0.85,
-          autoAlpha: 0,
-          rotate: -4,
-          pointerEvents: 'none',
-          ease: 'power1.in',
-          immediateRender: false,
-          scrollTrigger: {
-            trigger: container,
-            start: '83% top',
-            end: '88% top',
-            scrub: 0.5,
-          },
-        });
-      }
-
-      // ─── STAGE 6: Engineered Glass for Every Application (Frames 95 to 119 | 88% to 100%) ───
-      // Emerges directly from CENTER OF WEBSITE (y: 0, scale 0.2 -> 1.0) -> Exits to RIGHT
-      if (textStage6Ref.current) {
-        gsap.fromTo(
-          textStage6Ref.current,
-          {
-            autoAlpha: 0,
-            scale: 0.2,
-            xPercent: 0,
-            y: 0,
-            rotate: 0,
-            transformOrigin: '50% 50%',
-            pointerEvents: 'none',
-          },
-          {
-            autoAlpha: 1,
-            scale: 1,
-            xPercent: 0,
-            y: 0,
-            rotate: 0,
-            pointerEvents: 'auto',
-            ease: 'power2.out',
-            scrollTrigger: {
-              trigger: container,
-              start: '88% top',
-              end: '93% top',
-              scrub: 0.5,
-            },
-          }
-        );
-        gsap.to(textStage6Ref.current, {
-          xPercent: 110,
-          scale: 0.9,
-          autoAlpha: 0.25,
-          rotate: 2,
-          pointerEvents: 'none',
-          ease: 'power1.in',
-          immediateRender: false,
-          scrollTrigger: {
-            trigger: container,
-            start: '97% top',
-            end: 'bottom bottom',
-            scrub: 0.5,
-          },
-        });
-      }
->>>>>>> e96cc2eb3fc9375c2cfd26a9aad9a9e46106687c
     }, container);
 
     const timer = setTimeout(() => {
@@ -609,15 +350,12 @@ export default function CinematicScrollHero() {
     return () => {
       clearTimeout(timer);
       ctx.revert();
-<<<<<<< HEAD
+      if (rafIdRef.current) cancelAnimationFrame(rafIdRef.current);
       stageEls.forEach((el) => {
         if (!el) return;
         el.style.opacity = '';
         el.style.transform = '';
       });
-=======
-      if (rafIdRef.current) cancelAnimationFrame(rafIdRef.current);
->>>>>>> e96cc2eb3fc9375c2cfd26a9aad9a9e46106687c
     };
   }, [drawFrame, isReducedMotion]);
 
@@ -638,11 +376,7 @@ export default function CinematicScrollHero() {
   return (
     <section
       ref={containerRef}
-<<<<<<< HEAD
       className={`relative w-full ${isReducedMotion ? '' : 'h-[420vh] md:h-[480vh]'}`}
-=======
-      className="relative w-full h-[620vh]"
->>>>>>> e96cc2eb3fc9375c2cfd26a9aad9a9e46106687c
       aria-label="Cinematic Architectural Glass Showcase"
     >
       {/* Pinned Sticky Viewport Window (reduced motion: a normal tall block with every stage stacked) */}
@@ -792,17 +526,10 @@ export default function CinematicScrollHero() {
             STAGE 2: Architectural Glass Profiles (Frames 19 to 36)
             ═══════════════════════════════════════════════════════════════════════════ */}
         <div
-<<<<<<< HEAD
           ref={(el) => (stageRefs.current[1] = el)}
           className={stageWrapClass(isReducedMotion)}
         >
-          <div className="w-full max-w-2xl p-5 sm:p-8 rounded-3xl bg-slate-950/85 backdrop-blur-2xl border border-blue-500/40 shadow-[0_0_35px_rgba(29,78,216,0.3)] text-white relative overflow-hidden">
-=======
-          ref={textStage2Ref}
-          className="absolute inset-x-0 top-1/2 -translate-y-1/2 z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pointer-events-none flex justify-center opacity-0"
-        >
-          <div className="w-full max-w-2xl p-6 sm:p-8 rounded-3xl bg-slate-950/85 backdrop-blur-2xl border border-blue-500/40 shadow-[0_0_35px_rgba(29,78,216,0.3)] text-white relative overflow-hidden mx-auto">
->>>>>>> e96cc2eb3fc9375c2cfd26a9aad9a9e46106687c
+          <div className="w-full max-w-2xl p-5 sm:p-8 rounded-3xl bg-slate-950/85 backdrop-blur-2xl border border-blue-500/40 shadow-[0_0_35px_rgba(29,78,216,0.3)] text-white relative overflow-hidden mx-auto">
             <div className="absolute inset-x-0 top-0 h-[2px] bg-gradient-to-r from-transparent via-blue-500 to-transparent" />
 
             <div className="flex items-center justify-between gap-3 mb-3">
@@ -873,17 +600,10 @@ export default function CinematicScrollHero() {
             STAGE 3: Floating Staircase Glass Balustrades (Frames 37 to 56)
             ═══════════════════════════════════════════════════════════════════════════ */}
         <div
-<<<<<<< HEAD
           ref={(el) => (stageRefs.current[2] = el)}
           className={stageWrapClass(isReducedMotion)}
         >
-          <div className="w-full max-w-2xl p-5 sm:p-8 rounded-3xl bg-slate-950/85 backdrop-blur-2xl border border-blue-500/40 shadow-[0_0_35px_rgba(29,78,216,0.3)] text-white relative overflow-hidden">
-=======
-          ref={textStage3Ref}
-          className="absolute inset-x-0 top-1/2 -translate-y-1/2 z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pointer-events-none flex justify-center opacity-0"
-        >
-          <div className="w-full max-w-2xl p-6 sm:p-8 rounded-3xl bg-slate-950/85 backdrop-blur-2xl border border-blue-500/40 shadow-[0_0_35px_rgba(29,78,216,0.3)] text-white relative overflow-hidden mx-auto">
->>>>>>> e96cc2eb3fc9375c2cfd26a9aad9a9e46106687c
+          <div className="w-full max-w-2xl p-5 sm:p-8 rounded-3xl bg-slate-950/85 backdrop-blur-2xl border border-blue-500/40 shadow-[0_0_35px_rgba(29,78,216,0.3)] text-white relative overflow-hidden mx-auto">
             <div className="absolute inset-x-0 top-0 h-[2px] bg-gradient-to-r from-transparent via-blue-500 to-transparent" />
 
             <div className="flex items-center justify-between gap-3 mb-3">
@@ -954,17 +674,10 @@ export default function CinematicScrollHero() {
             STAGE 4: Frameless Acoustic Glass Partitions (Frames 57 to 72)
             ═══════════════════════════════════════════════════════════════════════════ */}
         <div
-<<<<<<< HEAD
           ref={(el) => (stageRefs.current[3] = el)}
           className={stageWrapClass(isReducedMotion)}
         >
-          <div className="w-full max-w-2xl p-5 sm:p-8 rounded-3xl bg-slate-950/85 backdrop-blur-2xl border border-blue-500/40 shadow-[0_0_35px_rgba(29,78,216,0.3)] text-white relative overflow-hidden">
-=======
-          ref={textStage4Ref}
-          className="absolute inset-x-0 top-1/2 -translate-y-1/2 z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pointer-events-none flex justify-center opacity-0"
-        >
-          <div className="w-full max-w-2xl p-6 sm:p-8 rounded-3xl bg-slate-950/85 backdrop-blur-2xl border border-blue-500/40 shadow-[0_0_35px_rgba(29,78,216,0.3)] text-white relative overflow-hidden mx-auto">
->>>>>>> e96cc2eb3fc9375c2cfd26a9aad9a9e46106687c
+          <div className="w-full max-w-2xl p-5 sm:p-8 rounded-3xl bg-slate-950/85 backdrop-blur-2xl border border-blue-500/40 shadow-[0_0_35px_rgba(29,78,216,0.3)] text-white relative overflow-hidden mx-auto">
             <div className="absolute inset-x-0 top-0 h-[2px] bg-gradient-to-r from-transparent via-blue-500 to-transparent" />
 
             <div className="flex items-center justify-between gap-3 mb-3">
@@ -1035,17 +748,10 @@ export default function CinematicScrollHero() {
             STAGE 5: Smart LED Mirrors & Bathroom Suite (Frames 73 to 94)
             ═══════════════════════════════════════════════════════════════════════════ */}
         <div
-<<<<<<< HEAD
           ref={(el) => (stageRefs.current[4] = el)}
           className={stageWrapClass(isReducedMotion)}
         >
-          <div className="w-full max-w-2xl p-5 sm:p-8 rounded-3xl bg-slate-950/85 backdrop-blur-2xl border border-blue-500/40 shadow-[0_0_35px_rgba(29,78,216,0.3)] text-white relative overflow-hidden">
-=======
-          ref={textStage5Ref}
-          className="absolute inset-x-0 top-1/2 -translate-y-1/2 z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pointer-events-none flex justify-center opacity-0"
-        >
-          <div className="w-full max-w-2xl p-6 sm:p-8 rounded-3xl bg-slate-950/85 backdrop-blur-2xl border border-blue-500/40 shadow-[0_0_35px_rgba(29,78,216,0.3)] text-white relative overflow-hidden mx-auto">
->>>>>>> e96cc2eb3fc9375c2cfd26a9aad9a9e46106687c
+          <div className="w-full max-w-2xl p-5 sm:p-8 rounded-3xl bg-slate-950/85 backdrop-blur-2xl border border-blue-500/40 shadow-[0_0_35px_rgba(29,78,216,0.3)] text-white relative overflow-hidden mx-auto">
             <div className="absolute inset-x-0 top-0 h-[2px] bg-gradient-to-r from-transparent via-blue-500 to-transparent" />
 
             <div className="flex items-center justify-between gap-3 mb-3">
@@ -1119,17 +825,10 @@ export default function CinematicScrollHero() {
             STAGE 6: "Engineered Glass for Every Application" (Frames 95 to 119)
             ═══════════════════════════════════════════════════════════════════════════ */}
         <div
-<<<<<<< HEAD
           ref={(el) => (stageRefs.current[5] = el)}
           className={stageWrapClass(isReducedMotion)}
         >
-          <div className="w-full max-w-2xl p-5 sm:p-8 rounded-3xl bg-slate-950/90 backdrop-blur-2xl border border-blue-500/50 shadow-[0_0_45px_rgba(29,78,216,0.35)] text-white relative overflow-hidden">
-=======
-          ref={textStage6Ref}
-          className="absolute inset-x-0 top-1/2 -translate-y-1/2 z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pointer-events-none flex justify-center opacity-0"
-        >
-          <div className="w-full max-w-2xl p-6 sm:p-8 rounded-3xl bg-slate-950/90 backdrop-blur-2xl border border-blue-500/50 shadow-[0_0_45px_rgba(29,78,216,0.35)] text-white relative overflow-hidden mx-auto">
->>>>>>> e96cc2eb3fc9375c2cfd26a9aad9a9e46106687c
+          <div className="w-full max-w-2xl p-5 sm:p-8 rounded-3xl bg-slate-950/90 backdrop-blur-2xl border border-blue-500/50 shadow-[0_0_45px_rgba(29,78,216,0.35)] text-white relative overflow-hidden mx-auto">
             <div className="absolute inset-x-0 top-0 h-[2px] bg-gradient-to-r from-transparent via-blue-500 to-transparent" />
 
             <div className="flex items-center justify-between gap-3 mb-3">
