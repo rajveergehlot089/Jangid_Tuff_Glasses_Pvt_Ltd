@@ -249,23 +249,46 @@ export default function AboutPage() {
                   {
                     title: 'Hydraulic Floor Springs',
                     desc: 'Double-action EN 1154 certified floor springs with adjustable closing and latching speeds for heavy frameless glass doors.',
+                    image: '/images/optimized/hardware-door-controls-patch-fittings.webp',
+                    badge: 'EN 1154 Certified',
                   },
                   {
                     title: 'Frameless Shower Hinges',
                     desc: 'Solid SS 304 & 316 grade 90° and 180° glass-to-glass and glass-to-wall hinges with anti-corrosion finishes.',
+                    image: '/images/optimized/hardware-shower-cubicle-hinge.webp',
+                    badge: 'SS 304 & 316 Grade',
                   },
                   {
                     title: 'Slim Partition Profiles',
                     desc: 'Sleek 25mm to 45mm architectural aluminium channels for acoustic office cubicles and minimal residential dividers.',
+                    image: '/images/optimized/hardware-slim-partition-profiles.webp',
+                    badge: '25mm – 45mm Profiles',
                   },
                   {
                     title: 'Spider & Railing Fittings',
                     desc: 'Point-fixed architectural spider arms, routels, and heavy-duty spigots for exterior glass facades and balustrades.',
+                    image: '/images/optimized/hardware-balustrade-railing-mounts.webp',
+                    badge: 'Point-Fixed & Spigots',
                   },
                 ].map((item, i) => (
-                  <div key={i} className="p-5 rounded-2xl bg-white/10 backdrop-blur-md border border-white/10 flex flex-col justify-between">
-                    <h3 className="font-bold text-white text-sm tracking-tight">{item.title}</h3>
-                    <p className="text-xs text-slate-300 mt-2 leading-relaxed">{item.desc}</p>
+                  <div key={i} className="rounded-2xl bg-white/10 backdrop-blur-md border border-white/10 flex flex-col justify-between overflow-hidden group">
+                    <div className="relative aspect-[16/10] w-full overflow-hidden bg-slate-900/60">
+                      <Image
+                        src={item.image}
+                        alt={item.title}
+                        fill
+                        sizes="(max-width: 640px) 100vw, 25vw"
+                        className="object-cover group-hover:scale-105 transition-transform duration-500 ease-out"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
+                      <span className="absolute top-2 left-2 text-[9px] font-bold uppercase tracking-wider text-white bg-black/60 backdrop-blur-md px-2 py-0.5 rounded-full border border-white/15">
+                        {item.badge}
+                      </span>
+                    </div>
+                    <div className="p-4 sm:p-5 flex-1 flex flex-col justify-between">
+                      <h3 className="font-bold text-white text-sm tracking-tight">{item.title}</h3>
+                      <p className="text-xs text-slate-300 mt-1.5 leading-relaxed">{item.desc}</p>
+                    </div>
                   </div>
                 ))}
               </div>
@@ -294,62 +317,97 @@ export default function AboutPage() {
                 specs: '5mm, 6mm, 8mm, 10mm, 12mm, 15mm & 19mm',
                 desc: 'High mechanical resistance glass compliant with safety standards. Ideal for storefronts, structural facades, canopies, and skylights.',
                 link: '/products/toughened-glass',
+                image: '/images/optimized/toughened-glass-standoff-mount.webp',
+                alt: 'Toughened Architectural Safety Glass with precision polished edges and standoff fittings',
+                badge: '5mm – 19mm',
               },
               {
                 title: 'Smart LED Vanity & Dressing Mirrors',
                 specs: 'Copper-free silver backing, touch dimmer, demister pad',
                 desc: 'Backlit, front-lit, and dual-tone smart mirrors with automated defogging. Custom fabricated in pill, arch, round, and metal-framed geometric shapes.',
                 link: '/products/mirrors-led-mirrors',
+                image: '/images/optimized/led-mirror-bathroom-vanity.webp',
+                alt: 'Designer smart LED vanity mirror with touch sensors and demister pad in luxury bathroom',
+                badge: 'Smart Touch Sensor',
               },
               {
                 title: 'Frameless & Slim Glass Partitions',
                 specs: '10mm/12mm tempered or acoustic laminated glass',
                 desc: 'Minimalist aluminium profile acoustic partitions for corporate offices, conference rooms, cabin enclosures, and luxury residential open-plan dividers.',
                 link: '/products/slim-glass-partitions',
+                image: '/images/optimized/partitions-corporate-conference-room.webp',
+                alt: 'Frameless acoustic tempered glass partition system in corporate office conference room',
+                badge: 'Acoustic Laminated',
               },
               {
                 title: 'Frameless Shower Enclosures',
                 specs: '8mm/10mm toughened safety glass with hydrophobic coating',
                 desc: 'Custom-configured walk-in showers, sliding cubicles, and swing doors fitted with SS 304 hardware, magnetic water seals, and stabilizing header bars.',
                 link: '/products/shower-enclosures',
+                image: '/images/optimized/shower-enclosure-frameless-corner.webp',
+                alt: 'Frameless corner glass shower enclosure with stainless steel hinges and magnetic seals',
+                badge: 'Hydrophobic Coating',
               },
               {
                 title: 'Toughened Glass Balustrades & Railings',
                 specs: '12mm toughened or 13.52mm PVB/Sentry laminated',
                 desc: 'Continuous base shoe and duplex spigot railing systems for balconies, staircases, terrace parapets, and pool fences with unobstructed panoramic views.',
                 link: '/products/railing-balustrade-glass',
+                image: '/images/optimized/railing-floating-staircase-glass.webp',
+                alt: 'Architectural toughened glass staircase railing and balustrade with stainless steel standoffs',
+                badge: 'PVB / Sentry Laminated',
               },
               {
                 title: 'Decorative, Fluted & Tinted Glass',
                 specs: 'Morphed reeded textures, grey/bronze tints, lacquered glass',
                 desc: 'Contemporary ribbed glass for wardrobe shutters, decorative kitchen backsplashes, fluted privacy screens, and furniture accents.',
                 link: '/products/decorative-glass',
+                image: '/images/optimized/decorative-fluted-reeded-glass.webp',
+                alt: 'Decorative architectural fluted reeded glass panel in bronze metallic profile frame',
+                badge: 'Reeded & Fluted Textures',
               },
             ].map((prod, idx) => (
               <div
                 key={idx}
-                className="bg-white p-7 rounded-3xl border border-slate-200/90 shadow-sm flex flex-col justify-between hover:shadow-xl hover:-translate-y-1.5 hover:border-[#0878d1]/40 transition-all duration-300 ease-out group"
+                className="bg-white rounded-3xl border border-slate-200/90 shadow-sm flex flex-col justify-between hover:shadow-xl hover:-translate-y-1.5 hover:border-[#0878d1]/40 transition-all duration-300 ease-out group overflow-hidden"
               >
-                <div>
-                  <span className="text-[10px] font-bold text-[#0878d1] uppercase tracking-wider block mb-1">
-                    {prod.specs}
+                {/* Visual Image Container */}
+                <div className="relative aspect-[16/10] w-full overflow-hidden bg-slate-100">
+                  <Image
+                    src={prod.image}
+                    alt={prod.alt}
+                    fill
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                    className="object-cover group-hover:scale-105 transition-transform duration-500 ease-out"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#041323]/70 via-black/15 to-transparent" />
+                  <span className="absolute top-3 left-3 text-[10px] font-bold uppercase tracking-wider text-white bg-[#08233f]/85 backdrop-blur-md px-2.5 py-1 rounded-full border border-white/20">
+                    {prod.badge}
                   </span>
-                  <h3 className="font-extrabold text-lg text-[#08233f] mb-3 group-hover:text-[#0878d1] transition-colors duration-200">
-                    {prod.title}
-                  </h3>
-                  <p className="text-xs text-slate-600 leading-relaxed font-normal">
-                    {prod.desc}
-                  </p>
                 </div>
 
-                <div className="mt-6 pt-4 border-t border-slate-100 flex items-center justify-between">
-                  <Link
-                    href={prod.link}
-                    className="text-xs font-bold text-[#0878d1] hover:text-[#08233f] inline-flex items-center gap-1.5 transition-colors duration-200"
-                  >
-                    <span>View Specifications</span>
-                    <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform duration-200" />
-                  </Link>
+                <div className="p-6 sm:p-7 flex-1 flex flex-col justify-between">
+                  <div>
+                    <span className="text-[10px] font-bold text-[#0878d1] uppercase tracking-wider block mb-1">
+                      {prod.specs}
+                    </span>
+                    <h3 className="font-extrabold text-lg text-[#08233f] mb-3 group-hover:text-[#0878d1] transition-colors duration-200">
+                      {prod.title}
+                    </h3>
+                    <p className="text-xs text-slate-600 leading-relaxed font-normal">
+                      {prod.desc}
+                    </p>
+                  </div>
+
+                  <div className="mt-6 pt-4 border-t border-slate-100 flex items-center justify-between">
+                    <Link
+                      href={prod.link}
+                      className="text-xs font-bold text-[#0878d1] hover:text-[#08233f] inline-flex items-center gap-1.5 transition-colors duration-200"
+                    >
+                      <span>View Specifications</span>
+                      <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform duration-200" />
+                    </Link>
+                  </div>
                 </div>
               </div>
             ))}
