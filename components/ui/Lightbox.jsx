@@ -1,72 +1,52 @@
 'use client';
 
-import { useEffect, useCallback, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import Image from 'next/image';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, ChevronLeft, ChevronRight } from 'lucide-react';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Navigation, Pagination, Keyboard, A11y } from 'swiper/modules';
+
+import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
 
 export default function Lightbox({
   images,
   isOpen,
   onClose,
-  currentIndex,
-  onNext,
-  onPrev,
+  currentIndex = 0,
 }) {
-  const currentImage = images[currentIndex];
   const closeButtonRef = useRef(null);
-  const previouslyFocusedElementRef = useRef(null);
-  const touchStartXRef = useRef(null);
-
-  const handleKeyDown = useCallback(
-    (e) => {
-      if (!isOpen) return;
-      if (e.key === 'Escape') onClose();
-      if (e.key === 'ArrowRight' && onNext) onNext();
-      if (e.key === 'ArrowLeft' && onPrev) onPrev();
-    },
-    [isOpen, onClose, onNext, onPrev]
-  );
+  const [activeIndex, setActiveIndex] = useState(currentIndex);
+  const swiperInstanceRef = useRef(null);
 
   useEffect(() => {
-    if (isOpen) {
-      previouslyFocusedElementRef.current = document.activeElement;
-      window.addEventListener('keydown', handleKeyDown);
-      document.body.style.overflow = 'hidden';
-      // Focus close button on mount
-      setTimeout(() => {
-        closeButtonRef.current?.focus();
-      }, 50);
-    } else {
-      if (previouslyFocusedElementRef.current) {
-        previouslyFocusedElementRef.current.focus?.();
-      }
-    }
-    return () => {
-      window.removeEventListener('keydown', handleKeyDown);
-      document.body.style.overflow = '';
+    const handleKeyDown = (e) => {
+      if (!isOpen) return;
+      if (e.key === 'Escape') onClose();
     };
-  }, [isOpen, handleKeyDown]);
 
-  const handleTouchStart = (e) => {
-    touchStartXRef.current = e.touches[0].clientX;
-  };
+    if (isOpen) {
+      document.body.style.overflow = 'hidden';
+      window.addEventListener('keydown', handleKeyDown);
+      const timer = setTimeout(() => {
+        closeButtonRef.current?.focus();
+        if (swiperInstanceRef.current && !swiperInstanceRef.current.destroyed) {
+          swiperInstanceRef.current.slideTo(currentIndex, 0);
+          setActiveIndex(currentIndex);
+        }
+      }, 50);
 
-  const handleTouchEnd = (e) => {
-    if (touchStartXRef.current === null) return;
-    const touchEndX = e.changedTouches[0].clientX;
-    const diff = touchStartXRef.current - touchEndX;
-    if (Math.abs(diff) > 45) {
-      if (diff > 0 && onNext) {
-        onNext();
-      } else if (diff < 0 && onPrev) {
-        onPrev();
-      }
+      return () => {
+        clearTimeout(timer);
+        document.body.style.overflow = '';
+        window.removeEventListener('keydown', handleKeyDown);
+      };
     }
-    touchStartXRef.current = null;
-  };
+  }, [isOpen, currentIndex, onClose]);
 
-  if (!isOpen || !currentImage) return null;
+  if (!isOpen || !images || images.length === 0) return null;
 
   return (
     <AnimatePresence>
@@ -75,88 +55,133 @@ export default function Lightbox({
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
         transition={{ duration: 0.2 }}
-        className="fixed inset-0 z-50 flex items-center justify-center bg-black/90 p-4 sm:p-6"
+        className="fixed inset-0 z-50 flex flex-col justify-between bg-[#030914]/98 backdrop-blur-2xl p-4 sm:p-6"
         onClick={onClose}
-        onTouchStart={handleTouchStart}
-        onTouchEnd={handleTouchEnd}
         role="dialog"
         aria-modal="true"
-        aria-label="Image viewer"
+        aria-label="Image viewer slider"
       >
-        {/* Close button */}
-        <button
-          ref={closeButtonRef}
-          onClick={onClose}
-          className="absolute top-4 right-4 z-10 text-white/80 hover:text-white p-2 rounded-full bg-white/10 hover:bg-white/25 hover:scale-105 transition-all duration-200 ease-out cursor-pointer focus:outline-none focus:ring-2 focus:ring-sky-400"
-          aria-label="Close image viewer"
+        {/* Top Header Bar */}
+        <div
+          className="relative z-50 w-full max-w-6xl mx-auto flex items-center justify-between pb-3 border-b border-white/10 shrink-0"
+          onClick={(e) => e.stopPropagation()}
         >
-          <X className="w-6 h-6" />
-        </button>
+          {/* Slide Fraction Counter */}
+          <div className="flex items-center gap-3">
+            <span className="text-xs font-black tracking-widest text-sky-400 bg-white/10 px-3.5 py-1.5 rounded-full border border-white/15">
+              {String(activeIndex + 1).padStart(2, '0')} / {String(images.length).padStart(2, '0')}
+            </span>
+            <span className="hidden sm:inline-block text-xs font-semibold text-slate-300 truncate max-w-xs md:max-w-md">
+              {images[activeIndex]?.title || 'Jangid Tuff Glasses'}
+            </span>
+          </div>
 
-        {/* Previous button */}
-        {onPrev && images.length > 1 && (
+          {/* Close Button */}
           <button
-            onClick={(e) => {
-              e.stopPropagation();
-              onPrev();
-            }}
-            className="absolute left-4 top-1/2 -translate-y-1/2 z-10 text-white/80 hover:text-white p-3 rounded-full bg-white/10 hover:bg-white/25 hover:scale-105 transition-all duration-200 ease-out cursor-pointer"
-            aria-label="Previous image"
+            ref={closeButtonRef}
+            onClick={onClose}
+            className="flex items-center gap-2 text-white/80 hover:text-white px-3.5 py-1.5 rounded-full bg-white/10 hover:bg-white/20 transition-all duration-200 cursor-pointer border border-white/15 text-xs font-bold shadow-md"
+            aria-label="Close image viewer"
+          >
+            <span>Close</span>
+            <X className="w-4 h-4" />
+          </button>
+        </div>
+
+        {/* Previous Button */}
+        {images.length > 1 && (
+          <button
+            className="lightbox-prev-btn absolute left-2 sm:left-6 top-1/2 -translate-y-1/2 z-50 text-white/90 hover:text-white p-3.5 sm:p-4 rounded-full bg-black/60 hover:bg-[#0878d1] hover:scale-110 transition-all duration-200 ease-out cursor-pointer border border-white/20 backdrop-blur-md shadow-2xl"
+            aria-label="Previous slide"
+            onClick={(e) => e.stopPropagation()}
           >
             <ChevronLeft className="w-6 h-6" />
           </button>
         )}
 
-        {/* Next button */}
-        {onNext && images.length > 1 && (
+        {/* Next Button */}
+        {images.length > 1 && (
           <button
-            onClick={(e) => {
-              e.stopPropagation();
-              onNext();
-            }}
-            className="absolute right-4 top-1/2 -translate-y-1/2 z-10 text-white/80 hover:text-white p-3 rounded-full bg-white/10 hover:bg-white/25 hover:scale-105 transition-all duration-200 ease-out cursor-pointer"
-            aria-label="Next image"
+            className="lightbox-next-btn absolute right-2 sm:right-6 top-1/2 -translate-y-1/2 z-50 text-white/90 hover:text-white p-3.5 sm:p-4 rounded-full bg-black/60 hover:bg-[#0878d1] hover:scale-110 transition-all duration-200 ease-out cursor-pointer border border-white/20 backdrop-blur-md shadow-2xl"
+            aria-label="Next slide"
+            onClick={(e) => e.stopPropagation()}
           >
             <ChevronRight className="w-6 h-6" />
           </button>
         )}
 
-        {/* Image content */}
-        <motion.div
-          initial={{ scale: 0.95, opacity: 0 }}
-          animate={{ scale: 1, opacity: 1 }}
-          exit={{ scale: 0.95, opacity: 0 }}
-          transition={{ duration: 0.2 }}
-          className="relative max-w-4xl max-h-[85vh] w-full flex flex-col items-center"
+        {/* Middle Swiper Container */}
+        <div
+          className="relative w-full max-w-6xl mx-auto flex-1 my-auto flex items-center justify-center min-h-0"
           onClick={(e) => e.stopPropagation()}
         >
-          <div className="relative w-full h-[60vh] sm:h-[70vh] rounded-2xl overflow-hidden">
-            <Image
-              src={currentImage.image || currentImage.src}
-              alt={currentImage.title || currentImage.alt || 'Gallery image'}
-              fill
-              className="object-contain"
-              sizes="(max-width: 1024px) 100vw, 1024px"
-              priority
-            />
-          </div>
+          <Swiper
+            initialSlide={currentIndex}
+            onSwiper={(swiper) => {
+              swiperInstanceRef.current = swiper;
+              swiper.slideTo(currentIndex, 0);
+            }}
+            onSlideChange={(swiper) => {
+              setActiveIndex(swiper.activeIndex);
+            }}
+            modules={[Navigation, Pagination, Keyboard, A11y]}
+            navigation={{
+              prevEl: '.lightbox-prev-btn',
+              nextEl: '.lightbox-next-btn',
+            }}
+            keyboard={{ enabled: true }}
+            spaceBetween={30}
+            slidesPerView={1}
+            speed={400}
+            className="w-full h-full flex flex-col justify-center"
+          >
+            {images.map((item, idx) => (
+              <SwiperSlide
+                key={item.id || idx}
+                className="flex flex-col items-center justify-center h-full select-none"
+              >
+                {/* Image Container with Exact Containment */}
+                <div className="relative w-full h-[55vh] sm:h-[62vh] flex items-center justify-center">
+                  <Image
+                    src={item.image || item.src}
+                    alt={item.title || 'Jangid Tuff Glasses'}
+                    fill
+                    className="object-contain drop-shadow-2xl rounded-2xl"
+                    sizes="(max-width: 1200px) 100vw, 1200px"
+                    priority={idx === currentIndex}
+                  />
+                </div>
 
-          {(currentImage.title || currentImage.caption) && (
-            <div className="text-center mt-4 text-white">
-              <h3 className="font-bold text-lg">{currentImage.title}</h3>
-              {currentImage.caption && (
-                <p className="text-xs text-slate-300 mt-1 max-w-md">
-                  {currentImage.caption}
-                </p>
-              )}
-              {currentImage.tag && (
-                <span className="inline-block mt-2 text-[10px] uppercase font-bold tracking-wider px-2.5 py-0.5 rounded-full bg-white/10 text-sky-300">
-                  {currentImage.tag}
-                </span>
-              )}
-            </div>
-          )}
-        </motion.div>
+                {/* Caption Card tied strictly to this specific slide */}
+                <div className="w-full max-w-2xl mx-auto mt-4 px-6 py-3.5 rounded-2xl bg-white/10 backdrop-blur-md border border-white/15 text-center text-white shrink-0">
+                  <div className="flex items-center justify-center gap-2 mb-1">
+                    {item.tag && (
+                      <span className="text-[10px] uppercase font-extrabold tracking-wider px-2.5 py-0.5 rounded-full bg-[#0878d1]/80 text-white">
+                        {item.tag}
+                      </span>
+                    )}
+                    <h3 className="font-extrabold text-base sm:text-lg tracking-tight">
+                      {item.title}
+                    </h3>
+                  </div>
+                  {item.caption && (
+                    <p className="text-xs text-slate-300 leading-relaxed max-w-xl mx-auto">
+                      {item.caption}
+                    </p>
+                  )}
+                </div>
+              </SwiperSlide>
+            ))}
+          </Swiper>
+        </div>
+
+        {/* Bottom Hint */}
+        <div
+          className="text-center pt-2 text-[11px] text-slate-400 shrink-0"
+          onClick={(e) => e.stopPropagation()}
+        >
+          Use arrow keys or swipe to navigate • Press Esc to close
+        </div>
       </motion.div>
     </AnimatePresence>
   );

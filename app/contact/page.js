@@ -153,7 +153,7 @@ export default async function ContactPage({ searchParams }) {
                 className="w-full h-full border-0"
                 loading="lazy"
                 referrerPolicy="no-referrer-when-downgrade"
-                src="https://www.google.com/maps?q=21%20Narnadi%2C%20Boranada%2C%20Pal%2C%20Jodhpur%2C%20Rajasthan%20342017&output=embed"
+                src="https://www.google.com/maps?q=Jangid%20Tuff%20Glasses%20Private%20Limited%2C%2021%20Narnadi%2C%20Boranada%2C%20Pal%2C%20Jodhpur%2C%20Rajasthan%20342017&output=embed"
               />
             </div>
           </div>

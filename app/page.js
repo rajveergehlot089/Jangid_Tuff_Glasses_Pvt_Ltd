@@ -7,7 +7,7 @@ import { ArrowRight, Phone, MessageSquare, Shield, Clock, MapPin, Sparkles, Chec
 import ProductCard from '@/components/ui/ProductCard';
 import ServiceCard from '@/components/ui/ServiceCard';
 import CTABanner from '@/components/ui/CTABanner';
-import PageHero from '@/components/ui/PageHero';
+import CinematicScrollHero from '@/components/ui/CinematicScrollHero';
 import { COMPANY, PRODUCT_CATEGORIES, SERVICES } from '@/lib/constants';
 
 export default function HomePage() {
@@ -16,18 +16,8 @@ export default function HomePage() {
 
   return (
     <div className="flex flex-col min-h-screen">
-      {/* ─── Hero Section Replicated Exactly from Reference Design ─── */}
-      <PageHero
-        eyebrow="PREMIUM GLASS SOLUTIONS"
-        title="Transforming Spaces"
-        titleAccent="with Glass"
-        description="Modern glass solutions for residential, commercial and industrial spaces. From toughened glass to custom interiors, we bring clarity, elegance and strength to your vision."
-        primaryAction={{ label: 'Explore Products', href: '/products' }}
-        secondaryAction={{ label: 'Our Services', href: '/services' }}
-        backgroundImage="/hero-exact.png"
-        showCategories={true}
-        showWatchWork={true}
-      />
+      {/* ─── Premium Cinematic Scroll Hero ─── */}
+      <CinematicScrollHero />
 
       {/* ─── Product Categories Preview ─── */}
       <section className="py-20 sm:py-28 bg-gradient-to-b from-[#f8fafc] via-[#f1f5f9] to-[#ffffff]">
@@ -66,23 +56,27 @@ export default function HomePage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid lg:grid-cols-2 gap-16 items-center">
           {/* Left: Image with Jodhpur badge */}
           <div className="relative">
-            <div className="rounded-3xl overflow-hidden shadow-2xl border border-slate-100 aspect-[4/3] relative group">
+            <div className="rounded-3xl overflow-hidden shadow-2xl border border-slate-200 aspect-[4/3] relative group bg-slate-100">
               <Image
-                src="https://images.unsplash.com/photo-1487958449943-2429e8be8625?auto=format&fit=crop&w=1200&q=85"
-                alt="Architectural Glass Craftsmanship"
+                src="/images/real/factory-front-original.jpg"
+                alt="Authentic photograph of Jangid Tuff Glasses Private Limited Factory in Boranada Jodhpur"
                 fill
                 sizes="(max-width: 1024px) 100vw, 50vw"
-                className="object-cover group-hover:scale-110 transition-transform duration-700 ease-out"
+                className="object-cover object-top group-hover:scale-105 transition-transform duration-700 ease-out"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-[#08233f]/70 via-[#08233f]/20 to-transparent transition-opacity duration-500" />
+              <div className="absolute inset-0 bg-gradient-to-t from-[#08233f]/75 via-[#08233f]/15 to-transparent transition-opacity duration-500" />
+              <div className="absolute top-4 left-4 inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#08233f]/90 backdrop-blur-md text-white text-[11px] font-bold border border-white/20">
+                <span className="w-2 h-2 rounded-full bg-emerald-400" />
+                <span>Verified Factory Premises</span>
+              </div>
             </div>
 
             <div className="absolute -bottom-6 -right-6 sm:bottom-6 sm:right-6 bg-gradient-to-br from-[#08233f] to-[#041323] text-white p-6 rounded-3xl shadow-2xl max-w-xs border border-white/15 hidden sm:block animate-float-gentle">
               <span className="block text-2xl font-black text-transparent bg-clip-text bg-gradient-to-r from-sky-400 to-sky-200">
-                Jodhpur Hub
+                Boranada Plant
               </span>
               <span className="text-xs text-slate-300 mt-1.5 block leading-relaxed">
-                Rooted in Boranada / Pal, catering to high-precision residential, retail & commercial developments.
+                Operating directly from 21 Narnadi, Boranada Industrial Area, serving Jodhpur, Pali, Barmer, Nagaur & across Rajasthan.
               </span>
             </div>
           </div>
@@ -298,7 +292,7 @@ export default function HomePage() {
                 Modern Glass Applications
               </h2>
               <p className="text-slate-600 mt-2 text-xs sm:text-sm max-w-xl">
-                Explore architectural and interior concepts. Note: photography shown is illustrative of design possibilities.
+                Explore our precision glass processing, tempering line, and architectural installations in Jodhpur.
               </p>
             </div>
             <Link
@@ -312,10 +306,10 @@ export default function HomePage() {
 
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
             {[
-              { title: 'Toughened Facades', src: 'https://images.unsplash.com/photo-1511818966892-d7d671e672a2?auto=format&fit=crop&w=600&q=80', tag: 'Architectural' },
-              { title: 'Slim Partitions', src: 'https://images.unsplash.com/photo-1497366811353-6870744d04b2?auto=format&fit=crop&w=600&q=80', tag: 'Office & Home' },
-              { title: 'LED Mirrors', src: 'https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&w=600&q=80', tag: 'Interior' },
-              { title: 'Shower Glass', src: 'https://images.unsplash.com/photo-1620626011761-996317b8d101?auto=format&fit=crop&w=600&q=80', tag: 'Bath Spaces' },
+              { title: 'Processing & Tempering', src: '/images/real/glass-processing-plant.png', tag: 'LiSEC Tempering Line' },
+              { title: 'Office Partitions', src: '/images/optimized/partitions-corporate-conference-room.webp', tag: 'Commercial Glazing' },
+              { title: 'Balcony & Stair Railings', src: '/images/optimized/railing-floating-staircase-glass.webp', tag: 'Architectural Railings' },
+              { title: 'Shower Cubicles', src: '/images/optimized/shower-enclosure-frameless-corner.webp', tag: 'Shower Enclosures' },
             ].map((item, index) => (
               <div key={index} className="group relative rounded-3xl overflow-hidden aspect-[3/4] bg-slate-100 shadow-sm border border-slate-200/80 hover:shadow-xl hover:-translate-y-1.5 transition-all duration-300 ease-out">
                 <Image

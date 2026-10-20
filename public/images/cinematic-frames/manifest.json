@@ -1,0 +1,14 @@
+{
+  "totalFrames": 120,
+  "framePattern": "/images/cinematic-frames/frame_%03d.webp",
+  "poster": "/images/cinematic-frames/poster.webp",
+  "posterBlur": "/images/cinematic-frames/poster-blur.webp",
+  "aspectRatio": 1.7777777777777777,
+  "width": 1280,
+  "height": 720,
+  "totalSizeMB": 3.59,
+  "avgFrameKB": 30.6,
+  "fps": 8.391608391608392,
+  "durationSeconds": 14.3,
+  "generatedAt": "2026-10-19T19:36:34.747Z"
+}

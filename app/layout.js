@@ -25,10 +25,11 @@ const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://jangid-tuff-glasse
 export const metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
-    default: `${COMPANY.name} | Architectural Glass, Mirrors & Partitions in Jodhpur`,
+    default: `Toughened Glass & Architectural Glazing Manufacturer in Jodhpur | ${COMPANY.nameShort}`,
     template: `%s | ${COMPANY.nameShort}`,
   },
-  description: COMPANY.description,
+  description:
+    'Jangid Tuff Glasses Private Limited: Leading manufacturer of toughened glass, slim partitions, LED vanity mirrors, shower cubicles, and architectural glass hardware in Jodhpur, Rajasthan.',
   keywords: [
     'glass manufacturer Jodhpur',
     'toughened glass Jodhpur',
@@ -89,7 +90,12 @@ export default function RootLayout({ children }) {
   const jsonLd = generateStructuredData(SITE_URL);
 
   return (
-    <html lang="en" className={`${plusJakartaSans.variable} ${notoSansDevanagari.variable} h-full scroll-smooth`}>
+    <html
+      lang="en"
+      suppressHydrationWarning
+      data-scroll-behavior="smooth"
+      className={`${plusJakartaSans.variable} ${notoSansDevanagari.variable} h-full scroll-smooth`}
+    >
       <head>
         <script
           type="application/ld+json"
@@ -120,7 +126,10 @@ export default function RootLayout({ children }) {
           </>
         )}
       </head>
-      <body className="min-h-full flex flex-col font-sans text-[#132b45] bg-white antialiased selection:bg-[#0878d1] selection:text-white">
+      <body
+        suppressHydrationWarning
+        className="min-h-full flex flex-col font-sans text-[#132b45] bg-white antialiased selection:bg-[#0878d1] selection:text-white"
+      >
         <Header />
         <main className="flex-1">{children}</main>
         <Footer />

@@ -20,11 +20,9 @@
 
 ### Physical Location & Registrations
 - **Physical Factory & Office Address:** 21 Narnadi, Boranada, Pal, Jodhpur, Rajasthan 342017, India
-- **City / Region:** Jodhpur, Western Rajasthan, India
 - **PIN Code:** 342017
-- **Google Maps Location Query:** `https://www.google.com/maps/search/?api=1&query=21+Narnadi+Boranada+Pal+Jodhpur+Rajasthan+342017`
+- **Google Maps Location:** `https://maps.app.goo.gl/m5QGZXp7oTFtbjoh6`
 - **Corporate Identification Number (CIN):** `U23109RJ2025PTC102882` (Registered with Ministry of Corporate Affairs / MCA listing)
-- **Primary Operating Hours:** Monday – Saturday: 09:00 AM – 07:00 PM IST (Public guidance: "Please call to confirm")
 - **Service Area:** Primarily Jodhpur and western Rajasthan; custom transport available for bulk orders across India.
 
 ### Social Media & External Profiles

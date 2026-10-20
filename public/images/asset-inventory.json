@@ -1,0 +1,542 @@
+[
+  {
+    "id": "factory-front-original",
+    "slug": "factory-front-boranada",
+    "originalFilename": "factory-front-original.jpg",
+    "originalPath": "/public/images/real/factory-front-original.jpg",
+    "originalSizeKB": 19,
+    "originalDimensions": {
+      "width": 202,
+      "height": 304
+    },
+    "webPath": "/images/optimized/factory-front-boranada.webp",
+    "webSizeKB": 10,
+    "webDimensions": {
+      "width": 202,
+      "height": 304
+    },
+    "altText": "Original photograph of Jangid Tuff Glasses Private Limited factory in Boranada Jodhpur Rajasthan",
+    "subject": "Factory Front Exterior with JANGID TUFF GLASSES PVT. LTD. signage and inaugural decoration",
+    "category": "factory",
+    "intendedPages": [
+      "/about",
+      "/contact",
+      "/"
+    ],
+    "isActualCompanyWork": true,
+    "provenance": "Genuine Company Photograph (Google Maps Listing Source)"
+  },
+  {
+    "id": "factory-concept-reference",
+    "slug": "showroom-concept-reference",
+    "originalFilename": "factory-concept-reference.png",
+    "originalPath": "/public/images/real/factory-concept-reference.png",
+    "originalSizeKB": 713,
+    "originalDimensions": {
+      "width": 634,
+      "height": 846
+    },
+    "webPath": "/images/optimized/showroom-concept-reference.webp",
+    "webSizeKB": 80,
+    "webDimensions": {
+      "width": 634,
+      "height": 846
+    },
+    "altText": "Architectural showroom concept design with Jangid Tuff Glasses facade rendering",
+    "subject": "Showroom Concept Visualization with Illuminated Glass Facade",
+    "category": "reference",
+    "intendedPages": [
+      "/about",
+      "/gallery"
+    ],
+    "isActualCompanyWork": false,
+    "provenance": "Supplied Concept Rendering (Google Maps Reference Asset)"
+  },
+  {
+    "id": "led-mirror-luxury-vanity",
+    "slug": "led-mirror-bathroom-vanity",
+    "originalFilename": "Gemini_Generated_Image_66arih66arih66ar.png",
+    "originalPath": "/public/new images/Gemini_Generated_Image_66arih66arih66ar.png",
+    "originalSizeKB": 2089,
+    "originalDimensions": {
+      "width": 1200,
+      "height": 896
+    },
+    "webPath": "/images/optimized/led-mirror-bathroom-vanity.webp",
+    "webSizeKB": 107,
+    "webDimensions": {
+      "width": 1200,
+      "height": 896
+    },
+    "altText": "Designer rectangular backlit LED vanity mirror with integrated touch switch in modern bathroom",
+    "subject": "Mirrors & LED Mirrors",
+    "category": "mirrors-led-mirrors",
+    "intendedPages": [
+      "/products/mirrors-led-mirrors",
+      "/products",
+      "/gallery",
+      "/"
+    ],
+    "isActualCompanyWork": false,
+    "provenance": "AI-Generated Product Concept"
+  },
+  {
+    "id": "shower-enclosure-corner",
+    "slug": "shower-enclosure-frameless-corner",
+    "originalFilename": "Gemini_Generated_Image_dcek0ldcek0ldcek.png",
+    "originalPath": "/public/new images/Gemini_Generated_Image_dcek0ldcek0ldcek.png",
+    "originalSizeKB": 1800,
+    "originalDimensions": {
+      "width": 1408,
+      "height": 768
+    },
+    "webPath": "/images/optimized/shower-enclosure-frameless-corner.webp",
+    "webSizeKB": 66,
+    "webDimensions": {
+      "width": 1408,
+      "height": 768
+    },
+    "altText": "Frameless toughened glass corner shower enclosure cubicle with stainless steel hinges and stabilizer bar",
+    "subject": "Shower Enclosures",
+    "category": "shower-enclosures",
+    "intendedPages": [
+      "/products/shower-enclosures",
+      "/products",
+      "/gallery",
+      "/"
+    ],
+    "isActualCompanyWork": false,
+    "provenance": "AI-Generated Product Concept"
+  },
+  {
+    "id": "shower-enclosure-portrait",
+    "slug": "shower-enclosure-frameless-walkin",
+    "originalFilename": "Gemini_Generated_Image_i2s02ni2s02ni2s0.png",
+    "originalPath": "/public/new images/Gemini_Generated_Image_i2s02ni2s02ni2s0.png",
+    "originalSizeKB": 2029,
+    "originalDimensions": {
+      "width": 848,
+      "height": 1264
+    },
+    "webPath": "/images/optimized/shower-enclosure-frameless-walkin.webp",
+    "webSizeKB": 76,
+    "webDimensions": {
+      "width": 848,
+      "height": 1264
+    },
+    "altText": "Custom frameless toughened glass shower door and partition with stainless steel hardware in marble bathroom",
+    "subject": "Shower Enclosures",
+    "category": "shower-enclosures",
+    "intendedPages": [
+      "/products/shower-enclosures",
+      "/gallery"
+    ],
+    "isActualCompanyWork": false,
+    "provenance": "AI-Generated Product Concept"
+  },
+  {
+    "id": "railing-staircase-luxury",
+    "slug": "railing-floating-staircase-glass",
+    "originalFilename": "Gemini_Generated_Image_3meheh3meheh3meh.png",
+    "originalPath": "/public/new images/Gemini_Generated_Image_3meheh3meheh3meh.png",
+    "originalSizeKB": 2370,
+    "originalDimensions": {
+      "width": 1408,
+      "height": 768
+    },
+    "webPath": "/images/optimized/railing-floating-staircase-glass.webp",
+    "webSizeKB": 194,
+    "webDimensions": {
+      "width": 1408,
+      "height": 768
+    },
+    "altText": "Cantilevered floating wooden staircase with structural toughened glass balustrade and stainless steel point-fixed standoffs",
+    "subject": "Railing & Balustrade Glass",
+    "category": "railing-balustrade-glass",
+    "intendedPages": [
+      "/products/railing-balustrade-glass",
+      "/products",
+      "/gallery",
+      "/"
+    ],
+    "isActualCompanyWork": false,
+    "provenance": "AI-Generated Architectural Reference"
+  },
+  {
+    "id": "railing-terrace-balcony",
+    "slug": "railing-terrace-spigots-balcony",
+    "originalFilename": "Gemini_Generated_Image_66arih66arih66ar (1).png",
+    "originalPath": "/public/new images/Gemini_Generated_Image_66arih66arih66ar (1).png",
+    "originalSizeKB": 2032,
+    "originalDimensions": {
+      "width": 1200,
+      "height": 896
+    },
+    "webPath": "/images/optimized/railing-terrace-spigots-balcony.webp",
+    "webSizeKB": 126,
+    "webDimensions": {
+      "width": 1200,
+      "height": 896
+    },
+    "altText": "Frameless glass balcony railing with stainless steel floor spigots on luxury villa terrace with sea view",
+    "subject": "Railing & Balustrade Glass",
+    "category": "railing-balustrade-glass",
+    "intendedPages": [
+      "/products/railing-balustrade-glass",
+      "/gallery"
+    ],
+    "isActualCompanyWork": false,
+    "provenance": "AI-Generated Architectural Reference"
+  },
+  {
+    "id": "railing-highrise-channel",
+    "slug": "railing-continuous-base-channel",
+    "originalFilename": "Gemini_Generated_Image_9alukj9alukj9alu.png",
+    "originalPath": "/public/new images/Gemini_Generated_Image_9alukj9alukj9alu.png",
+    "originalSizeKB": 2044,
+    "originalDimensions": {
+      "width": 848,
+      "height": 1264
+    },
+    "webPath": "/images/optimized/railing-continuous-base-channel.webp",
+    "webSizeKB": 112,
+    "webDimensions": {
+      "width": 848,
+      "height": 1264
+    },
+    "altText": "Monolithic toughened glass balustrade in continuous aluminum base shoe channel overlooking city skyline",
+    "subject": "Railing & Balustrade Glass",
+    "category": "railing-balustrade-glass",
+    "intendedPages": [
+      "/products/railing-balustrade-glass",
+      "/gallery"
+    ],
+    "isActualCompanyWork": false,
+    "provenance": "AI-Generated Architectural Reference"
+  },
+  {
+    "id": "partitions-corporate-office",
+    "slug": "partitions-corporate-conference-room",
+    "originalFilename": "Gemini_Generated_Image_3zuojq3zuojq3zuo.png",
+    "originalPath": "/public/new images/Gemini_Generated_Image_3zuojq3zuojq3zuo.png",
+    "originalSizeKB": 2104,
+    "originalDimensions": {
+      "width": 1408,
+      "height": 768
+    },
+    "webPath": "/images/optimized/partitions-corporate-conference-room.webp",
+    "webSizeKB": 133,
+    "webDimensions": {
+      "width": 1408,
+      "height": 768
+    },
+    "altText": "Modern office conference room enclosed by clear toughened glass partitions with patch-fitted doors and handles",
+    "subject": "Slim Glass Partitions",
+    "category": "slim-glass-partitions",
+    "intendedPages": [
+      "/products/slim-glass-partitions",
+      "/products",
+      "/gallery",
+      "/"
+    ],
+    "isActualCompanyWork": false,
+    "provenance": "AI-Generated Architectural Reference"
+  },
+  {
+    "id": "decorative-glass-fluted",
+    "slug": "decorative-fluted-reeded-glass",
+    "originalFilename": "Gemini_Generated_Image_8jtddu8jtddu8jtd.png",
+    "originalPath": "/public/new images/Gemini_Generated_Image_8jtddu8jtddu8jtd.png",
+    "originalSizeKB": 2609,
+    "originalDimensions": {
+      "width": 1408,
+      "height": 768
+    },
+    "webPath": "/images/optimized/decorative-fluted-reeded-glass.webp",
+    "webSizeKB": 88,
+    "webDimensions": {
+      "width": 1408,
+      "height": 768
+    },
+    "altText": "Architectural fluted reeded decorative glass partition screen in bronze metal frame",
+    "subject": "Decorative Glass",
+    "category": "decorative-glass",
+    "intendedPages": [
+      "/products/decorative-glass",
+      "/products",
+      "/gallery",
+      "/"
+    ],
+    "isActualCompanyWork": false,
+    "provenance": "AI-Generated Product Reference"
+  },
+  {
+    "id": "glass-table-top-dining",
+    "slug": "table-top-circular-beveled-glass",
+    "originalFilename": "Gemini_Generated_Image_do0931do0931do09.png",
+    "originalPath": "/public/new images/Gemini_Generated_Image_do0931do0931do09.png",
+    "originalSizeKB": 1865,
+    "originalDimensions": {
+      "width": 1408,
+      "height": 768
+    },
+    "webPath": "/images/optimized/table-top-circular-beveled-glass.webp",
+    "webSizeKB": 80,
+    "webDimensions": {
+      "width": 1408,
+      "height": 768
+    },
+    "altText": "Heavy circular toughened glass table top with flat polished beveled edge on solid wood dining base",
+    "subject": "Glass Table Tops",
+    "category": "glass-table-tops",
+    "intendedPages": [
+      "/products/glass-table-tops",
+      "/products",
+      "/gallery"
+    ],
+    "isActualCompanyWork": false,
+    "provenance": "AI-Generated Product Reference"
+  },
+  {
+    "id": "toughened-glass-pillar-mount",
+    "slug": "toughened-glass-standoff-mount",
+    "originalFilename": "Gemini_Generated_Image_66arih66arih66ar (2).png",
+    "originalPath": "/public/new images/Gemini_Generated_Image_66arih66arih66ar (2).png",
+    "originalSizeKB": 1979,
+    "originalDimensions": {
+      "width": 1200,
+      "height": 896
+    },
+    "webPath": "/images/optimized/toughened-glass-standoff-mount.webp",
+    "webSizeKB": 84,
+    "webDimensions": {
+      "width": 1200,
+      "height": 896
+    },
+    "altText": "Heavy-duty toughened glass panel with polished edges and BS EN 12150 stamp mounted on concrete pillar with stainless steel standoffs",
+    "subject": "Toughened Glass & Safety Certification",
+    "category": "toughened-glass",
+    "intendedPages": [
+      "/products/toughened-glass",
+      "/products",
+      "/gallery",
+      "/about",
+      "/"
+    ],
+    "isActualCompanyWork": false,
+    "provenance": "AI-Generated Technical Reference"
+  },
+  {
+    "id": "toughened-glass-double-height",
+    "slug": "structural-glazing-double-height-villa",
+    "originalFilename": "Gemini_Generated_Image_8z0z1z8z0z1z8z0z.png",
+    "originalPath": "/public/new images/Gemini_Generated_Image_8z0z1z8z0z1z8z0z.png",
+    "originalSizeKB": 2414,
+    "originalDimensions": {
+      "width": 1408,
+      "height": 768
+    },
+    "webPath": "/images/optimized/structural-glazing-double-height-villa.webp",
+    "webSizeKB": 186,
+    "webDimensions": {
+      "width": 1408,
+      "height": 768
+    },
+    "altText": "Monumental double-height architectural glass curtain wall and structural glass staircase in modern villa",
+    "subject": "Toughened Glass & Structural Glazing",
+    "category": "toughened-glass",
+    "intendedPages": [
+      "/products/toughened-glass",
+      "/gallery"
+    ],
+    "isActualCompanyWork": false,
+    "provenance": "AI-Generated Architectural Concept"
+  },
+  {
+    "id": "hardware-fittings-collection",
+    "slug": "architectural-hardware-fittings-stainless",
+    "originalFilename": "Gemini_Generated_Image_z5g42xz5g42xz5g4.png",
+    "originalPath": "/public/new images/Gemini_Generated_Image_z5g42xz5g42xz5g4.png",
+    "originalSizeKB": 2009,
+    "originalDimensions": {
+      "width": 1408,
+      "height": 768
+    },
+    "webPath": "/images/optimized/architectural-hardware-fittings-stainless.webp",
+    "webSizeKB": 114,
+    "webDimensions": {
+      "width": 1408,
+      "height": 768
+    },
+    "altText": "Precision 304/316 grade stainless steel architectural glass hardware fittings: shower hinges, spigots, clamps and glass samples",
+    "subject": "Architectural Hardware & Profile Systems",
+    "category": "hardware",
+    "intendedPages": [
+      "/services",
+      "/gallery",
+      "/"
+    ],
+    "isActualCompanyWork": false,
+    "provenance": "AI-Generated Product Reference"
+  },
+  {
+    "id": "commercial-entrance-canopy",
+    "slug": "commercial-atrium-canopy-entrance",
+    "originalFilename": "Modern Glass Atrium Entrance-1.png",
+    "originalPath": "/public/new images/Modern Glass Atrium Entrance-1.png",
+    "originalSizeKB": 2452,
+    "originalDimensions": {
+      "width": 1536,
+      "height": 1024
+    },
+    "webPath": "/images/optimized/commercial-atrium-canopy-entrance.webp",
+    "webSizeKB": 245,
+    "webDimensions": {
+      "width": 1536,
+      "height": 1024
+    },
+    "altText": "Modern commercial building entrance with cantilevered glass canopy, frameless glass doors and full architectural glazing",
+    "subject": "Commercial Glazing & Canopies",
+    "category": "commercial",
+    "intendedPages": [
+      "/services",
+      "/gallery",
+      "/products/custom-architectural-glass"
+    ],
+    "isActualCompanyWork": false,
+    "provenance": "AI-Generated Architectural Reference"
+  },
+  {
+    "id": "corporate-spider-canopy",
+    "slug": "corporate-spider-fitting-canopy",
+    "originalFilename": "Gemini_Generated_Image_qnhvz9qnhvz9qnhv.png",
+    "originalPath": "/public/new images/Gemini_Generated_Image_qnhvz9qnhvz9qnhv.png",
+    "originalSizeKB": 2358,
+    "originalDimensions": {
+      "width": 1408,
+      "height": 768
+    },
+    "webPath": "/images/optimized/corporate-spider-fitting-canopy.webp",
+    "webSizeKB": 194,
+    "webDimensions": {
+      "width": 1408,
+      "height": 768
+    },
+    "altText": "Corporate entrance with suspended glass canopy mounted on stainless steel spider brackets and frameless entry doors",
+    "subject": "Commercial Glazing & Spider Fittings",
+    "category": "commercial",
+    "intendedPages": [
+      "/services",
+      "/gallery"
+    ],
+    "isActualCompanyWork": false,
+    "provenance": "AI-Generated Architectural Reference"
+  },
+  {
+    "id": "custom-pavilion-terrace",
+    "slug": "custom-architectural-glass-pavilion",
+    "originalFilename": "Luxury Glass-Faced Modern Pavilion-3.png",
+    "originalPath": "/public/new images/Luxury Glass-Faced Modern Pavilion-3.png",
+    "originalSizeKB": 2485,
+    "originalDimensions": {
+      "width": 1536,
+      "height": 1024
+    },
+    "webPath": "/images/optimized/custom-architectural-glass-pavilion.webp",
+    "webSizeKB": 224,
+    "webDimensions": {
+      "width": 1536,
+      "height": 1024
+    },
+    "altText": "Pristine architectural glass corner pavilion opening onto expansive stone terrace with panoramic sunset sky",
+    "subject": "Custom Architectural Glass",
+    "category": "custom-architectural-glass",
+    "intendedPages": [
+      "/products/custom-architectural-glass",
+      "/products",
+      "/gallery",
+      "/"
+    ],
+    "isActualCompanyWork": false,
+    "provenance": "AI-Generated Architectural Reference"
+  },
+  {
+    "id": "retail-storefront-glazing",
+    "slug": "retail-storefront-curtain-wall",
+    "originalFilename": "Gemini_Generated_Image_4orqom4orqom4orq.png",
+    "originalPath": "/public/new images/Gemini_Generated_Image_4orqom4orqom4orq.png",
+    "originalSizeKB": 2457,
+    "originalDimensions": {
+      "width": 1408,
+      "height": 768
+    },
+    "webPath": "/images/optimized/retail-storefront-curtain-wall.webp",
+    "webSizeKB": 157,
+    "webDimensions": {
+      "width": 1408,
+      "height": 768
+    },
+    "altText": "Architectural retail storefront with double-height glass curtain wall and frameless corner entrance",
+    "subject": "Commercial Storefronts & Display Glazing",
+    "category": "commercial",
+    "intendedPages": [
+      "/services",
+      "/gallery"
+    ],
+    "isActualCompanyWork": false,
+    "provenance": "AI-Generated Architectural Concept"
+  },
+  {
+    "id": "estate-villa-aerial",
+    "slug": "architectural-villa-coastal-estate",
+    "originalFilename": "Gemini_Generated_Image_6rq4lk6rq4lk6rq4.png",
+    "originalPath": "/public/new images/Gemini_Generated_Image_6rq4lk6rq4lk6rq4.png",
+    "originalSizeKB": 2382,
+    "originalDimensions": {
+      "width": 1408,
+      "height": 768
+    },
+    "webPath": "/images/optimized/architectural-villa-coastal-estate.webp",
+    "webSizeKB": 227,
+    "webDimensions": {
+      "width": 1408,
+      "height": 768
+    },
+    "altText": "Luxury modern villa complex with multi-level glass facades, glass railings, and private swimming pools",
+    "subject": "Architectural Glass Projects",
+    "category": "architectural",
+    "intendedPages": [
+      "/gallery",
+      "/about"
+    ],
+    "isActualCompanyWork": false,
+    "provenance": "AI-Generated Architectural Concept"
+  },
+  {
+    "id": "glass-samples-swatches",
+    "slug": "glass-types-clear-frosted-tinted-fluted",
+    "originalFilename": "Quality Glass for a Brighter Tomorrow.png",
+    "originalPath": "/public/new images/Quality Glass for a Brighter Tomorrow.png",
+    "originalSizeKB": 1787,
+    "originalDimensions": {
+      "width": 1672,
+      "height": 941
+    },
+    "webPath": "/images/optimized/glass-types-clear-frosted-tinted-fluted.webp",
+    "webSizeKB": 92,
+    "webDimensions": {
+      "width": 1600,
+      "height": 900
+    },
+    "altText": "Comparative display of architectural glass types: Clear Toughened, Frosted Satin, Tinted Bronze, and Fluted Reeded Glass",
+    "subject": "Glass Types & Finish Comparison",
+    "category": "float-clear-glass",
+    "intendedPages": [
+      "/products/float-clear-glass",
+      "/products",
+      "/gallery"
+    ],
+    "isActualCompanyWork": false,
+    "provenance": "AI-Generated Material Comparison Reference"
+  }
+]

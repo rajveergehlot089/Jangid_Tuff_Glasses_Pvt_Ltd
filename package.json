@@ -21,6 +21,8 @@
     "react": "19.3.0",
     "react-dom": "19.3.0",
     "react-hook-form": "^7.90.0",
+    "sharp": "^0.35.5",
+    "swiper": "^14.3.0",
     "tailwind-merge": "^3.7.0",
     "zod": "^4.6.7"
   },
