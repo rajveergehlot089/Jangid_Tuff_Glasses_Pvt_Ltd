@@ -5,6 +5,7 @@ import { ArrowRight, Check, MessageSquare, Phone, ShieldCheck, ChevronRight } fr
 import PageHero from '@/components/ui/PageHero';
 import CTABanner from '@/components/ui/CTABanner';
 import { PRODUCT_CATEGORIES, COMPANY } from '@/lib/constants';
+import DarkCanvas from '@/components/layout/DarkCanvas';
 
 export async function generateStaticParams() {
   return PRODUCT_CATEGORIES.map((product) => ({
@@ -111,6 +112,7 @@ export default async function ProductDetailPage({ params }) {
   };
 
   return (
+    <DarkCanvas images={['/images/optimized/structural-glazing-double-height-villa.webp', '/images/optimized/commercial-atrium-canopy-entrance.webp', '/images/optimized/partitions-corporate-conference-room.webp', '/images/optimized/architectural-villa-coastal-estate.webp']}>
     <div className="flex flex-col">
       {/* Structured Data: ItemPage & Breadcrumbs */}
       <script
@@ -549,6 +551,7 @@ export default async function ProductDetailPage({ params }) {
 
       {/* CTA Banner */}
       <CTABanner
+        glass
         title={`Ready to Order ${product.name}?`}
         description="Share your project drawings, site measurements, or rough requirements on WhatsApp for an immediate technical assessment and quotation."
         primaryAction={{
@@ -557,5 +560,6 @@ export default async function ProductDetailPage({ params }) {
         }}
       />
     </div>
+    </DarkCanvas>
   );
 }

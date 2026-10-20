@@ -4,6 +4,7 @@ import ProductCatalogueSection from '@/components/ui/ProductCatalogueSection';
 import CTABanner from '@/components/ui/CTABanner';
 import { PRODUCT_CATEGORIES } from '@/lib/constants';
 import { generateMetadata as genMeta, getSiteUrl } from '@/lib/seo';
+import DarkCanvas from '@/components/layout/DarkCanvas';
 
 export const metadata = genMeta('products');
 
@@ -69,10 +70,12 @@ export default function ProductsPage() {
         description="High-grade architectural, safety, and decorative glass solutions crafted for homes, retail showrooms, commercial facades, and offices across Jodhpur and Rajasthan."
         primaryAction={{ label: 'Request a Quote', href: '/contact#quote' }}
         secondaryAction={{ label: 'View Services', href: '/services' }}
-        backgroundImage="https://images.unsplash.com/photo-1511818966892-d7d671e672a2?auto=format&fit=crop&w=2000&q=85"
+        backgroundImage="/images/optimized/custom-architectural-glass-pavilion.webp"
         showCategories={true}
         showWatchWork={true}
       />
+
+      <DarkCanvas images={['/images/optimized/structural-glazing-double-height-villa.webp', '/images/optimized/partitions-corporate-conference-room.webp', '/images/optimized/shower-enclosure-frameless-corner.webp']}>
 
       {/* Catalogue with Interactive Filters */}
       <ProductCatalogueSection />
@@ -99,7 +102,8 @@ export default function ProductsPage() {
       </section>
 
       {/* CTA Banner */}
-      <CTABanner />
+      <CTABanner glass />
+      </DarkCanvas>
     </div>
   );
 }

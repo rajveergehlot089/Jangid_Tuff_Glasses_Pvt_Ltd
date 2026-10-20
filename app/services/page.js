@@ -7,6 +7,7 @@ import ProcessStep from '@/components/ui/ProcessStep';
 import CTABanner from '@/components/ui/CTABanner';
 import { SERVICES, PROCESS_STEPS } from '@/lib/constants';
 import { generateMetadata as genMeta } from '@/lib/seo';
+import DarkCanvas from '@/components/layout/DarkCanvas';
 
 export const metadata = genMeta('services');
 
@@ -46,10 +47,12 @@ export default function ServicesPage() {
         description="From preliminary blueprint analysis and glass thickness selection to custom CNC fabrication and site delivery coordination across Jodhpur and Rajasthan."
         primaryAction={{ label: 'Request Consultation', href: '/contact#quote' }}
         secondaryAction={{ label: 'Explore Products', href: '/products' }}
-        backgroundImage="https://images.unsplash.com/photo-1497366811353-6870744d04b2?auto=format&fit=crop&w=2000&q=85"
+        backgroundImage="/images/optimized/processing-cnc-edge-polishing.webp"
         showCategories={true}
         showWatchWork={true}
       />
+
+      <DarkCanvas images={['/images/optimized/processing-tempering-furnace-line.webp', '/images/optimized/railing-floating-staircase-glass.webp', '/images/optimized/commercial-atrium-canopy-entrance.webp', '/images/optimized/architectural-villa-coastal-estate.webp']}>
 
       {/* Services Grid */}
       <section className="py-20 bg-[#f6f8fa]" aria-label="Services List">
@@ -228,7 +231,8 @@ export default function ServicesPage() {
       </section>
 
       {/* CTA Banner */}
-      <CTABanner />
+      <CTABanner glass />
+      </DarkCanvas>
     </div>
   );
 }

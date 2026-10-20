@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import { ArrowRight, Home, Phone } from 'lucide-react';
 import { COMPANY } from '@/lib/constants';
+import DarkCanvas from '@/components/layout/DarkCanvas';
 
 export const metadata = {
   title: 'Page Not Found',
@@ -9,6 +10,7 @@ export const metadata = {
 
 export default function NotFound() {
   return (
+    <DarkCanvas images={['/images/optimized/structural-glazing-double-height-villa.webp']}>
     <div className="min-h-[70vh] flex items-center justify-center py-20 px-4 bg-[#f6f8fa]">
       <div className="max-w-md w-full bg-white rounded-3xl p-8 sm:p-10 border border-slate-200 shadow-xl text-center">
         <span className="text-6xl font-black text-[#0878d1]">404</span>
@@ -37,5 +39,6 @@ export default function NotFound() {
         </div>
       </div>
     </div>
+    </DarkCanvas>
   );
 }

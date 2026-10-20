@@ -4,71 +4,39 @@ import { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { usePathname } from 'next/navigation';
-import { motion, AnimatePresence } from 'framer-motion';
-import { Menu, X, Phone, MapPin, ChevronRight, Sparkles } from 'lucide-react';
-import { BUSINESS, CONTACT, NAV_LINKS, COMPANY } from '@/lib/constants';
+import { motion, AnimatePresence, useScroll, useSpring } from 'framer-motion';
+import { Menu, X, Phone, ChevronRight, ArrowRight } from 'lucide-react';
+import { CONTACT, NAV_LINKS } from '@/lib/constants';
 
-function Logo() {
-  return (
-    <Link href="/" className="flex items-center gap-3 group" aria-label="Jangid Tuff Glass Home">
-      <div className="relative w-11 h-11 sm:w-12 sm:h-12 rounded-xl overflow-hidden border border-slate-200/80 shadow-sm bg-white p-0.5 group-hover:border-[#0878d1]/40 transition-colors duration-200 ease-out">
-        <Image
-          src="/logo.jpg"
-          alt="Jangid Tuff Glass Logo"
-          fill
-          sizes="48px"
-          className="object-contain p-0.5"
-          priority
-        />
-      </div>
-      <div className="flex flex-col leading-tight">
-        <span className="text-base sm:text-lg font-black text-[#08233f] tracking-tight group-hover:text-[#0878d1] transition-colors duration-200 ease-out">
-          JANGID
-        </span>
-        <span className="text-[10px] sm:text-[11px] font-extrabold tracking-[0.18em] text-[#0878d1] uppercase -mt-0.5">
-          TUFF GLASS
-        </span>
-      </div>
-    </Link>
-  );
-}
+
+const EASE = [0.16, 1, 0.3, 1];
 
 const mobileMenuVariants = {
-  hidden: { x: '100%', opacity: 0 },
-  visible: {
-    x: 0,
-    opacity: 1,
-    transition: { type: 'spring', damping: 25, stiffness: 220 },
-  },
-  exit: {
-    x: '100%',
-    opacity: 0,
-    transition: { duration: 0.25, ease: 'easeInOut' },
-  },
+  hidden: { x: '100%' },
+  visible: { x: 0, transition: { type: 'spring', damping: 28, stiffness: 240 } },
+  exit: { x: '100%', transition: { duration: 0.3, ease: EASE } },
 };
 
 const linkVariants = {
-  hidden: { x: 20, opacity: 0 },
-  visible: (i) => ({
-    x: 0,
-    opacity: 1,
-    transition: { delay: i * 0.04, duration: 0.25 },
-  }),
+  hidden: { x: 30, opacity: 0 },
+  visible: (i) => ({ x: 0, opacity: 1, transition: { delay: 0.1 + i * 0.05, duration: 0.5, ease: EASE } }),
 };
 
 export default function Header() {
   const pathname = usePathname();
   const [mobileOpen, setMobileOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [hovered, setHovered] = useState(null);
   const menuButtonRef = useRef(null);
   const drawerRef = useRef(null);
+  const { scrollYProgress } = useScroll();
+  const progress = useSpring(scrollYProgress, { stiffness: 200, damping: 30, mass: 0.3 });
 
   // Mobile drawer keyboard behaviour: Esc closes, Tab stays inside, focus returns to the menu button.
   useEffect(() => {
     if (!mobileOpen) return undefined;
     const drawer = drawerRef.current;
-    const focusables = () =>
-      drawer ? [...drawer.querySelectorAll('a[href], button:not([disabled])')] : [];
+    const focusables = () => (drawer ? [...drawer.querySelectorAll('a[href], button:not([disabled])')] : []);
     focusables()[0]?.focus();
 
     const onKeyDown = (event) => {
@@ -98,145 +66,138 @@ export default function Header() {
     };
   }, [mobileOpen]);
 
+  // Tighten the top spacing once the page is scrolled.
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 10);
+    onScroll();
     window.addEventListener('scroll', onScroll, { passive: true });
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
   // Prevent body scroll when mobile menu is open
   useEffect(() => {
-    if (mobileOpen) {
-      document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = '';
-    }
+    document.body.style.overflow = mobileOpen ? 'hidden' : '';
     return () => {
       document.body.style.overflow = '';
     };
   }, [mobileOpen]);
 
-  const isActive = (href) => {
-    if (href === '/') return pathname === '/';
-    return pathname.startsWith(href);
-  };
+  const isActive = (href) => (href === '/' ? pathname === '/' : pathname.startsWith(href));
+  const pillTarget = hovered ?? NAV_LINKS.find((l) => isActive(l.href))?.href;
+
+  // Capsules settle in one after another on load.
+  const capsule = (i) => ({
+    initial: { y: -30, opacity: 0 },
+    animate: { y: 0, opacity: 1 },
+    transition: { duration: 0.7, ease: EASE, delay: 0.1 + i * 0.08 },
+  });
 
   return (
-    <header
-      className={`sticky top-0 z-50 w-full transition duration-500 ${
-        scrolled ? 'shadow-xl shadow-[#08233f]/5' : ''
-      }`}
-    >
-      {/* Top info bar with gradient */}
-      <div className="hidden md:block bg-gradient-to-r from-[#041323] via-[#08233f] to-[#0a3560] text-white/85 text-xs border-b border-white/10">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-9">
-          <div className="flex items-center gap-4">
-            <span className="flex items-center gap-1.5 font-medium">
-              <MapPin className="w-3.5 h-3.5 text-sky-400" aria-hidden="true" />
-              {CONTACT.addressShort}
-            </span>
-            <span className="text-white/30">|</span>
-            <span className="text-sky-200 font-semibold tracking-wide">
-              {COMPANY.name}
-            </span>
-          </div>
-          <a
-            href={`tel:${CONTACT.phoneRaw}`}
-            className="flex items-center gap-1.5 text-sky-200 hover:text-white transition-colors duration-200 ease-out font-semibold"
-          >
-            <Phone className="w-3.5 h-3.5 text-sky-400" aria-hidden="true" />
-            <span>{CONTACT.contactPerson}: {CONTACT.phone}</span>
-          </a>
-        </div>
-      </div>
-
-      {/* Main nav bar */}
+    <header className="fixed inset-x-0 top-0 z-50 pointer-events-none">
       <nav
-        className="bg-white/95 backdrop-blur-md border-b border-slate-200/80"
+        className={`max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 grid grid-cols-[1fr_auto_1fr] items-center gap-3 transition-[padding] duration-500 ${
+          scrolled ? 'pt-3' : 'pt-4 sm:pt-5'
+        }`}
         role="navigation"
         aria-label="Main navigation"
       >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between h-18 lg:h-[76px]">
-            <Logo />
+        {/* Left: brand, ringed by scroll progress */}
+        <motion.div {...capsule(0)} className="justify-self-start pointer-events-auto">
+          <div className="capsule flex items-center gap-3 py-2 pl-2 pr-6">
+            <Link href="/" className="flex items-center gap-3 group" aria-label="Jangid Tuff Glass Home">
+              <span className="relative grid place-items-center w-11 h-11">
+                <svg className="absolute inset-0 -rotate-90" viewBox="0 0 44 44" aria-hidden="true">
+                  <circle cx="22" cy="22" r="20.5" fill="none" stroke="rgba(255,255,255,0.12)" strokeWidth="1.5" />
+                  <motion.circle cx="22" cy="22" r="20.5" fill="none" stroke="var(--royal-bright)" strokeWidth="1.5" strokeLinecap="round" style={{ pathLength: progress }} />
+                </svg>
+                <span className="relative w-9 h-9 rounded-full overflow-hidden bg-white">
+                  <Image src="/logo.jpg" alt="Jangid Tuff Glass Logo" fill sizes="36px" className="object-contain p-0.5" priority />
+                </span>
+              </span>
+              <span className="flex flex-col leading-none">
+                <span className="font-display text-lg text-white">Jangid</span>
+                <span className="mt-1 text-[9px] font-semibold tracking-[0.28em] text-[var(--royal-bright)] uppercase">Tuff Glass</span>
+              </span>
+            </Link>
+          </div>
+        </motion.div>
 
-            {/* Desktop nav links */}
-            <div className="hidden lg:flex items-center gap-1.5">
-              {NAV_LINKS.map((link) => (
+        {/* Centre: page links (desktop) */}
+        <motion.div {...capsule(1)} className="pointer-events-auto">
+          <div
+            className="capsule hidden xl:flex items-center gap-0.5 p-2 min-h-[62px]"
+            onMouseLeave={() => setHovered(null)}
+          >
+            {NAV_LINKS.map((link) => {
+              const active = isActive(link.href);
+              return (
                 <Link
                   key={link.href}
                   href={link.href}
-                  className={`relative px-3.5 py-2 text-sm font-semibold rounded-xl transition-all duration-200 ease-out ${
-                    isActive(link.href)
-                      ? 'text-[#0878d1] bg-gradient-to-r from-[#eaf5ff] to-[#f3f9ff]'
-                      : 'text-[#132b45] hover:text-[#0878d1] hover:bg-slate-50'
+                  onMouseEnter={() => setHovered(link.href)}
+                  onFocus={() => setHovered(link.href)}
+                  onBlur={() => setHovered(null)}
+                  aria-current={active ? 'page' : undefined}
+                  className={`relative px-4 py-2.5 text-[13px] font-medium rounded-full transition-colors duration-200 ${
+                    active || hovered === link.href ? 'text-white' : 'text-white/65'
                   }`}
                 >
-                  {link.label}
-                  {isActive(link.href) && (
+                  {pillTarget === link.href && (
                     <motion.span
-                      layoutId="activeNav"
-                      className="absolute bottom-0 left-3 right-3 h-0.5 bg-gradient-to-r from-[#0878d1] to-sky-400 rounded-full"
-                      transition={{ type: 'spring', stiffness: 350, damping: 30 }}
+                      layoutId="nav-pill"
+                      className={`absolute inset-0 rounded-full ${active && !hovered ? 'liquid-pill' : 'bg-white/12 shadow-[inset_0_1px_1px_rgba(255,255,255,0.25)]'}`}
+                      transition={{ type: 'spring', stiffness: 380, damping: 32 }}
                     />
                   )}
+                  <span className="relative">{link.label}</span>
                 </Link>
-              ))}
-            </div>
-
-            {/* Desktop CTAs */}
-            <div className="hidden lg:flex items-center gap-3">
-              <a
-                href={`tel:${CONTACT.phoneRaw}`}
-                className="flex items-center gap-2 px-4 py-2.5 text-sm font-bold text-[#08233f] border border-slate-200 rounded-xl hover:border-[#0878d1]/40 hover:bg-slate-50 hover:-translate-y-0.5 transition-all duration-200 ease-out shadow-xs"
-              >
-                <Phone className="w-4 h-4 text-[#0878d1]" aria-hidden="true" />
-                Call Now
-              </a>
-              <Link
-                href="/contact#quote"
-                className="btn-gradient flex items-center gap-2 px-5 py-2.5 text-sm font-bold text-white rounded-xl shadow-md transition-all duration-200 ease-out hover:-translate-y-0.5"
-              >
-                <span>Get a Quote</span>
-                <ChevronRight className="w-4 h-4" aria-hidden="true" />
-              </Link>
-            </div>
-
-            {/* Mobile menu button */}
-            <button
-              ref={menuButtonRef}
-              type="button"
-              onClick={() => setMobileOpen(!mobileOpen)}
-              className="lg:hidden flex items-center justify-center w-10 h-10 rounded-xl text-[#08233f] hover:bg-slate-100 transition-colors duration-200 ease-out cursor-pointer"
-              aria-expanded={mobileOpen}
-              aria-controls="mobile-menu"
-              aria-label={mobileOpen ? 'Close menu' : 'Open menu'}
-            >
-              {mobileOpen ? (
-                <X className="w-6 h-6" />
-              ) : (
-                <Menu className="w-6 h-6" />
-              )}
-            </button>
+              );
+            })}
           </div>
-        </div>
+        </motion.div>
+
+        {/* Right: actions (desktop) / call + menu (smaller screens) */}
+        <motion.div {...capsule(2)} className="justify-self-end pointer-events-auto flex items-center gap-2">
+          <div className="capsule hidden xl:flex items-center gap-1.5 p-2 min-h-[62px]">
+            <a href={`tel:${CONTACT.phoneRaw}`} className="inline-flex items-center gap-2 px-4 py-2.5 rounded-full text-[13px] font-medium text-white/80 hover:text-white hover:bg-white/10 transition-colors" data-magnetic>
+              <Phone className="w-4 h-4" aria-hidden="true" />
+              <span>Call Now</span>
+            </a>
+            <Link href="/contact#quote" className="btn-royal group !py-2.5 !px-5 !text-[13px]" data-magnetic>
+              <span>Get a Quote</span>
+              <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-200" aria-hidden="true" />
+            </Link>
+          </div>
+          <a href={`tel:${CONTACT.phoneRaw}`} className="capsule xl:hidden grid place-items-center w-[52px] h-[52px] text-white" aria-label={`Call ${CONTACT.phone}`}>
+            <Phone className="w-[18px] h-[18px]" aria-hidden="true" />
+          </a>
+          <button
+            ref={menuButtonRef}
+            type="button"
+            onClick={() => setMobileOpen(!mobileOpen)}
+            className="capsule xl:hidden grid place-items-center w-[52px] h-[52px] text-white cursor-pointer"
+            aria-expanded={mobileOpen}
+            aria-controls="mobile-menu"
+            aria-label={mobileOpen ? 'Close menu' : 'Open menu'}
+          >
+            {mobileOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+          </button>
+        </motion.div>
       </nav>
 
       {/* Mobile drawer */}
       <AnimatePresence>
         {mobileOpen && (
           <>
-            {/* Overlay */}
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              className="fixed inset-0 z-40 bg-black/40 backdrop-blur-sm lg:hidden"
+              className="fixed inset-0 z-40 bg-black/50 backdrop-blur-sm lg:hidden"
               onClick={() => setMobileOpen(false)}
               aria-hidden="true"
             />
 
-            {/* Drawer */}
             <motion.div
               id="mobile-menu"
               ref={drawerRef}
@@ -247,83 +208,46 @@ export default function Header() {
               initial="hidden"
               animate="visible"
               exit="exit"
-              className="fixed inset-y-0 right-0 z-50 w-[290px] bg-white shadow-2xl lg:hidden flex flex-col"
+              className="glass-dark fixed inset-y-0 right-0 z-50 w-[300px] max-w-[85vw] lg:hidden flex flex-col text-white"
             >
-              {/* Drawer header */}
-              <div className="flex items-center justify-between px-5 h-18 border-b border-slate-100">
-                <div className="flex items-center gap-2.5">
-                  <div className="relative w-9 h-9 rounded-lg overflow-hidden border border-slate-200">
-                    <Image
-                      src="/logo.jpg"
-                      alt="Logo"
-                      fill
-                      sizes="36px"
-                      className="object-contain"
-                    />
-                  </div>
-                  <span className="text-sm font-black text-[#08233f]">
-                    JANGID TUFF
-                  </span>
-                </div>
+              <div className="flex items-center justify-between px-5 h-18 border-b border-white/10">
+                <span className="font-display text-xl">Menu</span>
                 <button
                   type="button"
                   onClick={() => setMobileOpen(false)}
-                  className="flex items-center justify-center w-9 h-9 rounded-lg text-slate-500 hover:bg-slate-100 transition-colors duration-200 ease-out"
+                  className="flex items-center justify-center w-10 h-10 rounded-full glass"
                   aria-label="Close menu"
                 >
                   <X className="w-5 h-5" />
                 </button>
               </div>
 
-              {/* Nav links */}
-              <nav className="flex-1 overflow-y-auto py-4 px-3" aria-label="Mobile navigation">
+              <nav className="flex-1 overflow-y-auto py-6 px-4" aria-label="Mobile navigation">
                 {NAV_LINKS.map((link, i) => (
-                  <motion.div
-                    key={link.href}
-                    custom={i}
-                    variants={linkVariants}
-                    initial="hidden"
-                    animate="visible"
-                  >
+                  <motion.div key={link.href} custom={i} variants={linkVariants} initial="hidden" animate="visible">
                     <Link
                       href={link.href}
                       onClick={() => setMobileOpen(false)}
-                      className={`flex items-center justify-between px-4 py-3 rounded-xl text-sm font-semibold transition-colors duration-200 ease-out ${
-                        isActive(link.href)
-                          ? 'text-[#0878d1] bg-gradient-to-r from-[#eaf5ff] to-[#f3f9ff]'
-                          : 'text-[#132b45] hover:bg-slate-50'
+                      aria-current={isActive(link.href) ? 'page' : undefined}
+                      className={`flex items-center justify-between px-4 py-3.5 rounded-2xl font-display text-2xl transition-colors duration-200 ${
+                        isActive(link.href) ? 'bg-[var(--royal)]/25 text-white' : 'text-white/75 hover:bg-white/5'
                       }`}
                     >
                       {link.label}
-                      <ChevronRight
-                        className={`w-4 h-4 ${
-                          isActive(link.href)
-                            ? 'text-[#0878d1]'
-                            : 'text-slate-300'
-                        }`}
-                        aria-hidden="true"
-                      />
+                      <ChevronRight className={`w-4 h-4 ${isActive(link.href) ? 'text-[var(--royal-bright)]' : 'text-white/30'}`} aria-hidden="true" />
                     </Link>
                   </motion.div>
                 ))}
               </nav>
 
-              {/* Bottom CTAs */}
-              <div className="p-4 border-t border-slate-100 space-y-2.5 bg-slate-50">
-                <a
-                  href={`tel:${CONTACT.phoneRaw}`}
-                  className="flex items-center justify-center gap-2 w-full px-4 py-3 text-sm font-bold text-[#08233f] border border-slate-200 bg-white rounded-xl hover:bg-slate-100 transition-colors duration-200 ease-out"
-                >
-                  <Phone className="w-4 h-4 text-[#0878d1]" aria-hidden="true" />
+              <div className="p-4 border-t border-white/10 space-y-2.5">
+                <a href={`tel:${CONTACT.phoneRaw}`} className="btn-ghost-light w-full justify-center">
+                  <Phone className="w-4 h-4" aria-hidden="true" />
                   {CONTACT.phone}
                 </a>
-                <Link
-                  href="/contact#quote"
-                  onClick={() => setMobileOpen(false)}
-                  className="btn-gradient flex items-center justify-center gap-2 w-full px-4 py-3 text-sm font-bold text-white rounded-xl shadow-md transition-all duration-200 ease-out hover:-translate-y-0.5"
-                >
+                <Link href="/contact#quote" onClick={() => setMobileOpen(false)} className="btn-royal w-full justify-center">
                   <span>Request a Quote</span>
-                  <ChevronRight className="w-4 h-4" aria-hidden="true" />
+                  <ArrowRight className="w-4 h-4" aria-hidden="true" />
                 </Link>
               </div>
             </motion.div>

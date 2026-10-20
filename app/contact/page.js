@@ -3,6 +3,7 @@ import ContactQuoteForm from '@/components/ui/ContactQuoteForm';
 import { COMPANY } from '@/lib/constants';
 import { generateMetadata as genMeta } from '@/lib/seo';
 import { Phone, MessageSquare, MapPin } from 'lucide-react';
+import DarkCanvas from '@/components/layout/DarkCanvas';
 
 export const metadata = genMeta('contact');
 
@@ -44,10 +45,12 @@ export default async function ContactPage({ searchParams }) {
         description="Discuss your architectural glass requirements directly with our Jodhpur fabrication team. Share site dimensions and get immediate expert guidance."
         primaryAction={{ label: 'Fill Quote Form', href: '#quote' }}
         secondaryAction={{ label: `Call ${COMPANY.phone}`, href: `tel:${COMPANY.phoneRaw}` }}
-        backgroundImage="https://images.unsplash.com/photo-1487958449943-2429e8be8625?auto=format&fit=crop&w=2000&q=85"
+        backgroundImage="/images/optimized/commercial-atrium-canopy-entrance.webp"
         showCategories={true}
         showWatchWork={true}
       />
+
+      <DarkCanvas images={['/images/optimized/corporate-spider-fitting-canopy.webp', '/images/optimized/architectural-villa-coastal-estate.webp']}>
 
       {/* Main Contact Section */}
       <section className="py-16 sm:py-20" id="quote">
@@ -185,6 +188,7 @@ export default async function ContactPage({ searchParams }) {
           </div>
         </div>
       </section>
+      </DarkCanvas>
     </div>
   );
 }

@@ -1,4 +1,4 @@
-import { Plus_Jakarta_Sans, Noto_Sans_Devanagari } from 'next/font/google';
+import { Plus_Jakarta_Sans, Noto_Sans_Devanagari, Fraunces } from 'next/font/google';
 import './globals.css';
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
@@ -11,6 +11,15 @@ const plusJakartaSans = Plus_Jakarta_Sans({
   subsets: ['latin'],
   weight: ['400', '500', '600', '700', '800'],
   variable: '--font-sans',
+  display: 'swap',
+});
+
+// Editorial serif for headlines only; gives the site a crafted, non-template voice.
+const fraunces = Fraunces({
+  subsets: ['latin'],
+  weight: ['400', '500'],
+  style: ['normal', 'italic'],
+  variable: '--font-display',
   display: 'swap',
 });
 
@@ -55,7 +64,7 @@ export const metadata = {
     siteName: COMPANY.nameShort,
     images: [
       {
-        url: 'https://images.unsplash.com/photo-1487958449943-2429e8be8625?auto=format&fit=crop&w=1200&q=85',
+        url: '/og-image.jpg',
         width: 1200,
         height: 630,
         alt: `${COMPANY.name} - Architectural Glass Solutions`,
@@ -66,7 +75,7 @@ export const metadata = {
     card: 'summary_large_image',
     title: COMPANY.name,
     description: COMPANY.description,
-    images: ['https://images.unsplash.com/photo-1487958449943-2429e8be8625?auto=format&fit=crop&w=1200&q=85'],
+    images: ['/og-image.jpg'],
   },
   robots: {
     index: true,
@@ -95,7 +104,7 @@ export default function RootLayout({ children }) {
       lang="en"
       suppressHydrationWarning
       data-scroll-behavior="smooth"
-      className={`${plusJakartaSans.variable} ${notoSansDevanagari.variable} h-full`}
+      className={`${plusJakartaSans.variable} ${notoSansDevanagari.variable} ${fraunces.variable} h-full`}
     >
       <head>
         <script
@@ -129,7 +138,7 @@ export default function RootLayout({ children }) {
       </head>
       <body
         suppressHydrationWarning
-        className="min-h-full flex flex-col font-sans text-[#132b45] bg-white antialiased selection:bg-[#0878d1] selection:text-white"
+        className="min-h-full flex flex-col font-sans text-[#132b45] bg-[#050b18] antialiased selection:bg-[#0b57d0] selection:text-white"
       >
         <a href="#main-content" className="sr-only focus:not-sr-only">
           <span className="fixed top-3 left-3 z-[100] rounded-full bg-[#08233f] px-5 py-3 text-sm font-bold text-white shadow-xl">
