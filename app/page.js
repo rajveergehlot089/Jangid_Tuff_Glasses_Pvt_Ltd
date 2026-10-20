@@ -155,8 +155,59 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* ─── Visual Inspiration Preview (Modern Glass Applications - placed directly after Services) ─── */}
+      <section className="py-20 sm:py-28 bg-white border-t border-slate-200/80">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
+            <div>
+              <p className="text-[#0878d1] font-bold text-xs uppercase tracking-[0.25em]">Visual Inspiration</p>
+              <h2 className="text-3xl sm:text-4xl font-extrabold text-[#08233f] mt-2 tracking-tight">
+                Modern Glass Applications
+              </h2>
+              <p className="text-slate-600 mt-2 text-xs sm:text-sm max-w-xl">
+                Explore our precision glass processing, tempering line, and architectural installations in Jodhpur.
+              </p>
+            </div>
+            <Link
+              href="/gallery"
+              className="inline-flex items-center gap-2 font-bold text-[#0878d1] hover:text-[#08233f] text-sm group shrink-0 transition-colors duration-200 ease-out"
+            >
+              <span>Explore full gallery</span>
+              <ArrowRight className="w-4 h-4 transform group-hover:translate-x-1 transition-transform duration-200 ease-out" />
+            </Link>
+          </div>
+
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
+            {[
+              { title: 'Processing & Tempering', src: '/images/real/glass-processing-plant.png', tag: 'LiSEC Tempering Line' },
+              { title: 'Office Partitions', src: '/images/optimized/partitions-corporate-conference-room.webp', tag: 'Commercial Glazing' },
+              { title: 'Balcony & Stair Railings', src: '/images/optimized/railing-floating-staircase-glass.webp', tag: 'Architectural Railings' },
+              { title: 'Shower Cubicles', src: '/images/optimized/shower-enclosure-frameless-corner.webp', tag: 'Shower Enclosures' },
+            ].map((item, index) => (
+              <div key={index} className="group relative rounded-3xl overflow-hidden aspect-[3/4] bg-slate-100 shadow-sm border border-slate-200/80 hover:shadow-xl hover:-translate-y-1.5 transition-all duration-300 ease-out">
+                <Image
+                  src={item.src}
+                  alt={item.title}
+                  fill
+                  sizes="(max-width: 640px) 50vw, 25vw"
+                  className="object-cover transition-transform duration-500 ease-out group-hover:scale-105"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#041323]/85 via-black/20 to-transparent flex flex-col justify-end p-5">
+                  <span className="text-[10px] uppercase font-bold text-sky-300 tracking-wider">
+                    {item.tag}
+                  </span>
+                  <span className="text-white font-bold text-sm sm:text-base mt-1">
+                    {item.title}
+                  </span>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* ─── Architectural Hardware & Profile Systems Highlight ─── */}
-      <section className="py-20 sm:py-24 bg-white border-t border-b border-slate-200/80">
+      <section className="py-20 sm:py-24 bg-[#f8fafc] border-t border-b border-slate-200/80">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
             <div>
@@ -184,44 +235,63 @@ export default function HomePage() {
               {
                 title: 'Door Controls & Patch Fittings',
                 desc: 'Top/bottom patch fittings, hydraulic floor springs, and bottom euro-locks for commercial and residential frameless entrances.',
-                icon: Shield,
+                image: '/images/optimized/hardware-door-controls-patch-fittings.webp',
+                tag: 'Heavy-Duty Hardware',
               },
               {
                 title: 'Frameless Shower Hardware',
                 desc: '304/316 grade stainless steel hinges, magnetic water-stops, stabilizing header bars, and sliding roller tracks.',
-                icon: Sparkles,
+                image: '/images/optimized/hardware-shower-sliding-enclosure.webp',
+                tag: 'SS 304 / 316 Grade',
               },
               {
                 title: 'Slim Partition Profiles',
                 desc: 'Minimalist 25mm–45mm aluminum channels, acoustic gaskets, and concealed door frames for modern workspaces.',
-                icon: Clock,
+                image: '/images/optimized/hardware-slim-partition-profiles.webp',
+                tag: 'Acoustic Channels',
               },
               {
                 title: 'Balustrade & Railing Mounts',
                 desc: 'Duplex core-drilled spigots, continuous base shoe profiles, and point-fixed standoffs engineered for safety.',
-                icon: CheckCircle2,
+                image: '/images/optimized/hardware-balustrade-railing-mounts.webp',
+                tag: '1.5 kN Load Tested',
               },
-            ].map((item, idx) => {
-              const IconComp = item.icon;
-              return (
-                <div
-                  key={idx}
-                  className="p-6 rounded-3xl bg-[#f8fafc] border border-slate-200/90 shadow-sm flex flex-col justify-between hover:shadow-lg hover:-translate-y-1.5 hover:border-[#0878d1]/30 transition-all duration-300 ease-out"
-                >
+            ].map((item, idx) => (
+              <div
+                key={idx}
+                className="group relative rounded-3xl overflow-hidden bg-white border border-slate-200/90 shadow-sm hover:shadow-xl hover:-translate-y-1.5 hover:border-[#0878d1]/40 transition-all duration-300 ease-out flex flex-col justify-between"
+              >
+                {/* Visual Image Container */}
+                <div className="relative aspect-[16/11] w-full overflow-hidden bg-slate-100">
+                  <Image
+                    src={item.image}
+                    alt={item.title}
+                    fill
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+                    className="object-cover group-hover:scale-105 transition-transform duration-500 ease-out"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
+                  <span className="absolute top-3 left-3 text-[10px] font-bold uppercase tracking-wider text-white bg-[#08233f]/85 backdrop-blur-md px-2.5 py-1 rounded-full border border-white/20">
+                    {item.tag}
+                  </span>
+                </div>
+
+                <div className="p-6 flex-1 flex flex-col justify-between">
                   <div>
-                    <div className="w-10 h-10 rounded-xl bg-[#eaf5ff] text-[#0878d1] flex items-center justify-center mb-4 transition-transform duration-200 ease-out">
-                      <IconComp className="w-5 h-5" />
-                    </div>
-                    <h3 className="font-bold text-base text-[#08233f] mb-2">
+                    <h3 className="font-extrabold text-base text-[#08233f] mb-2 group-hover:text-[#0878d1] transition-colors duration-200">
                       {item.title}
                     </h3>
                     <p className="text-xs text-slate-600 leading-relaxed">
                       {item.desc}
                     </p>
                   </div>
+                  <div className="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between text-xs font-bold text-[#0878d1]">
+                    <span>Engineered Fit</span>
+                    <span className="text-slate-400 group-hover:translate-x-1 transition-transform">→</span>
+                  </div>
                 </div>
-              );
-            })}
+              </div>
+            ))}
           </div>
         </div>
       </section>
@@ -278,57 +348,6 @@ export default function HomePage() {
               </div>
               <span className="text-[11px] font-semibold text-sky-700 mt-6 block">Factory-direct delivery in Jodhpur</span>
             </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ─── Visual Inspiration Preview ─── */}
-      <section className="py-20 sm:py-28 bg-[#f8fafc]">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
-            <div>
-              <p className="text-[#0878d1] font-bold text-xs uppercase tracking-[0.25em]">Visual Inspiration</p>
-              <h2 className="text-3xl sm:text-4xl font-extrabold text-[#08233f] mt-2 tracking-tight">
-                Modern Glass Applications
-              </h2>
-              <p className="text-slate-600 mt-2 text-xs sm:text-sm max-w-xl">
-                Explore our precision glass processing, tempering line, and architectural installations in Jodhpur.
-              </p>
-            </div>
-            <Link
-              href="/gallery"
-              className="inline-flex items-center gap-2 font-bold text-[#0878d1] hover:text-[#08233f] text-sm group shrink-0 transition-colors duration-200 ease-out"
-            >
-              <span>Explore full gallery</span>
-              <ArrowRight className="w-4 h-4 transform group-hover:translate-x-1 transition-transform duration-200 ease-out" />
-            </Link>
-          </div>
-
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
-            {[
-              { title: 'Processing & Tempering', src: '/images/real/glass-processing-plant.png', tag: 'LiSEC Tempering Line' },
-              { title: 'Office Partitions', src: '/images/optimized/partitions-corporate-conference-room.webp', tag: 'Commercial Glazing' },
-              { title: 'Balcony & Stair Railings', src: '/images/optimized/railing-floating-staircase-glass.webp', tag: 'Architectural Railings' },
-              { title: 'Shower Cubicles', src: '/images/optimized/shower-enclosure-frameless-corner.webp', tag: 'Shower Enclosures' },
-            ].map((item, index) => (
-              <div key={index} className="group relative rounded-3xl overflow-hidden aspect-[3/4] bg-slate-100 shadow-sm border border-slate-200/80 hover:shadow-xl hover:-translate-y-1.5 transition-all duration-300 ease-out">
-                <Image
-                  src={item.src}
-                  alt={item.title}
-                  fill
-                  sizes="(max-width: 640px) 50vw, 25vw"
-                  className="object-cover transition-transform duration-500 ease-out group-hover:scale-105"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#041323]/85 via-black/20 to-transparent flex flex-col justify-end p-5">
-                  <span className="text-[10px] uppercase font-bold text-sky-300 tracking-wider">
-                    {item.tag}
-                  </span>
-                  <span className="text-white font-bold text-sm sm:text-base mt-1">
-                    {item.title}
-                  </span>
-                </div>
-              </div>
-            ))}
           </div>
         </div>
       </section>

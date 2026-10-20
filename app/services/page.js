@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import Link from 'next/link';
 import { ArrowRight, Wrench, Sparkles, Shield, Truck, Compass, CheckCircle2 } from 'lucide-react';
 import PageHero from '@/components/ui/PageHero';
@@ -110,40 +111,61 @@ export default function ServicesPage() {
               {
                 title: 'Door Controls & Patch Fittings',
                 category: 'Entrance Systems',
+                image: '/images/optimized/hardware-door-controls-patch-fittings.webp',
                 points: ['Top & bottom patch fittings (SS 304/316)', 'Hydraulic floor springs (75kg–120kg)', 'Concealed overhead transom pivots', 'Security bottom euro-cylinder patch locks'],
               },
               {
                 title: 'Shower Enclosure Hardware',
                 category: 'Bathroom Spaces',
+                image: '/images/optimized/hardware-shower-sliding-enclosure.webp',
                 points: ['90° & 180° solid brass shower hinges', 'Water-deflecting magnetic seals & drip sweeps', 'Top roller tubular sliding track kits', 'Wall-to-glass rigid stabilizer header bars'],
               },
               {
                 title: 'Slim Partition Profiles',
                 category: 'Commercial & Office',
+                image: '/images/optimized/hardware-slim-partition-profiles.webp',
                 points: ['25mm to 45mm visible face aluminum channels', 'Crittall-style aesthetic grid transoms', 'Acoustic EPDM vibration gaskets', 'Concealed door jambs with magnetic latching'],
               },
               {
                 title: 'Balustrade & Railing Mounts',
                 category: 'Structural Balustrades',
+                image: '/images/optimized/hardware-balustrade-railing-mounts.webp',
                 points: ['Duplex 2205 / SS 316 heavy spigots', 'Continuous aluminum base shoe channels', 'Point-fixed architectural standoff pins', 'Slotted stainless steel & wood top rails'],
               },
             ].map((hw, idx) => (
-              <div key={idx} className="bg-white rounded-3xl p-6 border border-slate-200/90 shadow-sm flex flex-col justify-between hover:shadow-lg hover:-translate-y-1 hover:border-[#0878d1]/30 transition-all duration-300 ease-out">
-                <div>
-                  <span className="text-[10px] font-bold uppercase tracking-wider text-[#0878d1] block mb-1">
+              <div
+                key={idx}
+                className="bg-white rounded-3xl border border-slate-200/90 shadow-sm flex flex-col justify-between hover:shadow-xl hover:-translate-y-1.5 hover:border-[#0878d1]/30 transition-all duration-300 ease-out overflow-hidden group"
+              >
+                {/* Visual Image Container */}
+                <div className="relative aspect-[16/11] w-full overflow-hidden bg-slate-100">
+                  <Image
+                    src={hw.image}
+                    alt={hw.title}
+                    fill
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+                    className="object-cover group-hover:scale-105 transition-transform duration-500 ease-out"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/55 via-transparent to-transparent" />
+                  <span className="absolute top-3 left-3 text-[10px] font-bold uppercase tracking-wider text-white bg-[#08233f]/85 backdrop-blur-md px-2.5 py-1 rounded-full border border-white/20">
                     {hw.category}
                   </span>
-                  <h3 className="font-extrabold text-base text-[#08233f] mb-4">
-                    {hw.title}
-                  </h3>
-                  <ul className="space-y-2 text-xs text-slate-600">
-                    {hw.points.map((pt, pIdx) => (
-                      <li key={pIdx} className="flex items-start gap-2">
-                        <span className="text-[#0878d1] font-bold mt-0.5">✓</span>
-                        <span>{pt}</span>
-                      </li>
-                    ))}
-                  </ul>
+                </div>
+
+                <div className="p-6 flex-1 flex flex-col justify-between">
+                  <div>
+                    <h3 className="font-extrabold text-base text-[#08233f] mb-3">
+                      {hw.title}
+                    </h3>
+                    <ul className="space-y-2 text-xs text-slate-600">
+                      {hw.points.map((pt, pIdx) => (
+                        <li key={pIdx} className="flex items-start gap-2">
+                          <span className="text-[#0878d1] font-bold mt-0.5">✓</span>
+                          <span>{pt}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
                 </div>
               </div>
             ))}

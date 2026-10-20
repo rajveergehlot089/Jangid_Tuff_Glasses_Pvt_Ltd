@@ -139,53 +139,65 @@ export default function AboutPage() {
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-7">
             {[
               {
-                icon: Factory,
                 title: 'Horizontal Tempering Plant',
-                desc: 'Heating raw glass to 620°C followed by controlled high-pressure air quenching. Produces tempered glass 4 to 5 times stronger than standard annealed glass, rated up to 19mm thickness.',
+                desc: 'Continuous horizontal oscillating furnace processing standard annealed glass at ~650°C followed by controlled high-pressure air quenching. Produces safety glass 4 to 5 times stronger than annealed glass.',
+                image: '/images/optimized/processing-tempering-furnace-line.webp',
                 badge: '5mm – 19mm Range',
               },
               {
-                icon: Cpu,
                 title: 'CNC Edge Finishing',
                 desc: 'Automated multi-spindle edgers deliver flawless flat-polish with arrised corners, decorative beveling (10mm–35mm), pencil polish, and OG profiles for luxury table tops and exposed partitions.',
+                image: '/images/optimized/processing-cnc-edge-polishing.webp',
                 badge: 'Machine Polished',
               },
               {
-                icon: Wrench,
                 title: 'Cutouts & Hole Drilling',
                 desc: 'Specialized diamond-core drills and CNC cutouts engineered for hydraulic floor springs, patch locks, spider brackets, shower hinge cutouts, and electrical socket pass-throughs.',
+                image: '/images/optimized/processing-waterjet-hole-drilling.webp',
                 badge: 'Zero Micro-Fractures',
               },
               {
-                icon: Layers,
                 title: 'Specialty Glass Treatments',
                 desc: 'Fluted / reeded architectural dividers, frosted acid-etched privacy panels, high-clarity silver mirrors, solar reflective tinted glass (grey, bronze), and lacquered back-painted glass.',
+                image: '/images/optimized/processing-specialty-glass-finishes.webp',
                 badge: 'Custom Finishes',
               },
-            ].map((item, idx) => {
-              const IconComp = item.icon;
-              return (
-                <div
-                  key={idx}
-                  className="bg-white p-7 rounded-3xl border border-slate-200/90 shadow-sm flex flex-col justify-between hover:shadow-xl hover:-translate-y-1.5 hover:border-[#0878d1]/40 transition-all duration-300 ease-out group"
-                >
+            ].map((item, idx) => (
+              <div
+                key={idx}
+                className="bg-white rounded-3xl border border-slate-200/90 shadow-sm flex flex-col justify-between hover:shadow-xl hover:-translate-y-1.5 hover:border-[#0878d1]/40 transition-all duration-300 ease-out group overflow-hidden"
+              >
+                {/* Visual Image Container */}
+                <div className="relative aspect-[16/11] w-full overflow-hidden bg-slate-100">
+                  <Image
+                    src={item.image}
+                    alt={item.title}
+                    fill
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+                    className="object-cover group-hover:scale-105 transition-transform duration-500 ease-out"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/55 via-transparent to-transparent" />
+                  <span className="absolute top-3 left-3 text-[10px] font-bold uppercase tracking-wider text-white bg-[#08233f]/85 backdrop-blur-md px-2.5 py-1 rounded-full border border-white/20">
+                    {item.badge}
+                  </span>
+                </div>
+
+                <div className="p-6 flex-1 flex flex-col justify-between">
                   <div>
-                    <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-[#eaf5ff] to-[#d6ebff] text-[#0878d1] flex items-center justify-center mb-6 group-hover:scale-105 transition-transform duration-200 ease-out shadow-2xs">
-                      <IconComp className="w-6 h-6 stroke-[2.2]" />
-                    </div>
-                    <span className="text-[10px] font-bold uppercase tracking-wider text-[#0878d1] bg-sky-50 px-2.5 py-1 rounded-full border border-sky-100">
-                      {item.badge}
-                    </span>
-                    <h3 className="font-extrabold text-lg text-[#08233f] mt-3 mb-2 tracking-tight group-hover:text-[#0878d1] transition-colors duration-200">
+                    <h3 className="font-extrabold text-lg text-[#08233f] mb-2 tracking-tight group-hover:text-[#0878d1] transition-colors duration-200">
                       {item.title}
                     </h3>
                     <p className="text-xs text-slate-600 leading-relaxed font-normal">
                       {item.desc}
                     </p>
                   </div>
+                  <div className="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between text-xs font-bold text-[#0878d1]">
+                    <span>Factory Capability</span>
+                    <span className="text-slate-400 group-hover:translate-x-1 transition-transform">→</span>
+                  </div>
                 </div>
-              );
-            })}
+              </div>
+            ))}
           </div>
         </div>
       </section>
