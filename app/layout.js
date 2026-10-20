@@ -3,6 +3,7 @@ import './globals.css';
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
 import WhatsAppFloat from '@/components/layout/WhatsAppFloat';
+import MotionProvider from '@/components/layout/MotionProvider';
 import { COMPANY } from '@/lib/constants';
 import { generateStructuredData } from '@/lib/utils';
 
@@ -130,10 +131,19 @@ export default function RootLayout({ children }) {
         suppressHydrationWarning
         className="min-h-full flex flex-col font-sans text-[#132b45] bg-white antialiased selection:bg-[#0878d1] selection:text-white"
       >
-        <Header />
-        <main className="flex-1">{children}</main>
-        <Footer />
-        <WhatsAppFloat />
+        <a href="#main-content" className="sr-only focus:not-sr-only">
+          <span className="fixed top-3 left-3 z-[100] rounded-full bg-[#08233f] px-5 py-3 text-sm font-bold text-white shadow-xl">
+            Skip to main content
+          </span>
+        </a>
+        <MotionProvider>
+          <Header />
+          <main id="main-content" tabIndex={-1} className="flex-1 outline-none">
+            {children}
+          </main>
+          <Footer />
+          <WhatsAppFloat />
+        </MotionProvider>
       </body>
     </html>
   );

@@ -62,7 +62,7 @@ export default function HomePage() {
                 alt="Authentic photograph of Jangid Tuff Glasses Private Limited Factory in Boranada Jodhpur"
                 fill
                 sizes="(max-width: 1024px) 100vw, 50vw"
-                className="object-cover object-top group-hover:scale-105 transition-transform duration-700 ease-out"
+                className="object-cover object-center group-hover:scale-105 transition-transform duration-700 ease-out"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-[#08233f]/75 via-[#08233f]/15 to-transparent transition-opacity duration-500" />
               <div className="absolute top-4 left-4 inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#08233f]/90 backdrop-blur-md text-white text-[11px] font-bold border border-white/20">

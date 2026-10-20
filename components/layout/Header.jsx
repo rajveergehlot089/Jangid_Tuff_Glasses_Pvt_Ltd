@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { usePathname } from 'next/navigation';
@@ -60,6 +60,43 @@ export default function Header() {
   const pathname = usePathname();
   const [mobileOpen, setMobileOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const menuButtonRef = useRef(null);
+  const drawerRef = useRef(null);
+
+  // Mobile drawer keyboard behaviour: Esc closes, Tab stays inside, focus returns to the menu button.
+  useEffect(() => {
+    if (!mobileOpen) return undefined;
+    const drawer = drawerRef.current;
+    const focusables = () =>
+      drawer ? [...drawer.querySelectorAll('a[href], button:not([disabled])')] : [];
+    focusables()[0]?.focus();
+
+    const onKeyDown = (event) => {
+      if (event.key === 'Escape') {
+        setMobileOpen(false);
+        return;
+      }
+      if (event.key !== 'Tab') return;
+      const items = focusables();
+      if (items.length === 0) return;
+      const first = items[0];
+      const last = items[items.length - 1];
+      if (event.shiftKey && document.activeElement === first) {
+        event.preventDefault();
+        last.focus();
+      } else if (!event.shiftKey && document.activeElement === last) {
+        event.preventDefault();
+        first.focus();
+      }
+    };
+
+    const menuButton = menuButtonRef.current;
+    document.addEventListener('keydown', onKeyDown);
+    return () => {
+      document.removeEventListener('keydown', onKeyDown);
+      menuButton?.focus();
+    };
+  }, [mobileOpen]);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 10);
@@ -167,6 +204,7 @@ export default function Header() {
 
             {/* Mobile menu button */}
             <button
+              ref={menuButtonRef}
               type="button"
               onClick={() => setMobileOpen(!mobileOpen)}
               className="lg:hidden flex items-center justify-center w-10 h-10 rounded-xl text-[#08233f] hover:bg-slate-100 transition-colors duration-200 ease-out cursor-pointer"
@@ -201,6 +239,10 @@ export default function Header() {
             {/* Drawer */}
             <motion.div
               id="mobile-menu"
+              ref={drawerRef}
+              role="dialog"
+              aria-modal="true"
+              aria-label="Site menu"
               variants={mobileMenuVariants}
               initial="hidden"
               animate="visible"

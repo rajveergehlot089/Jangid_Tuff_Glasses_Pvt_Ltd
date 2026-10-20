@@ -100,7 +100,7 @@ export default function AboutPage() {
                 alt="Authentic photograph of Jangid Tuff Glasses Private Limited factory in Boranada Jodhpur"
                 fill
                 sizes="(max-width: 1024px) 100vw, 50vw"
-                className="object-cover object-top group-hover:scale-105 transition-transform duration-700 ease-out"
+                className="object-cover object-center group-hover:scale-105 transition-transform duration-700 ease-out"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-[#041323]/80 via-[#041323]/15 to-transparent" />
               <div className="absolute top-4 left-4 inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#08233f]/90 backdrop-blur-md text-white text-[11px] font-bold border border-white/20">
@@ -303,7 +303,7 @@ export default function AboutPage() {
               },
               {
                 title: 'Frameless & Slim Glass Partitions',
-                specs: '10mm/12mm tempered or acoustic acoustic laminated glass',
+                specs: '10mm/12mm tempered or acoustic laminated glass',
                 desc: 'Minimalist aluminium profile acoustic partitions for corporate offices, conference rooms, cabin enclosures, and luxury residential open-plan dividers.',
                 link: '/products/slim-glass-partitions',
               },
@@ -311,13 +311,13 @@ export default function AboutPage() {
                 title: 'Frameless Shower Enclosures',
                 specs: '8mm/10mm toughened safety glass with hydrophobic coating',
                 desc: 'Custom-configured walk-in showers, sliding cubicles, and swing doors fitted with SS 304 hardware, magnetic water seals, and stabilizing header bars.',
-                link: '/products/shower-cubicles-enclosures',
+                link: '/products/shower-enclosures',
               },
               {
                 title: 'Toughened Glass Balustrades & Railings',
                 specs: '12mm toughened or 13.52mm PVB/Sentry laminated',
                 desc: 'Continuous base shoe and duplex spigot railing systems for balconies, staircases, terrace parapets, and pool fences with unobstructed panoramic views.',
-                link: '/products/glass-railings-balustrades',
+                link: '/products/railing-balustrade-glass',
               },
               {
                 title: 'Decorative, Fluted & Tinted Glass',

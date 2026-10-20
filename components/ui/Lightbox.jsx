@@ -20,11 +20,40 @@ export default function Lightbox({
   const closeButtonRef = useRef(null);
   const [activeIndex, setActiveIndex] = useState(currentIndex);
   const swiperInstanceRef = useRef(null);
+  const dialogRef = useRef(null);
+  const triggerRef = useRef(null);
+
+  // Remember what opened the viewer and give focus back to it when it closes.
+  useEffect(() => {
+    if (!isOpen) return undefined;
+    triggerRef.current = document.activeElement;
+    return () => {
+      triggerRef.current?.focus?.();
+    };
+  }, [isOpen]);
 
   useEffect(() => {
     const handleKeyDown = (e) => {
       if (!isOpen) return;
-      if (e.key === 'Escape') onClose();
+      if (e.key === 'Escape') {
+        onClose();
+        return;
+      }
+      if (e.key !== 'Tab' || !dialogRef.current) return;
+      // Keep Tab / Shift+Tab inside the dialog while it is open.
+      const items = [
+        ...dialogRef.current.querySelectorAll('button:not([disabled]), a[href], [tabindex]:not([tabindex="-1"])'),
+      ].filter((el) => el.offsetParent !== null);
+      if (items.length === 0) return;
+      const first = items[0];
+      const last = items[items.length - 1];
+      if (e.shiftKey && (document.activeElement === first || !dialogRef.current.contains(document.activeElement))) {
+        e.preventDefault();
+        last.focus();
+      } else if (!e.shiftKey && (document.activeElement === last || !dialogRef.current.contains(document.activeElement))) {
+        e.preventDefault();
+        first.focus();
+      }
     };
 
     if (isOpen) {
@@ -51,6 +80,7 @@ export default function Lightbox({
   return (
     <AnimatePresence>
       <motion.div
+        ref={dialogRef}
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}

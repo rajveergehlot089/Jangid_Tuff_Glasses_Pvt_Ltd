@@ -107,12 +107,14 @@ export default function ProductCard({ product, index = 0 }) {
         <div className="grid grid-cols-2 gap-2.5 pt-2">
           <Link
             href={`/products/${slug}`}
+            aria-label={`Details: ${name}`}
             className="w-full py-2.5 px-3 rounded-xl bg-slate-100 hover:bg-slate-200 hover:-translate-y-0.5 text-[#08233f] text-xs font-bold text-center transition-all duration-200 ease-out shadow-2xs"
           >
             Details
           </Link>
           <Link
             href={`/contact?product=${slug}#quote`}
+            aria-label={`Quote: ${name}`}
             className="btn-gradient w-full py-2.5 px-3 rounded-xl text-white text-xs font-bold text-center transition-all duration-200 ease-out hover:-translate-y-0.5 flex items-center justify-center gap-1.5 shadow-sm group/btn"
           >
             <span>Quote</span>

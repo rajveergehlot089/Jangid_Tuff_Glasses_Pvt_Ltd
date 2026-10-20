@@ -8,6 +8,7 @@ import { LayoutGrid, SlidersHorizontal, ChevronLeft, ChevronRight, Sparkles } fr
 import FilterBar from '@/components/ui/FilterBar';
 import Lightbox from '@/components/ui/Lightbox';
 import { GALLERY_ITEMS, GALLERY_FILTERS } from '@/lib/constants';
+import useReducedMotion from '@/lib/use-reduced-motion';
 
 import 'swiper/css';
 import 'swiper/css/navigation';
@@ -17,6 +18,7 @@ export default function GalleryView() {
   const [activeFilter, setActiveFilter] = useState('all');
   const [lightboxIndex, setLightboxIndex] = useState(null);
   const [viewMode, setViewMode] = useState('grid'); // 'grid' | 'slider'
+  const reducedMotion = useReducedMotion();
 
   const filteredItems = GALLERY_ITEMS.filter((item) => {
     if (activeFilter === 'all') return true;
@@ -98,6 +100,7 @@ export default function GalleryView() {
         {viewMode === 'slider' && filteredItems.length > 0 && (
           <div className="relative py-4">
             <Swiper
+              key={reducedMotion ? 'static' : 'autoplay'}
               modules={[Navigation, Pagination, Autoplay, A11y]}
               navigation={{
                 prevEl: '.gallery-swiper-prev',
@@ -107,11 +110,15 @@ export default function GalleryView() {
                 clickable: true,
                 el: '.gallery-swiper-pagination',
               }}
-              autoplay={{
-                delay: 4500,
-                disableOnInteraction: false,
-                pauseOnMouseEnter: true,
-              }}
+              autoplay={
+                reducedMotion
+                  ? false
+                  : {
+                      delay: 4500,
+                      disableOnInteraction: true,
+                      pauseOnMouseEnter: true,
+                    }
+              }
               spaceBetween={24}
               slidesPerView={1}
               breakpoints={{

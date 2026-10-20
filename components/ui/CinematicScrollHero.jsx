@@ -34,6 +34,40 @@ function getFrameUrl(index) {
   return `${FRAME_BASE_PATH}${pad}.webp`;
 }
 
+const CHAPTERS = [
+  '01 • Balcony Glass Railings',
+  '02 • Architectural Glass Profiles',
+  '03 • Staircase Glass Balustrades',
+  '04 • Acoustic Glass Partitions',
+  '05 • Designer Smart LED Mirrors',
+  '06 • Engineered Glass for Every Application',
+];
+
+// Text stage windows as fractions (0-1) of the pinned scroll range, locked to the frame ranges:
+// 1 Balcony (0-18), 2 Profiles (19-36), 3 Staircase (37-56), 4 Partitions (57-72),
+// 5 LED Mirrors (73-94), 6 Final (95-119). `in` / `out` are [start, end] fade windows.
+const STAGES = [
+  { out: [0.09, 0.14], exitY: 30 },
+  { in: [0.15, 0.19], out: [0.28, 0.32], exitY: 35 },
+  { in: [0.32, 0.36], out: [0.45, 0.49], exitY: 35 },
+  { in: [0.49, 0.53], out: [0.62, 0.66], exitY: 35 },
+  { in: [0.66, 0.7], out: [0.79, 0.83], exitY: 35 },
+  { in: [0.83, 0.88] }, // final stage stays fully visible until the pin releases
+];
+const STAGE_ENTER_Y = 40;
+
+const rangeProgress = (p, [start, end]) => Math.min(1, Math.max(0, (p - start) / (end - start)));
+const smoothstep = (t) => t * t * (3 - 2 * t);
+
+// Stages sit between the sticky header and the bottom status bar. Flex centering (not a CSS
+// translate) so GSAP-driven transforms can never displace the card.
+function stageWrapClass(isReducedMotion) {
+  if (isReducedMotion) {
+    return 'relative z-20 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3';
+  }
+  return 'absolute inset-x-0 top-[4.75rem] bottom-[3.5rem] md:top-[7.25rem] z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center pointer-events-none opacity-0';
+}
+
 function subscribeReducedMotion(callback) {
   if (typeof window === 'undefined') return () => {};
   const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
@@ -54,13 +88,9 @@ export default function CinematicScrollHero() {
   const containerRef = useRef(null);
   const canvasRef = useRef(null);
 
-  // Stage refs for 6 distinct scroll chapters locked to video frames
-  const textStage1Ref = useRef(null); // Balcony & Villa (Frames 0-18)
-  const textStage2Ref = useRef(null); // Glass Profiles (Frames 19-36)
-  const textStage3Ref = useRef(null); // Staircase Balustrades (Frames 37-56)
-  const textStage4Ref = useRef(null); // Acoustic Partitions (Frames 57-72)
-  const textStage5Ref = useRef(null); // LED Mirror & Showers (Frames 73-94)
-  const textStage6Ref = useRef(null); // "Engineered Glass for Every Application" (Frames 95-119)
+  // Wrapper and action-row elements for the 6 scroll chapters locked to video frames (see STAGES)
+  const stageRefs = useRef([]);
+  const actionRefs = useRef([]);
 
   const progressBarRef = useRef(null);
   const activeChapterLabelRef = useRef(null);
@@ -232,24 +262,67 @@ export default function CinematicScrollHero() {
     };
   }, [drawFrame, handleResize]);
 
-  // Setup GSAP ScrollTrigger timeline with butter-smooth scrubbing
+  // Drive frames AND text stages from one smoothed progress value (0 → 1 across the real pinned
+  // scroll range), so the copy always matches the frame on screen. Stage windows are fractions of
+  // that range; the last stage never fades out so its buttons stay fully visible.
   useEffect(() => {
     if (isReducedMotion) return;
 
     const container = containerRef.current;
     if (!container) return;
 
-    const chapters = [
-      '01 • Balcony Glass Railings',
-      '02 • Architectural Glass Profiles',
-      '03 • Staircase Glass Balustrades',
-      '04 • Acoustic Glass Partitions',
-      '05 • Designer Smart LED Mirrors',
-      '06 • Engineered Glass for Every Application',
-    ];
+    const stageEls = stageRefs.current;
+    const actionEls = actionRefs.current;
+    const activeState = [];
+
+    const applyStages = (p) => {
+      STAGES.forEach((stage, i) => {
+        const el = stageEls[i];
+        if (!el) return;
+
+        let opacity = 1;
+        let y = 0;
+        if (stage.in) {
+          const e = smoothstep(rangeProgress(p, stage.in));
+          opacity = e;
+          y = STAGE_ENTER_Y * (1 - e);
+        }
+        if (stage.out) {
+          const t = rangeProgress(p, stage.out);
+          if (t > 0) {
+            opacity *= 1 - smoothstep(t);
+            y = -stage.exitY * smoothstep(t);
+          }
+        }
+
+        el.style.opacity = opacity.toFixed(3);
+        el.style.transform = `translate3d(0, ${y.toFixed(1)}px, 0)`;
+
+        // Only the stage that is actually on screen may take focus or clicks.
+        const active = opacity >= 0.5;
+        if (activeState[i] !== active) {
+          activeState[i] = active;
+          const actions = actionEls[i];
+          if (actions) {
+            if (active) actions.removeAttribute('inert');
+            else actions.setAttribute('inert', '');
+          }
+        }
+      });
+
+      let chapterIndex = 0;
+      STAGES.forEach((stage, i) => {
+        if (stage.in && p >= stage.in[0]) chapterIndex = i;
+      });
+      if (activeChapterLabelRef.current && activeChapterLabelRef.current.dataset.i !== String(chapterIndex)) {
+        activeChapterLabelRef.current.dataset.i = String(chapterIndex);
+        activeChapterLabelRef.current.textContent = CHAPTERS[chapterIndex];
+      }
+    };
 
     const ctx = gsap.context(() => {
       const playhead = { frame: 0 };
+      applyStages(0);
 
       // Butter-smooth GSAP lerp tween across all 120 frames with inertia
       gsap.to(playhead, {
@@ -261,18 +334,8 @@ export default function CinematicScrollHero() {
           end: 'bottom bottom',
           scrub: 1.0, // Smooth 1.0s fluid momentum lerp eliminates wheel jerking
           onUpdate: (self) => {
-            // Update progress bar
             if (progressBarRef.current) {
               progressBarRef.current.style.transform = `scaleX(${self.progress})`;
-            }
-
-            // Update active chapter label
-            if (activeChapterLabelRef.current) {
-              const chapterIndex = Math.min(
-                chapters.length - 1,
-                Math.floor(self.progress * chapters.length)
-              );
-              activeChapterLabelRef.current.textContent = chapters[chapterIndex];
             }
           },
         },
@@ -281,203 +344,74 @@ export default function CinematicScrollHero() {
           if (target !== currentFrameRef.current) {
             drawFrame(target);
           }
+          applyStages(playhead.frame / (TOTAL_FRAMES - 1));
         },
       });
-
-      // ─── STAGE 1: Balcony Glass Railings (Frames 0 to 18 | 0% to 16%) ───
-      if (textStage1Ref.current) {
-        gsap.fromTo(
-          textStage1Ref.current,
-          { opacity: 1, y: 0 },
-          {
-            opacity: 0,
-            y: -30,
-            ease: 'power1.out',
-            scrollTrigger: {
-              trigger: container,
-              start: 'top top',
-              end: '15% top',
-              scrub: 0.6,
-            },
-          }
-        );
-      }
-
-      // ─── STAGE 2: Architectural Glass Profiles (Frames 19 to 36 | 17% to 32%) ───
-      if (textStage2Ref.current) {
-        gsap.fromTo(
-          textStage2Ref.current,
-          { opacity: 0, y: 40 },
-          {
-            opacity: 1,
-            y: 0,
-            ease: 'power1.out',
-            scrollTrigger: {
-              trigger: container,
-              start: '16% top',
-              end: '22% top',
-              scrub: 0.6,
-            },
-          }
-        );
-        gsap.to(textStage2Ref.current, {
-          opacity: 0,
-          y: -35,
-          ease: 'power1.in',
-          scrollTrigger: {
-            trigger: container,
-            start: '29% top',
-            end: '34% top',
-            scrub: 0.6,
-          },
-        });
-      }
-
-      // ─── STAGE 3: Floating Staircase Glass Balustrades (Frames 37 to 56 | 33% to 48%) ───
-      if (textStage3Ref.current) {
-        gsap.fromTo(
-          textStage3Ref.current,
-          { opacity: 0, y: 40 },
-          {
-            opacity: 1,
-            y: 0,
-            ease: 'power1.out',
-            scrollTrigger: {
-              trigger: container,
-              start: '33% top',
-              end: '39% top',
-              scrub: 0.6,
-            },
-          }
-        );
-        gsap.to(textStage3Ref.current, {
-          opacity: 0,
-          y: -35,
-          ease: 'power1.in',
-          scrollTrigger: {
-            trigger: container,
-            start: '46% top',
-            end: '51% top',
-            scrub: 0.6,
-          },
-        });
-      }
-
-      // ─── STAGE 4: Acoustic Office Partitions (Frames 57 to 72 | 49% to 64%) ───
-      if (textStage4Ref.current) {
-        gsap.fromTo(
-          textStage4Ref.current,
-          { opacity: 0, y: 40 },
-          {
-            opacity: 1,
-            y: 0,
-            ease: 'power1.out',
-            scrollTrigger: {
-              trigger: container,
-              start: '49% top',
-              end: '55% top',
-              scrub: 0.6,
-            },
-          }
-        );
-        gsap.to(textStage4Ref.current, {
-          opacity: 0,
-          y: -35,
-          ease: 'power1.in',
-          scrollTrigger: {
-            trigger: container,
-            start: '61% top',
-            end: '66% top',
-            scrub: 0.6,
-          },
-        });
-      }
-
-      // ─── STAGE 5: Smart LED Mirrors & Offerings (Frames 73 to 94 | 65% to 81%) ───
-      if (textStage5Ref.current) {
-        gsap.fromTo(
-          textStage5Ref.current,
-          { opacity: 0, y: 40 },
-          {
-            opacity: 1,
-            y: 0,
-            ease: 'power1.out',
-            scrollTrigger: {
-              trigger: container,
-              start: '65% top',
-              end: '71% top',
-              scrub: 0.6,
-            },
-          }
-        );
-        gsap.to(textStage5Ref.current, {
-          opacity: 0,
-          y: -35,
-          ease: 'power1.in',
-          scrollTrigger: {
-            trigger: container,
-            start: '78% top',
-            end: '83% top',
-            scrub: 0.6,
-          },
-        });
-      }
-
-      // ─── STAGE 6: Engineered Glass for Every Application (Frames 95 to 119 | 82% to 100%) ───
-      if (textStage6Ref.current) {
-        gsap.fromTo(
-          textStage6Ref.current,
-          { opacity: 0, y: 40 },
-          {
-            opacity: 1,
-            y: 0,
-            ease: 'power1.out',
-            scrollTrigger: {
-              trigger: container,
-              start: '82% top',
-              end: '88% top',
-              scrub: 0.6,
-            },
-          }
-        );
-        gsap.to(textStage6Ref.current, {
-          opacity: 0.45,
-          ease: 'power1.in',
-          scrollTrigger: {
-            trigger: container,
-            start: '96% top',
-            end: 'bottom bottom',
-            scrub: 0.6,
-          },
-        });
-      }
     }, container);
 
     return () => {
       ctx.revert();
-      // eslint-disable-next-line react-hooks/exhaustive-deps
-      if (rafIdRef.current) cancelAnimationFrame(rafIdRef.current);
+      stageEls.forEach((el) => {
+        if (!el) return;
+        el.style.opacity = '';
+        el.style.transform = '';
+      });
     };
   }, [drawFrame, isReducedMotion]);
+
+  // The canvas height changes with the layout mode, so re-measure it whenever the mode flips.
+  useEffect(() => {
+    handleResize();
+  }, [isReducedMotion, handleResize]);
+
+  // Jump past the pinned showcase without scrolling through it, and move focus with the view.
+  const handleSkip = (event) => {
+    const target = document.getElementById('hero-end');
+    if (!target) return;
+    event.preventDefault();
+    target.scrollIntoView({ behavior: 'instant', block: 'start' });
+    target.focus({ preventScroll: true });
+  };
 
   return (
     <section
       ref={containerRef}
-      className={`relative w-full ${isReducedMotion ? 'min-h-[700px]' : 'h-[620vh]'}`}
+      className={`relative w-full ${isReducedMotion ? '' : 'h-[420vh] md:h-[480vh]'}`}
       aria-label="Cinematic Architectural Glass Showcase"
     >
-      {/* Pinned Sticky Viewport Window */}
-      <div className="sticky top-0 h-screen w-full overflow-hidden bg-[#070d18] flex flex-col justify-between">
+      {/* Pinned Sticky Viewport Window (reduced motion: a normal tall block with every stage stacked) */}
+      <div
+        className={
+          isReducedMotion
+            ? 'relative w-full min-h-screen overflow-hidden bg-[#070d18] flex flex-col'
+            : 'sticky top-0 h-screen w-full overflow-hidden bg-[#070d18] flex flex-col justify-between'
+        }
+      >
+        {/* Skip link: first tab stop in the showcase; always visible from tablet up */}
+        <div className="absolute z-30 top-[5.5rem] right-4 md:top-[8rem] md:right-8">
+          <a
+            href="#hero-end"
+            onClick={handleSkip}
+            className="sr-only focus:not-sr-only md:not-sr-only block rounded-full focus-visible:outline-2 focus-visible:outline-white"
+          >
+            <span className="inline-flex items-center gap-1.5 rounded-full bg-black/55 backdrop-blur-md border border-white/25 px-3.5 py-1.5 text-[11px] font-bold text-white hover:bg-black/75">
+              <span>Skip showcase</span>
+              <ChevronDown className="w-3.5 h-3.5" aria-hidden="true" />
+            </span>
+          </a>
+        </div>
+
         {/* Canvas Frame Renderer */}
         <canvas
           ref={canvasRef}
-          className="absolute inset-0 w-full h-full object-cover z-0 pointer-events-none"
+          aria-hidden="true"
+          className={`absolute inset-x-0 top-0 w-full ${isReducedMotion ? 'h-screen' : 'h-full'} object-cover z-0 pointer-events-none`}
         />
 
         {/* Fallback Static Poster while initial frame loads */}
         {!initialLoaded && (
           <div
-            className="absolute inset-0 bg-cover bg-center z-0 transition-opacity duration-700"
+            className={`absolute inset-x-0 top-0 ${isReducedMotion ? 'h-screen' : 'h-full'} bg-cover bg-center z-0 transition-opacity duration-700`}
             style={{ backgroundImage: "url('/images/cinematic-frames/poster-blur.webp')" }}
           />
         )}
@@ -517,8 +451,8 @@ export default function CinematicScrollHero() {
             STAGE 1: Balcony Glass Railings & Villa Exterior (Frames 0 to 18)
             ═══════════════════════════════════════════════════════════════════════════ */}
         <div
-          ref={textStage1Ref}
-          className="relative z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-24 sm:pt-32 lg:pt-36 pb-8 w-full flex-1 flex flex-col justify-center"
+          ref={(el) => (stageRefs.current[0] = el)}
+          className={`relative z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-24 sm:pt-32 lg:pt-36 pb-8 w-full flex-1 flex flex-col justify-center${isReducedMotion ? ' min-h-screen' : ''}`}
         >
           <div className="max-w-2xl">
             {/* Royal Blue Eyebrow Badge */}
@@ -531,9 +465,9 @@ export default function CinematicScrollHero() {
 
             {/* Headline */}
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white tracking-tight leading-[1.08] drop-shadow-md">
-              Balcony Glass Railings & <br />
+              Balcony Glass Railings <br />
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-300 via-sky-200 to-white">
-                Architectural Balustrades.
+                &amp; Architectural Balustrades.
               </span>
             </h1>
 
@@ -556,9 +490,9 @@ export default function CinematicScrollHero() {
             </div>
 
             {/* Action Buttons */}
-            <div className="mt-7 flex flex-wrap items-center gap-3.5">
+            <div ref={(el) => (actionRefs.current[0] = el)} className="mt-7 flex flex-wrap items-center gap-3.5">
               <Link
-                href="/products/glass-railings"
+                href="/products/railing-balustrade-glass"
                 className="bg-gradient-to-r from-blue-700 via-blue-600 to-indigo-600 hover:from-blue-600 hover:to-blue-500 text-white px-7 py-3.5 rounded-full font-bold text-sm inline-flex items-center gap-2.5 shadow-lg shadow-blue-700/40 hover:-translate-y-0.5 transition-all duration-200 ease-out group"
               >
                 <span>View Railing Specs</span>
@@ -592,10 +526,10 @@ export default function CinematicScrollHero() {
             STAGE 2: Architectural Glass Profiles (Frames 19 to 36)
             ═══════════════════════════════════════════════════════════════════════════ */}
         <div
-          ref={textStage2Ref}
-          className="absolute inset-x-0 top-1/2 -translate-y-1/2 z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pointer-events-none opacity-0"
+          ref={(el) => (stageRefs.current[1] = el)}
+          className={stageWrapClass(isReducedMotion)}
         >
-          <div className="max-w-2xl p-6 sm:p-8 rounded-3xl bg-slate-950/85 backdrop-blur-2xl border border-blue-500/40 shadow-[0_0_35px_rgba(29,78,216,0.3)] text-white relative overflow-hidden">
+          <div className="w-full max-w-2xl p-5 sm:p-8 rounded-3xl bg-slate-950/85 backdrop-blur-2xl border border-blue-500/40 shadow-[0_0_35px_rgba(29,78,216,0.3)] text-white relative overflow-hidden">
             <div className="absolute inset-x-0 top-0 h-[2px] bg-gradient-to-r from-transparent via-blue-500 to-transparent" />
 
             <div className="flex items-center justify-between gap-3 mb-3">
@@ -635,10 +569,14 @@ export default function CinematicScrollHero() {
               </ul>
             </div>
 
-            <div className="mt-5 flex items-center justify-between pt-3 border-t border-white/10 pointer-events-auto">
+            <div
+              ref={(el) => (actionRefs.current[1] = el)}
+              inert={!isReducedMotion}
+              className="mt-5 flex items-center justify-between pt-3 border-t border-white/10 pointer-events-auto"
+            >
               <Link
                 href="/services"
-                className="inline-flex items-center gap-2 text-xs font-bold text-blue-300 hover:text-white transition-colors"
+                className="inline-flex items-center gap-2 py-2 text-xs font-bold text-blue-300 hover:text-white transition-colors"
               >
                 <span>View Hardware & Profile Options</span>
                 <ExternalLink className="w-3.5 h-3.5" />
@@ -649,7 +587,7 @@ export default function CinematicScrollHero() {
                 )}`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-xs font-bold text-emerald-400 hover:text-emerald-300 transition-colors flex items-center gap-1"
+                className="py-2 text-xs font-bold text-emerald-400 hover:text-emerald-300 transition-colors flex items-center gap-1"
               >
                 <MessageSquare className="w-3.5 h-3.5" />
                 <span>Enquire Profiles</span>
@@ -662,10 +600,10 @@ export default function CinematicScrollHero() {
             STAGE 3: Floating Staircase Glass Balustrades (Frames 37 to 56)
             ═══════════════════════════════════════════════════════════════════════════ */}
         <div
-          ref={textStage3Ref}
-          className="absolute inset-x-0 top-1/2 -translate-y-1/2 z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pointer-events-none opacity-0"
+          ref={(el) => (stageRefs.current[2] = el)}
+          className={stageWrapClass(isReducedMotion)}
         >
-          <div className="max-w-2xl p-6 sm:p-8 rounded-3xl bg-slate-950/85 backdrop-blur-2xl border border-blue-500/40 shadow-[0_0_35px_rgba(29,78,216,0.3)] text-white relative overflow-hidden">
+          <div className="w-full max-w-2xl p-5 sm:p-8 rounded-3xl bg-slate-950/85 backdrop-blur-2xl border border-blue-500/40 shadow-[0_0_35px_rgba(29,78,216,0.3)] text-white relative overflow-hidden">
             <div className="absolute inset-x-0 top-0 h-[2px] bg-gradient-to-r from-transparent via-blue-500 to-transparent" />
 
             <div className="flex items-center justify-between gap-3 mb-3">
@@ -705,10 +643,14 @@ export default function CinematicScrollHero() {
               </ul>
             </div>
 
-            <div className="mt-5 flex items-center justify-between pt-3 border-t border-white/10 pointer-events-auto">
+            <div
+              ref={(el) => (actionRefs.current[2] = el)}
+              inert={!isReducedMotion}
+              className="mt-5 flex items-center justify-between pt-3 border-t border-white/10 pointer-events-auto"
+            >
               <Link
-                href="/products/glass-railings"
-                className="inline-flex items-center gap-2 text-xs font-bold text-blue-300 hover:text-white transition-colors"
+                href="/products/railing-balustrade-glass"
+                className="inline-flex items-center gap-2 py-2 text-xs font-bold text-blue-300 hover:text-white transition-colors"
               >
                 <span>View Staircase Balustrades</span>
                 <ExternalLink className="w-3.5 h-3.5" />
@@ -719,7 +661,7 @@ export default function CinematicScrollHero() {
                 )}`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-xs font-bold text-emerald-400 hover:text-emerald-300 transition-colors flex items-center gap-1"
+                className="py-2 text-xs font-bold text-emerald-400 hover:text-emerald-300 transition-colors flex items-center gap-1"
               >
                 <MessageSquare className="w-3.5 h-3.5" />
                 <span>Enquire Specs</span>
@@ -732,10 +674,10 @@ export default function CinematicScrollHero() {
             STAGE 4: Frameless Acoustic Glass Partitions (Frames 57 to 72)
             ═══════════════════════════════════════════════════════════════════════════ */}
         <div
-          ref={textStage4Ref}
-          className="absolute inset-x-0 top-1/2 -translate-y-1/2 z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pointer-events-none opacity-0"
+          ref={(el) => (stageRefs.current[3] = el)}
+          className={stageWrapClass(isReducedMotion)}
         >
-          <div className="max-w-2xl p-6 sm:p-8 rounded-3xl bg-slate-950/85 backdrop-blur-2xl border border-blue-500/40 shadow-[0_0_35px_rgba(29,78,216,0.3)] text-white relative overflow-hidden">
+          <div className="w-full max-w-2xl p-5 sm:p-8 rounded-3xl bg-slate-950/85 backdrop-blur-2xl border border-blue-500/40 shadow-[0_0_35px_rgba(29,78,216,0.3)] text-white relative overflow-hidden">
             <div className="absolute inset-x-0 top-0 h-[2px] bg-gradient-to-r from-transparent via-blue-500 to-transparent" />
 
             <div className="flex items-center justify-between gap-3 mb-3">
@@ -775,10 +717,14 @@ export default function CinematicScrollHero() {
               </ul>
             </div>
 
-            <div className="mt-5 flex items-center justify-between pt-3 border-t border-white/10 pointer-events-auto">
+            <div
+              ref={(el) => (actionRefs.current[3] = el)}
+              inert={!isReducedMotion}
+              className="mt-5 flex items-center justify-between pt-3 border-t border-white/10 pointer-events-auto"
+            >
               <Link
-                href="/products/glass-partitions"
-                className="inline-flex items-center gap-2 text-xs font-bold text-blue-300 hover:text-white transition-colors"
+                href="/products/slim-glass-partitions"
+                className="inline-flex items-center gap-2 py-2 text-xs font-bold text-blue-300 hover:text-white transition-colors"
               >
                 <span>View Partition Systems</span>
                 <ExternalLink className="w-3.5 h-3.5" />
@@ -789,7 +735,7 @@ export default function CinematicScrollHero() {
                 )}`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-xs font-bold text-emerald-400 hover:text-emerald-300 transition-colors flex items-center gap-1"
+                className="py-2 text-xs font-bold text-emerald-400 hover:text-emerald-300 transition-colors flex items-center gap-1"
               >
                 <MessageSquare className="w-3.5 h-3.5" />
                 <span>Enquire Specs</span>
@@ -802,10 +748,10 @@ export default function CinematicScrollHero() {
             STAGE 5: Smart LED Mirrors & Bathroom Suite (Frames 73 to 94)
             ═══════════════════════════════════════════════════════════════════════════ */}
         <div
-          ref={textStage5Ref}
-          className="absolute inset-x-0 top-1/2 -translate-y-1/2 z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pointer-events-none opacity-0"
+          ref={(el) => (stageRefs.current[4] = el)}
+          className={stageWrapClass(isReducedMotion)}
         >
-          <div className="max-w-2xl p-6 sm:p-8 rounded-3xl bg-slate-950/85 backdrop-blur-2xl border border-blue-500/40 shadow-[0_0_35px_rgba(29,78,216,0.3)] text-white relative overflow-hidden">
+          <div className="w-full max-w-2xl p-5 sm:p-8 rounded-3xl bg-slate-950/85 backdrop-blur-2xl border border-blue-500/40 shadow-[0_0_35px_rgba(29,78,216,0.3)] text-white relative overflow-hidden">
             <div className="absolute inset-x-0 top-0 h-[2px] bg-gradient-to-r from-transparent via-blue-500 to-transparent" />
 
             <div className="flex items-center justify-between gap-3 mb-3">
@@ -848,10 +794,14 @@ export default function CinematicScrollHero() {
               </ul>
             </div>
 
-            <div className="mt-5 flex items-center justify-between pt-3 border-t border-white/10 pointer-events-auto">
+            <div
+              ref={(el) => (actionRefs.current[4] = el)}
+              inert={!isReducedMotion}
+              className="mt-5 flex items-center justify-between pt-3 border-t border-white/10 pointer-events-auto"
+            >
               <Link
                 href="/products/mirrors-led-mirrors"
-                className="inline-flex items-center gap-2 text-xs font-bold text-blue-300 hover:text-white transition-colors"
+                className="inline-flex items-center gap-2 py-2 text-xs font-bold text-blue-300 hover:text-white transition-colors"
               >
                 <span>View LED Mirror Catalogue</span>
                 <ExternalLink className="w-3.5 h-3.5" />
@@ -862,7 +812,7 @@ export default function CinematicScrollHero() {
                 )}`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-xs font-bold text-emerald-400 hover:text-emerald-300 transition-colors flex items-center gap-1"
+                className="py-2 text-xs font-bold text-emerald-400 hover:text-emerald-300 transition-colors flex items-center gap-1"
               >
                 <MessageSquare className="w-3.5 h-3.5" />
                 <span>Enquire LED Mirrors</span>
@@ -875,10 +825,10 @@ export default function CinematicScrollHero() {
             STAGE 6: "Engineered Glass for Every Application" (Frames 95 to 119)
             ═══════════════════════════════════════════════════════════════════════════ */}
         <div
-          ref={textStage6Ref}
-          className="absolute inset-x-0 top-1/2 -translate-y-1/2 z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pointer-events-none opacity-0"
+          ref={(el) => (stageRefs.current[5] = el)}
+          className={stageWrapClass(isReducedMotion)}
         >
-          <div className="max-w-2xl p-6 sm:p-8 rounded-3xl bg-slate-950/90 backdrop-blur-2xl border border-blue-500/50 shadow-[0_0_45px_rgba(29,78,216,0.35)] text-white relative overflow-hidden">
+          <div className="w-full max-w-2xl p-5 sm:p-8 rounded-3xl bg-slate-950/90 backdrop-blur-2xl border border-blue-500/50 shadow-[0_0_45px_rgba(29,78,216,0.35)] text-white relative overflow-hidden">
             <div className="absolute inset-x-0 top-0 h-[2px] bg-gradient-to-r from-transparent via-blue-500 to-transparent" />
 
             <div className="flex items-center justify-between gap-3 mb-3">
@@ -923,7 +873,11 @@ export default function CinematicScrollHero() {
             </div>
 
             {/* Action Buttons */}
-            <div className="mt-6 flex flex-wrap items-center gap-3 pt-3 border-t border-white/10 pointer-events-auto">
+            <div
+              ref={(el) => (actionRefs.current[5] = el)}
+              inert={!isReducedMotion}
+              className="mt-6 flex flex-wrap items-center gap-3 pt-3 border-t border-white/10 pointer-events-auto"
+            >
               <Link
                 href="/products"
                 className="bg-gradient-to-r from-blue-700 via-blue-600 to-indigo-600 hover:from-blue-600 hover:to-blue-500 text-white px-6 py-3 rounded-full font-bold text-xs inline-flex items-center gap-2 shadow-lg shadow-blue-700/40 transition-all hover:-translate-y-0.5"
@@ -982,6 +936,9 @@ export default function CinematicScrollHero() {
           )}
         </div>
       </div>
+
+      {/* Skip-link target: the very end of the showcase */}
+      <div id="hero-end" tabIndex={-1} className="absolute inset-x-0 bottom-0 h-px outline-none" />
     </section>
   );
 }

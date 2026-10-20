@@ -3,7 +3,8 @@ import { ArrowRight, Home, Phone } from 'lucide-react';
 import { COMPANY } from '@/lib/constants';
 
 export const metadata = {
-  title: 'Page Not Found | Jangid Tuff Glasses',
+  title: 'Page Not Found',
+  robots: { index: false, follow: false },
 };
 
 export default function NotFound() {

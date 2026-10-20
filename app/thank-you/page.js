@@ -3,8 +3,10 @@ import { CheckCircle2, ArrowRight, MessageSquare, Phone } from 'lucide-react';
 import { COMPANY } from '@/lib/constants';
 
 export const metadata = {
-  title: 'Thank You | Jangid Tuff Glasses',
+  title: 'Thank You',
   description: 'Your inquiry has been received. Our team will contact you shortly.',
+  alternates: { canonical: '/thank-you' },
+  robots: { index: false, follow: false },
 };
 
 export default function ThankYouPage() {

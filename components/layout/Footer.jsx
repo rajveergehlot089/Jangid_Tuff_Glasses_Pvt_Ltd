@@ -68,9 +68,9 @@ export default function Footer() {
 
           {/* Column 2 — Quick Links */}
           <div>
-            <h3 className="text-xs font-bold text-white uppercase tracking-[0.2em] mb-5">
+            <h2 className="text-xs font-bold text-white uppercase tracking-[0.2em] mb-5">
               Explore Pages
-            </h3>
+            </h2>
             <ul className="space-y-3" role="list">
               {quickLinks.map((link) => (
                 <li key={link.href}>
@@ -95,9 +95,9 @@ export default function Footer() {
 
           {/* Column 3 — Products */}
           <div>
-            <h3 className="text-xs font-bold text-white uppercase tracking-[0.2em] mb-5">
+            <h2 className="text-xs font-bold text-white uppercase tracking-[0.2em] mb-5">
               Glass Solutions
-            </h3>
+            </h2>
             <ul className="space-y-3" role="list">
               {productLinks.map((link) => (
                 <li key={link.href}>
@@ -114,9 +114,9 @@ export default function Footer() {
 
           {/* Column 4 — Contact */}
           <div>
-            <h3 className="text-xs font-bold text-white uppercase tracking-[0.2em] mb-5">
+            <h2 className="text-xs font-bold text-white uppercase tracking-[0.2em] mb-5">
               Jodhpur Workshop
-            </h3>
+            </h2>
             <ul className="space-y-3.5 text-xs sm:text-sm text-slate-400" role="list">
               <li>
                 <a

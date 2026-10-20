@@ -34,6 +34,7 @@ export default function ContactQuoteForm({ initialProduct = '' }) {
 
   const [toastMessage, setToastMessage] = useState('');
   const [showToast, setShowToast] = useState(false);
+  const [toastVariant, setToastVariant] = useState('success');
   const [popupBlockedUrl, setPopupBlockedUrl] = useState('');
   const [formErrors, setFormErrors] = useState({});
 
@@ -78,10 +79,15 @@ export default function ContactQuoteForm({ initialProduct = '' }) {
     const errors = validate();
     if (Object.keys(errors).length > 0) {
       setFormErrors(errors);
+      setToastVariant('error');
       setToastMessage('Please complete all required fields correctly.');
       setShowToast(true);
+      // Move focus to the first field that needs attention so keyboard and screen-reader users land on it.
+      const firstInvalid = ['name', 'phone', 'email', 'details', 'consent'].find((key) => errors[key]);
+      if (firstInvalid) document.getElementById(firstInvalid)?.focus();
       return;
     }
+    setToastVariant('success');
 
     // Track submission with non-sensitive metadata only (category & timeline, NO PII)
     trackQuoteFormSubmit(formData.product, formData.timeline);
@@ -109,6 +115,7 @@ export default function ContactQuoteForm({ initialProduct = '' }) {
     if (!newWindow || newWindow.closed || typeof newWindow.closed === 'undefined') {
       // Browser blocked popup - offer clear fallback link
       setPopupBlockedUrl(whatsappUrl);
+      setToastVariant('error');
       setToastMessage('Popup window blocked. Click the direct link below to launch WhatsApp.');
     } else {
       setPopupBlockedUrl('');
@@ -133,6 +140,7 @@ export default function ContactQuoteForm({ initialProduct = '' }) {
             value={formData.name}
             onChange={handleChange}
             placeholder="e.g. Vikram Jangid"
+            aria-required="true"
             aria-invalid={!!formErrors.name}
             aria-describedby={formErrors.name ? 'name-error' : undefined}
             className={`w-full rounded-xl border bg-white px-4 py-3 text-sm outline-none transition-all duration-200 ease-out ${
@@ -140,7 +148,7 @@ export default function ContactQuoteForm({ initialProduct = '' }) {
             }`}
           />
           {formErrors.name && (
-            <p id="name-error" className="text-red-500 text-xs mt-1 font-medium">
+            <p id="name-error" role="alert" className="text-red-500 text-xs mt-1 font-medium">
               {formErrors.name}
             </p>
           )}
@@ -158,6 +166,7 @@ export default function ContactQuoteForm({ initialProduct = '' }) {
             value={formData.phone}
             onChange={handleChange}
             placeholder="+91 81073 88855"
+            aria-required="true"
             aria-invalid={!!formErrors.phone}
             aria-describedby={formErrors.phone ? 'phone-error' : undefined}
             className={`w-full rounded-xl border bg-white px-4 py-3 text-sm outline-none transition-all duration-200 ease-out ${
@@ -165,7 +174,7 @@ export default function ContactQuoteForm({ initialProduct = '' }) {
             }`}
           />
           {formErrors.phone && (
-            <p id="phone-error" className="text-red-500 text-xs mt-1 font-medium">
+            <p id="phone-error" role="alert" className="text-red-500 text-xs mt-1 font-medium">
               {formErrors.phone}
             </p>
           )}
@@ -190,7 +199,7 @@ export default function ContactQuoteForm({ initialProduct = '' }) {
             }`}
           />
           {formErrors.email && (
-            <p id="email-error" className="text-red-500 text-xs mt-1 font-medium">
+            <p id="email-error" role="alert" className="text-red-500 text-xs mt-1 font-medium">
               {formErrors.email}
             </p>
           )}
@@ -199,7 +208,7 @@ export default function ContactQuoteForm({ initialProduct = '' }) {
         {/* Product Select */}
         <div>
           <label htmlFor="product" className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5">
-            Product / Category *
+            Product / Category
           </label>
           <select
             id="product"
@@ -296,6 +305,7 @@ export default function ContactQuoteForm({ initialProduct = '' }) {
             rows="4"
             value={formData.details}
             onChange={handleChange}
+            aria-required="true"
             aria-invalid={!!formErrors.details}
             aria-describedby={formErrors.details ? 'details-error' : undefined}
             placeholder="Describe the application, required glass thickness (e.g. 8mm, 10mm, 12mm), cutouts, hardware requirements, or whether installation guidance is needed..."
@@ -304,7 +314,7 @@ export default function ContactQuoteForm({ initialProduct = '' }) {
             }`}
           />
           {formErrors.details && (
-            <p id="details-error" className="text-red-500 text-xs mt-1 font-medium">
+            <p id="details-error" role="alert" className="text-red-500 text-xs mt-1 font-medium">
               {formErrors.details}
             </p>
           )}
@@ -319,16 +329,17 @@ export default function ContactQuoteForm({ initialProduct = '' }) {
               type="checkbox"
               checked={formData.consent}
               onChange={handleChange}
+              aria-required="true"
               aria-invalid={!!formErrors.consent}
               aria-describedby={formErrors.consent ? 'consent-error' : undefined}
-              className="mt-1 rounded text-[#0878d1] focus:ring-[#0878d1] cursor-pointer transition-colors duration-200 ease-out"
+              className="mt-0.5 h-5 w-5 shrink-0 rounded text-[#0878d1] focus:ring-[#0878d1] cursor-pointer transition-colors duration-200 ease-out"
             />
             <label htmlFor="consent" className="text-xs text-slate-600 leading-normal cursor-pointer select-none">
               I consent to sharing these details to receive a project assessment and quote from Jangid Tuff Glasses Private Limited.
             </label>
           </div>
           {formErrors.consent && (
-            <p id="consent-error" className="text-red-500 text-xs mt-1.5 font-medium pl-6">
+            <p id="consent-error" role="alert" className="text-red-500 text-xs mt-1.5 font-medium pl-6">
               {formErrors.consent}
             </p>
           )}
@@ -368,7 +379,7 @@ export default function ContactQuoteForm({ initialProduct = '' }) {
         </div>
       </form>
 
-      <Toast message={toastMessage} isVisible={showToast} onClose={() => setShowToast(false)} />
+      <Toast message={toastMessage} isVisible={showToast} variant={toastVariant} onClose={() => setShowToast(false)} />
     </>
   );
 }

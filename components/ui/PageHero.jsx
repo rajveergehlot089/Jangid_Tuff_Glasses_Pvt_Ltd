@@ -67,7 +67,7 @@ export default function PageHero({
       <div className="absolute inset-0 z-0">
         <Image
           src={backgroundImage}
-          alt={title}
+          alt=""
           fill
           priority
           sizes="100vw"

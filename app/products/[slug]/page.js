@@ -18,7 +18,8 @@ export async function generateMetadata({ params }) {
 
   if (!product) {
     return {
-      title: 'Product Not Found | Jangid Tuff Glasses',
+      title: 'Product Not Found',
+      robots: { index: false, follow: false },
     };
   }
 
@@ -124,7 +125,7 @@ export default async function ProductDetailPage({ params }) {
       {/* Breadcrumbs */}
       <div className="bg-[#f6f8fa] border-b border-slate-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3.5">
-          <nav className="flex items-center gap-2 text-xs text-slate-500 font-medium">
+          <nav aria-label="Breadcrumb" className="flex items-center gap-2 text-xs text-slate-500 font-medium">
             <Link href="/" className="hover:text-[#0878d1] transition">
               Home
             </Link>

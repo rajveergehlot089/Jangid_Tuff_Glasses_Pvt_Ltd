@@ -89,6 +89,7 @@ export default function ServiceCard({ service, index = 0 }) {
       {/* CTA Button with gradient hover */}
       <Link
         href={href}
+        aria-label={`Enquire About Service: ${title}`}
         className="relative z-20 w-full py-3 px-4 rounded-xl bg-slate-50 group-hover:bg-gradient-to-r group-hover:from-[#0878d1] group-hover:to-sky-600 group-hover:text-white hover:-translate-y-0.5 text-[#08233f] text-xs font-bold text-center transition-all duration-200 ease-out flex items-center justify-center gap-2 border border-slate-200/80 group-hover:border-transparent group-hover:shadow-md"
       >
         <span>Enquire About Service</span>
