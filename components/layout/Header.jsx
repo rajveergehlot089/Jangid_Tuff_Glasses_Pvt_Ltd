@@ -139,7 +139,7 @@ export default function Header() {
                   onBlur={() => setHovered(null)}
                   aria-current={active ? 'page' : undefined}
                   className={`relative px-4 py-2.5 text-[13px] font-medium rounded-full transition-colors duration-200 ${
-                    active || hovered === link.href ? 'text-white' : 'text-white/65'
+                    active && !hovered ? 'text-[#fbf3e6] font-semibold' : hovered === link.href ? 'text-white' : 'text-white/65'
                   }`}
                 >
                   {pillTarget === link.href && (

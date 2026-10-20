@@ -298,12 +298,28 @@ a, button, input, select, textarea {
 }
 :is(.btn-royal, .btn-ghost-light, .btn-outline-ink):active { scale: 0.95; transition-duration: 120ms; }
 
+/* Primary action: walnut wood (real grain texture, varnish sheen) with ivory text and gold details */
 .btn-royal {
-  color: #fff;
-  background: linear-gradient(180deg, rgba(52, 128, 245, 0.94), rgba(11, 87, 208, 0.94) 55%, rgba(7, 62, 160, 0.96));
-  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.55), inset 0 -10px 18px -8px rgba(2, 18, 60, 0.6), 0 12px 28px -12px rgba(11, 87, 208, 0.85);
+  --wood-grain: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='80'%3E%3Cfilter id='w'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.011 0.32' numOctaves='3' seed='11'/%3E%3CfeColorMatrix values='0 0 0 0 0.16 0 0 0 0 0.09 0 0 0 0 0.04 0 0 0 0.6 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23w)'/%3E%3C/svg%3E");
+  color: #fbf3e6;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  text-shadow: 0 1px 1px rgba(30, 16, 6, 0.5);
+  background:
+    linear-gradient(180deg, rgba(255, 236, 210, 0.22) 0%, rgba(255, 236, 210, 0.04) 42%, rgba(0, 0, 0, 0.22) 100%),
+    var(--wood-grain) 0 0 / 240px 80px,
+    linear-gradient(95deg, #7a5539 0%, #66452f 38%, #735039 70%, #5f402c 100%);
+  box-shadow: inset 0 1px 0 rgba(255, 230, 195, 0.35), inset 0 -6px 12px -8px rgba(20, 10, 4, 0.6), 0 0 0 1px rgba(201, 164, 106, 0.55), 0 12px 28px -14px rgba(0, 0, 0, 0.7);
 }
-.btn-royal:hover { box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.65), inset 0 -10px 18px -8px rgba(2, 18, 60, 0.5), 0 16px 36px -12px rgba(30, 110, 240, 0.95); }
+.btn-royal svg { color: var(--gold-bright); }
+.btn-royal:hover {
+  background:
+    linear-gradient(180deg, rgba(255, 236, 210, 0.28) 0%, rgba(255, 236, 210, 0.06) 42%, rgba(0, 0, 0, 0.18) 100%),
+    var(--wood-grain) 0 0 / 240px 80px,
+    linear-gradient(95deg, #86603f 0%, #714d35 38%, #7f5940 70%, #6a4731 100%);
+  box-shadow: inset 0 1px 0 rgba(255, 230, 195, 0.45), inset 0 -6px 12px -8px rgba(20, 10, 4, 0.5), 0 0 0 1px rgba(226, 194, 127, 0.9), 0 16px 36px -12px rgba(201, 164, 106, 0.5);
+}
+.btn-royal::before { background: radial-gradient(140px circle at var(--mx, 50%) var(--my, 0%), rgba(255, 225, 180, 0.25), transparent 62%); }
 .btn-ghost-light {
   color: #fff;
   background: rgba(255, 255, 255, 0.1);
@@ -645,8 +661,11 @@ a, button, input, select, textarea {
 button.capsule:active, a.capsule:active { scale: 0.92; transition-duration: 120ms; }
 /* Active nav pill: tinted liquid glass */
 .liquid-pill {
-  background: linear-gradient(180deg, rgba(52, 128, 245, 0.9), rgba(11, 87, 208, 0.9));
-  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.5), inset 0 -6px 12px -6px rgba(2, 18, 60, 0.6), 0 8px 22px -8px rgba(11, 87, 208, 0.9);
+  background:
+    linear-gradient(180deg, rgba(255, 236, 210, 0.22), rgba(0, 0, 0, 0.2)),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='80'%3E%3Cfilter id='w'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.011 0.32' numOctaves='3' seed='11'/%3E%3CfeColorMatrix values='0 0 0 0 0.16 0 0 0 0 0.09 0 0 0 0 0.04 0 0 0 0.6 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23w)'/%3E%3C/svg%3E") 0 0 / 240px 80px,
+    linear-gradient(95deg, #7a5539, #66452f 50%, #5f402c);
+  box-shadow: inset 0 1px 0 rgba(255, 230, 195, 0.35), 0 0 0 1px rgba(201, 164, 106, 0.6), 0 8px 22px -10px rgba(0, 0, 0, 0.6);
 }
 .bg-white\/12 { background-color: rgba(255, 255, 255, 0.12); }
 /* The header floats over content, so pages without a photo hero need room at the top. */
