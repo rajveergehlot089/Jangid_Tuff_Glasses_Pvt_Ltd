@@ -129,11 +129,11 @@ export default function HomePage() {
                 className="object-cover"
               />
             </div>
-            {/* Genuine factory photo is small, so it is shown at near-native size as a verified inset */}
+            {/* Genuine factory photo, shown as a verified inset */}
             <figure className="relative mt-4 sm:mt-0 sm:absolute sm:-bottom-12 sm:-right-6 flex items-center gap-4 rounded-[var(--radius-card)] bg-[var(--ink)] text-white p-3 pr-6 sm:max-w-sm shadow-2xl">
               <span className="relative w-20 h-24 shrink-0 overflow-hidden rounded-xl">
                 <Image
-                  src="/images/real/factory-front-original.jpg"
+                  src="/images/real/factory-front-boranada-hd.webp"
                   alt="Authentic photograph of Jangid Tuff Glasses Private Limited Factory in Boranada Jodhpur"
                   fill
                   sizes="80px"

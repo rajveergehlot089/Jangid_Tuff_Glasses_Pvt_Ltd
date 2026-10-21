@@ -100,11 +100,11 @@ export default function AboutPage() {
           <div className="relative">
             <div className="rounded-3xl overflow-hidden shadow-2xl border border-slate-200/80 aspect-[4/3] relative group bg-slate-100">
               <Image
-                src="/images/real/factory-front-original.jpg"
+                src="/images/real/factory-front-boranada-hd.webp"
                 alt="Authentic photograph of Jangid Tuff Glasses Private Limited factory in Boranada Jodhpur"
                 fill
                 sizes="(max-width: 1024px) 100vw, 50vw"
-                className="object-cover object-center group-hover:scale-105 transition-transform duration-700 ease-out"
+                className="object-cover object-[50%_55%] group-hover:scale-105 transition-transform duration-700 ease-out"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-[#041323]/80 via-[#041323]/15 to-transparent" />
               <div className="absolute top-4 left-4 inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#08233f]/90 backdrop-blur-md text-white text-[11px] font-bold border border-white/20">
@@ -136,6 +136,37 @@ export default function AboutPage() {
               { label: 'Districts served from Jodhpur', to: 4, suffix: '+' },
             ]}
           />
+        </div>
+      </section>
+
+      {/* ─── Opening day: ribbon-cutting at the Boranada plant ─── */}
+      <section className="py-16 sm:py-24" aria-label="Plant Inauguration">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 grid md:grid-cols-[0.9fr_1.1fr] gap-10 lg:gap-16 items-center">
+          <figure className="relative rounded-3xl overflow-hidden aspect-[4/5] shadow-2xl border border-white/10">
+            <Image
+              src="/images/real/factory-inauguration-ribbon.webp"
+              alt="Ribbon-cutting ceremony at the opening of the Jangid Tuff Glasses plant in Boranada, Jodhpur"
+              fill
+              sizes="(max-width: 768px) 100vw, 45vw"
+              className="object-cover object-[50%_35%]"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-[#041323]/70 via-transparent to-transparent" />
+            <figcaption className="absolute bottom-4 left-4 right-4 text-xs font-semibold text-white/90">
+              Ribbon-cutting at our Boranada plant, Jodhpur
+            </figcaption>
+          </figure>
+          <div>
+            <span className="text-[#0878d1] font-bold text-xs uppercase tracking-[0.25em]">Opening Day</span>
+            <h2 className="text-3xl sm:text-4xl font-extrabold text-[#08233f] mt-3 leading-tight tracking-tight">
+              From a family glass shop to our own factory
+            </h2>
+            <p className="text-slate-600 leading-relaxed mt-6 text-sm sm:text-base">
+              The ribbon-cutting at our Boranada plant marked the step from the <strong>Jangid Glass Co.</strong> family business to <strong>{COMPANY.name}</strong>, with our own cutting, processing and tempering under one roof in Jodhpur.
+            </p>
+            <p className="text-slate-600 leading-relaxed mt-4 text-sm sm:text-base">
+              Family, partners and well-wishers from the trade joined us for the opening. The same people-first way of working carries into every order we take today.
+            </p>
+          </div>
         </div>
       </section>
 
