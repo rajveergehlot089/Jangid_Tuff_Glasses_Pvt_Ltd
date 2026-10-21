@@ -19,7 +19,8 @@ import {
 } from 'lucide-react';
 import PageHero from '@/components/ui/PageHero';
 import CTABanner from '@/components/ui/CTABanner';
-import { COMPANY } from '@/lib/constants';
+import { COMPANY, PRODUCT_CATEGORIES } from '@/lib/constants';
+import StatsBand from '@/components/ui/StatsBand';
 import { generateMetadata as genMeta } from '@/lib/seo';
 import DarkCanvas from '@/components/layout/DarkCanvas';
 
@@ -121,6 +122,20 @@ export default function AboutPage() {
               </p>
             </div>
           </div>
+        </div>
+      </section>
+
+      {/* Key figures (verified: product range, company register, service area) */}
+      <section className="py-10 sm:py-14" aria-label="Key Figures">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <StatsBand
+            stats={[
+              { label: 'Product categories', to: PRODUCT_CATEGORIES.length },
+              { label: 'Toughened glass thickness', text: '5–19', suffix: ' mm' },
+              { label: 'Incorporated, ROC Jaipur', from: 2015, to: 2025 },
+              { label: 'Districts served from Jodhpur', to: 4, suffix: '+' },
+            ]}
+          />
         </div>
       </section>
 

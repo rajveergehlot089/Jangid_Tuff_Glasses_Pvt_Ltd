@@ -3,7 +3,7 @@ import path from 'path';
 import sharp from 'sharp';
 
 const ROOT_DIR = process.cwd();
-const NEW_IMAGES_DIR = path.join(ROOT_DIR, 'public', 'new images');
+const NEW_IMAGES_DIR = path.join(ROOT_DIR, 'assets', 'source-images', 'new images');
 const REAL_IMAGES_DIR = path.join(ROOT_DIR, 'public', 'images', 'real');
 const OPT_DIR = path.join(ROOT_DIR, 'public', 'images', 'optimized');
 

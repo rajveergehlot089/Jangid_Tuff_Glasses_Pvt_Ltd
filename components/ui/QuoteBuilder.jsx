@@ -6,6 +6,7 @@ import { Plus, Trash2, MessageSquare, Phone, Ruler } from 'lucide-react';
 import { COMPANY, PRODUCT_CATEGORIES } from '@/lib/constants';
 import Reveal from '@/components/ui/Reveal';
 import GlassSelect from '@/components/ui/GlassSelect';
+import { trackEvent } from '@/lib/analytics';
 
 const THICKNESS = ['5mm', '6mm', '8mm', '10mm', '12mm', '15mm', '19mm'];
 const PRODUCT_NAMES = PRODUCT_CATEGORIES.map((p) => p.name);
@@ -14,7 +15,7 @@ const LOOKS = ['Clear', 'Extra clear', 'Frosted', 'Tinted', 'Fluted'];
 const UNITS = { ft: { label: 'feet', toSqFt: 1 }, in: { label: 'inches', toSqFt: 1 / 144 }, mm: { label: 'mm', toSqFt: 1 / 92903.04 } };
 const EASE = [0.16, 1, 0.3, 1];
 
-const newItem = () => ({ id: Math.random().toString(36).slice(2), product: PRODUCT_CATEGORIES[0].name, thickness: '10mm', look: 'Clear', width: '', height: '', qty: 1 });
+const newItem = (product = PRODUCT_CATEGORIES[0].name) => ({ id: Math.random().toString(36).slice(2), product, thickness: '10mm', look: 'Clear', width: '', height: '', qty: 1 });
 
 function AnimatedNumber({ value }) {
   const mv = useMotionValue(0);
@@ -42,9 +43,9 @@ const inputCls =
  * Lets a visitor list the glass they need, shows the total area instantly, and sends a complete,
  * ready-to-quote enquiry on WhatsApp. No prices are shown: rates are confirmed by the factory.
  */
-export default function QuoteBuilder() {
+export default function QuoteBuilder({ initialProduct } = {}) {
   const uid = useId();
-  const [items, setItems] = useState([newItem()]);
+  const [items, setItems] = useState(() => [newItem(initialProduct)]);
   const [unit, setUnit] = useState('ft');
   const [location, setLocation] = useState('');
 
@@ -66,7 +67,7 @@ export default function QuoteBuilder() {
   }, [items, unit, location, total]); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
-    <div className="grid lg:grid-cols-[1fr_22rem] gap-6 lg:gap-8 items-start">
+    <div className="grid lg:grid-cols-[1fr_22rem] gap-6 lg:gap-8 items-start" data-track="estimate builder">
       <Reveal from="left" className="glass-dark rounded-[var(--radius-card)] p-5 sm:p-7">
         <div className="flex flex-wrap items-center justify-between gap-3 mb-5">
           <span className="inline-flex items-center gap-2 text-sm font-semibold text-white">
@@ -149,7 +150,10 @@ export default function QuoteBuilder() {
 
         <button
           type="button"
-          onClick={() => setItems((l) => [...l, newItem()])}
+          onClick={() => {
+            setItems((l) => [...l, newItem(initialProduct)]);
+            trackEvent('estimate_add_item', { items: items.length + 1 });
+          }}
           className="mt-4 inline-flex items-center gap-2 rounded-full border border-dashed border-white/25 px-4 py-2.5 text-xs font-semibold text-white/80 hover:border-[var(--gold)] hover:text-white transition-colors"
         >
           <Plus className="w-4 h-4" aria-hidden="true" /> Add another item
@@ -177,7 +181,10 @@ export default function QuoteBuilder() {
           target="_blank"
           rel="noopener noreferrer"
           aria-disabled={!ready}
-          onClick={(e) => !ready && e.preventDefault()}
+          onClick={(e) => {
+            if (!ready) return e.preventDefault();
+            trackEvent('estimate_sent', { items: items.length, total_sqft: Math.round(total * 10) / 10, unit, product: items[0]?.product });
+          }}
           className={`btn-royal w-full justify-center mt-6 ${ready ? '' : 'opacity-50 cursor-not-allowed'}`}
           data-magnetic
         >

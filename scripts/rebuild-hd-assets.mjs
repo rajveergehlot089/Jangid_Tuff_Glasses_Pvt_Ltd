@@ -13,7 +13,7 @@ function pairsFrom(script, dir, srcKey, destKey, ext) {
   const text = fs.readFileSync(path.join(ROOT, 'scripts', script), 'utf8');
   const re = new RegExp(`${srcKey}[^'"]*['"]([^'"]+\\.png)['"][\\s\\S]*?${destKey}:\\s*['"]([^'"]+)['"]`, 'g');
   return [...text.matchAll(re)].map(([, src, dest]) => ({
-    src: path.join(ROOT, 'public', ...dir, src),
+    src: path.join(ROOT, dir[0] === 'images' ? 'public' : 'assets/source-images', ...dir, src),
     dest: dest.endsWith('.webp') ? dest : `${dest}${ext}`,
   }));
 }
@@ -55,7 +55,7 @@ const GALLERY_EXTRAS = [
 ];
 
 for (const [src, dest] of GALLERY_EXTRAS) {
-  const info = await sharp(path.join(ROOT, 'public', src))
+  const info = await sharp(path.join(ROOT, 'assets', 'source-images', src))
     .webp({ quality: 92, effort: 6, smartSubsample: true })
     .toFile(path.join(OUT, dest));
   console.log(`${dest}  ${info.width}x${info.height}  ${Math.round(info.size / 1024)}KB`);
@@ -63,7 +63,7 @@ for (const [src, dest] of GALLERY_EXTRAS) {
 
 // Footer poster: the source stacks two banners; split them at the bright divider row.
 {
-  const src = path.join(ROOT, 'public', 'new images', 'Modern Glass Office and Future-Focused Design (1).png');
+  const src = path.join(ROOT, 'assets', 'source-images', 'new images', 'Modern Glass Office and Future-Focused Design (1).png');
   const { data, info } = await sharp(src).greyscale().raw().toBuffer({ resolveWithObject: true });
   let divider = 0;
   let best = 0;

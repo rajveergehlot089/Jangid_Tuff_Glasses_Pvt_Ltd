@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from 'react';
 import Image from 'next/image';
 import { motion, animate, useInView } from 'framer-motion';
 import { MoveHorizontal } from 'lucide-react';
+import { trackEvent } from '@/lib/analytics';
 
 const EASE = [0.16, 1, 0.3, 1];
 const PHOTO = '/images/optimized/partitions-corporate-conference-room.webp';
@@ -43,7 +44,10 @@ export default function FinishPreview() {
           <button
             key={key}
             type="button"
-            onClick={() => setFinish(key)}
+            onClick={() => {
+              setFinish(key);
+              trackEvent('finish_preview', { finish: key });
+            }}
             aria-pressed={finish === key}
             className={`relative px-4 py-2 rounded-full text-xs font-semibold border transition-colors ${
               finish === key ? 'text-[#1c1006] border-transparent' : 'text-white/80 border-white/15 hover:border-white/40'

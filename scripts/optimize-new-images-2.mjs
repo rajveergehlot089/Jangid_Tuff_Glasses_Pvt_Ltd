@@ -2,7 +2,7 @@ import fs from 'fs';
 import path from 'path';
 import { execSync } from 'child_process';
 
-const sourceDir = path.join(process.cwd(), 'public', 'new images 2');
+const sourceDir = path.join(process.cwd(), 'assets', 'source-images', 'new images 2');
 const targetDir = path.join(process.cwd(), 'public', 'images', 'optimized');
 
 if (!fs.existsSync(targetDir)) {

@@ -648,7 +648,6 @@ a, button, input, select, textarea {
 .capsule {
   --mx: 50%;
   --my: 0%;
-  position: relative;
   isolation: isolate;
   border-radius: 999px;
   background: linear-gradient(135deg, rgba(14, 22, 46, 0.72), rgba(6, 11, 26, 0.82));
@@ -658,6 +657,9 @@ a, button, input, select, textarea {
   backdrop-filter: blur(24px) saturate(180%);
   transition: scale 500ms cubic-bezier(0.34, 1.56, 0.64, 1);
 }
+/* Capsules need a positioning context for their glass pseudo-elements, but must not override
+   absolute / fixed placement (unlayered CSS beats Tailwind utilities). */
+.capsule:not(.absolute):not(.fixed):not(.sticky) { position: relative; }
 button.capsule:active, a.capsule:active { scale: 0.92; transition-duration: 120ms; }
 /* Active nav pill: tinted liquid glass */
 .liquid-pill {

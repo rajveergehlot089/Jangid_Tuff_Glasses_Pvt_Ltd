@@ -6,7 +6,7 @@ import sharp from 'sharp';
 
 const ROOT = process.cwd();
 const DIR = path.join(ROOT, 'public', 'images', 'cinematic-frames');
-const SRC = path.join(ROOT, 'public', 'new images', 'cinematic-blue-hour-mansion.png');
+const SRC = path.join(ROOT, 'assets', 'source-images', 'new images', 'cinematic-blue-hour-mansion.png');
 const W = 1280;
 const H = 720;
 const COUNT = 24; // keep in sync with INTRO_FRAMES in CinematicScrollHero.jsx

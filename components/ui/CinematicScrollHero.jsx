@@ -319,12 +319,17 @@ export default function CinematicScrollHero() {
       }
 
       // 2. Load all remaining frames in parallel chunks of 10
+      // Phones and data-saver connections fetch every second frame (half the download, same
+      // sharpness); drawFrame already falls back to the nearest loaded frame in between.
+      const step =
+        window.matchMedia('(max-width: 767px)').matches || navigator.connection?.saveData ? 2 : 1;
       const preloadAll = async () => {
         const chunkSize = 10;
         for (let i = 1; i < TOTAL_FRAMES; i += chunkSize) {
           if (!active) break;
           const chunk = [];
           for (let j = i; j < Math.min(i + chunkSize, TOTAL_FRAMES); j++) {
+            if (j % step !== 0 && j !== TOTAL_FRAMES - 1) continue;
             chunk.push(loadSingleFrame(j));
           }
           await Promise.all(chunk);
