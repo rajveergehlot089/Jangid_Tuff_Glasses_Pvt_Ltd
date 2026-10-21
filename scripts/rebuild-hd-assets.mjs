@@ -12,16 +12,36 @@ const MAX_EDGE = 2400;
 function pairsFrom(script, dir, srcKey, destKey, ext) {
   const text = fs.readFileSync(path.join(ROOT, 'scripts', script), 'utf8');
   const re = new RegExp(`${srcKey}[^'"]*['"]([^'"]+\\.png)['"][\\s\\S]*?${destKey}:\\s*['"]([^'"]+)['"]`, 'g');
-  return [...text.matchAll(re)].map(([, src, dest]) => ({
-    src: path.join(ROOT, dir[0] === 'images' ? 'public' : 'assets/source-images', ...dir, src),
-    dest: dest.endsWith('.webp') ? dest : `${dest}${ext}`,
-  }));
+  return [...text.matchAll(re)].map(([, src, dest]) => {
+    // Real photos live in public/images/real, or in assets/source-images/real-photos once unused.
+    const inPublic = path.join(ROOT, 'public', ...dir, src);
+    const real = fs.existsSync(inPublic) ? inPublic : path.join(ROOT, 'assets', 'source-images', 'real-photos', src);
+    return {
+      src: dir[0] === 'images' ? real : path.join(ROOT, 'assets', 'source-images', ...dir, src),
+      dest: dest.endsWith('.webp') ? dest : `${dest}${ext}`,
+    };
+  });
 }
+
+// "new images 2" (2400px Gemini renders) → optimized names.
+const NEW_IMAGES_2 = [
+  ['Gemini_Generated_Image_ytkezaytkezaytke (1).png', 'hardware-shower-sliding-enclosure.webp'],
+  ['Gemini_Generated_Image_ytkezaytkezaytke (10).png', 'hardware-shower-cubicle-hinge.webp'],
+  ['Gemini_Generated_Image_ytkezaytkezaytke (2).png', 'hardware-slim-partition-profiles.webp'],
+  ['Gemini_Generated_Image_ytkezaytkezaytke (3).png', 'processing-tempering-furnace-line.webp'],
+  ['Gemini_Generated_Image_ytkezaytkezaytke (4).png', 'processing-specialty-glass-finishes.webp'],
+  ['Gemini_Generated_Image_ytkezaytkezaytke (5).png', 'hardware-balustrade-railing-mounts.webp'],
+  ['Gemini_Generated_Image_ytkezaytkezaytke (6).png', 'processing-cnc-edge-polishing.webp'],
+  ['Gemini_Generated_Image_ytkezaytkezaytke (7).png', 'processing-waterjet-hole-drilling.webp'],
+  ['Gemini_Generated_Image_ytkezaytkezaytke (8).png', 'processing-fluted-decorative-glass.webp'],
+  ['Gemini_Generated_Image_ytkezaytkezaytke (9).png', 'hardware-commercial-entrance-doors.webp'],
+  ['Gemini_Generated_Image_ytkezaytkezaytke.png', 'hardware-door-controls-patch-fittings.webp'],
+].map(([src, dest]) => ({ src: path.join(ROOT, 'assets', 'source-images', 'new images 2', src), dest }));
 
 const pairs = [
   ...pairsFrom('prepare-optimized-assets.mjs', ['new images'], 'NEW_IMAGES_DIR,', 'destSlug', '.webp'),
   ...pairsFrom('prepare-optimized-assets.mjs', ['images', 'real'], 'REAL_IMAGES_DIR,', 'destSlug', '.webp'),
-  ...pairsFrom('optimize-new-images-2.mjs', ['new images 2'], 'src:', 'dest', ''),
+  ...NEW_IMAGES_2,
 ];
 
 for (const { src, dest } of pairs) {
