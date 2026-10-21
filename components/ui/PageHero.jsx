@@ -47,8 +47,9 @@ export default function PageHero({
   const ref = useRef(null);
   const { scrollYProgress } = useScroll({ target: ref, offset: ['start start', 'end start'] });
   const bgY = useTransform(scrollYProgress, [0, 1], ['0%', '18%']);
-  const contentY = useTransform(scrollYProgress, [0, 1], ['0%', '30%']);
-  const contentOpacity = useTransform(scrollYProgress, [0, 0.7], [1, 0]);
+  // Small drift and an early fade, so the hero text never slides under the category rail on short phone screens.
+  const contentY = useTransform(scrollYProgress, [0, 1], ['0%', '10%']);
+  const contentOpacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
 
   return (
     <section

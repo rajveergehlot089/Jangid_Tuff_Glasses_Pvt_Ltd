@@ -49,7 +49,7 @@ export default function ProductCard({ product, index = 0 }) {
         )}
 
         <div className="mt-auto pt-6 flex items-center justify-between gap-4">
-          <Link href={`/products/${slug}`} aria-label={`Details: ${name}`} className="link-underline">
+          <Link href={`/products/${slug}`} aria-label={`Details: ${name}`} className="link-underline py-1.5">
             Details
           </Link>
           <Link href={`/contact?product=${slug}#quote`} aria-label={`Quote: ${name}`} className="btn-royal group/btn !py-2.5 !px-4 !text-xs">

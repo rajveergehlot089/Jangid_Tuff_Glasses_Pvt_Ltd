@@ -88,7 +88,7 @@ export default function Lightbox({
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
         transition={{ duration: 0.3 }}
-        className="fixed inset-0 z-[60] flex flex-col bg-[#040812]/95 backdrop-blur-2xl px-3 sm:px-6 pt-4 pb-3"
+        className="fixed inset-0 z-[60] flex flex-col bg-[#040812]/[0.98] backdrop-blur-2xl px-3 sm:px-6 pt-4 pb-3"
         onClick={onClose}
         role="dialog"
         aria-modal="true"
