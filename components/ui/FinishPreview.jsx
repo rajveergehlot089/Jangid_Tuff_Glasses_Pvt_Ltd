@@ -22,27 +22,10 @@ const FINISHES = {
   grey: { label: 'Grey tint', note: 'Cool, calm, reduces glare.', img: 'saturate(0.8)', overlay: 'rgba(28, 34, 42, 0.5)', blend: 'multiply' },
 };
 
-/**
- * Glass panel geometry for partitions-corporate-conference-room.webp.
- *
- * The photo shows a glass partition wall taken from inside the open office.
- * The partition has 3 glass panes separated by thin aluminium mullions:
- *
- *   |  person  |[ pane-1 ]|[m]|[ pane-2 ]|[m]|[   pane-3  ]|
- *   0          8%        27% 29% 31%      50% 52%           97%
- *
- * Top rail: ~6% from top.  Bottom track: ~94% from top.
- *
- * The finish effect is applied ONLY to these three rectangles so the ceiling,
- * floor, aluminium frames and the person outside the glass remain unaffected —
- * making the comparison feel like looking at real glass rather than a filter.
- */
-const PANE_IDS = ['gp1', 'gp2', 'gp3'];
-const PANES = [
-  { x: 0.08, y: 0.06, w: 0.19, h: 0.88 }, // left pane
-  { x: 0.31, y: 0.06, w: 0.19, h: 0.88 }, // centre pane
-  { x: 0.54, y: 0.06, w: 0.43, h: 0.88 }, // right pane (wider — two panels merged)
-];
+// Outline of the glass meeting room in the photo (percent of the frame), traced corner by corner:
+// left wall top, front corner top, right wall top, right wall bottom, front corner bottom, left wall bottom.
+// Only this glass gets the finish; the office, ceiling and floor around it stay untouched.
+const GLASS_OUTLINE = 'polygon(23% 28%, 64% 0%, 97% 19%, 97% 76%, 64% 100%, 23% 66%)';
 
 /** Drag across one room to compare clear glass with frosted, fluted or tinted glass. */
 export default function FinishPreview() {
@@ -81,18 +64,7 @@ export default function FinishPreview() {
         ))}
       </div>
 
-      <div className="relative aspect-[16/9] overflow-hidden rounded-[var(--radius-card)] select-none ring-1 ring-white/10">
-
-        {/* SVG clip-path definitions — one clipPath covering all three glass panes */}
-        <svg className="absolute w-0 h-0 overflow-hidden" aria-hidden="true" focusable="false">
-          <defs>
-            <clipPath id="finish-glass-panes" clipPathUnits="objectBoundingBox">
-              {PANES.map((p, i) => (
-                <rect key={PANE_IDS[i]} x={p.x} y={p.y} width={p.w} height={p.h} />
-              ))}
-            </clipPath>
-          </defs>
-        </svg>
+      <div className="relative aspect-[1232/672] overflow-hidden rounded-[var(--radius-card)] select-none ring-1 ring-white/10">
 
         {/* Layer 1 — always-visible base image (clear glass, full frame) */}
         <Image
@@ -106,7 +78,7 @@ export default function FinishPreview() {
         {/* Layer 2 — finish effect, restricted to the glass panes only.
             Two nested clips:
               outer → slider reveal (inset from left at pos%)
-              inner → glass-panes SVG clip (only the 3 pane rectangles)
+              inner → outline of the glass room
             Result: the finish appears only inside the glass, leaving the
             aluminium frames, ceiling, floor and person outside the glass clear. */}
         <div
@@ -114,13 +86,13 @@ export default function FinishPreview() {
           style={{ clipPath: `inset(0 0 0 ${pos}%)` }}
           aria-hidden="true"
         >
-          <div className="absolute inset-0" style={{ clipPath: 'url(#finish-glass-panes)' }}>
+          <div className="absolute inset-0" style={{ clipPath: GLASS_OUTLINE }}>
             <Image
               src={PHOTO}
               alt=""
               fill
               sizes="(max-width: 1024px) 100vw, 1100px"
-              className="object-cover scale-[1.03] transition-[filter] duration-500"
+              className="object-cover transition-[filter] duration-500"
               style={{ filter: f.img }}
             />
             <div
