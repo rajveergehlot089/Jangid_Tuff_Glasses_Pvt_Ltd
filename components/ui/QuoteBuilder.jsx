@@ -67,7 +67,7 @@ export default function QuoteBuilder({ initialProduct } = {}) {
   }, [items, unit, location, total]); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
-    <div className="grid lg:grid-cols-[1fr_22rem] gap-6 lg:gap-8 items-start" data-track="estimate builder">
+    <div className="grid lg:grid-cols-[1fr_22rem] gap-6 lg:gap-8 items-stretch" data-track="estimate builder">
       <Reveal from="left" className="glass-dark rounded-[var(--radius-card)] p-5 sm:p-7">
         <div className="flex flex-wrap items-center justify-between gap-3 mb-5">
           <span className="inline-flex items-center gap-2 text-sm font-semibold text-white">
@@ -160,8 +160,8 @@ export default function QuoteBuilder({ initialProduct } = {}) {
         </button>
       </Reveal>
 
-      {/* Summary: sticks beside the list on desktop */}
-      <Reveal from="right" className="glass-dark rounded-[var(--radius-card)] p-6 sm:p-7 lg:sticky lg:top-28">
+      {/* Summary: same height as the list, so both cards line up on desktop */}
+      <Reveal from="right" className="glass-dark rounded-[var(--radius-card)] p-6 sm:p-7 flex flex-col">
         <span className="kicker kicker--light">Your estimate</span>
         <p className="mt-5 text-xs text-white/55 uppercase tracking-[0.18em]">Total glass area</p>
         <p className="mt-1 font-display text-5xl text-white tabular-nums leading-none" aria-live="polite">
@@ -170,7 +170,7 @@ export default function QuoteBuilder({ initialProduct } = {}) {
         </p>
         <p className="mt-2 text-xs text-white/55">{items.length} {items.length === 1 ? 'item' : 'items'} on your list</p>
 
-        <div className="mt-6">
+        <div className="mt-6 mb-6">
           <Field label="Site location (optional)">
             <input value={location} onChange={(e) => setLocation(e.target.value)} placeholder="e.g. Shastri Nagar, Jodhpur" className={inputCls} />
           </Field>
@@ -185,7 +185,7 @@ export default function QuoteBuilder({ initialProduct } = {}) {
             if (!ready) return e.preventDefault();
             trackEvent('estimate_sent', { items: items.length, total_sqft: Math.round(total * 10) / 10, unit, product: items[0]?.product });
           }}
-          className={`btn-royal w-full justify-center mt-6 ${ready ? '' : 'opacity-50 cursor-not-allowed'}`}
+          className={`btn-royal w-full justify-center mt-auto ${ready ? '' : 'opacity-50 cursor-not-allowed'}`}
           data-magnetic
         >
           <MessageSquare className="w-4 h-4" aria-hidden="true" />
