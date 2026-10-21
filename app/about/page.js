@@ -19,13 +19,15 @@ import {
 } from 'lucide-react';
 import PageHero from '@/components/ui/PageHero';
 import CTABanner from '@/components/ui/CTABanner';
-import { COMPANY } from '@/lib/constants';
+import { COMPANY, PRODUCT_CATEGORIES } from '@/lib/constants';
+import StatsBand from '@/components/ui/StatsBand';
 import { generateMetadata as genMeta } from '@/lib/seo';
+import DarkCanvas from '@/components/layout/DarkCanvas';
 
 export const metadata = genMeta('about');
 
 export default function AboutPage() {
-  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://jangid-tuff-glasses-pvt-ltd.vercel.app';
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://jangidtuffglassespvtltd.com';
 
   const breadcrumbLd = {
     '@context': 'https://schema.org',
@@ -61,10 +63,12 @@ export default function AboutPage() {
         description="Jangid Tuff Glasses Private Limited is Jodhpur's premier manufacturer and fabricator of toughened safety glass, architectural partitions, luxury LED mirrors, and specialized glazing solutions."
         primaryAction={{ label: 'Explore Products', href: '/products' }}
         secondaryAction={{ label: 'Contact Our Factory', href: '/contact' }}
-        backgroundImage="https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=2000&q=85"
+        backgroundImage="/images/optimized/glass-office-sunset-panorama.webp"
         showCategories={true}
         showWatchWork={true}
       />
+
+      <DarkCanvas images={['/images/optimized/processing-tempering-furnace-line.webp', '/images/optimized/architectural-villa-coastal-estate.webp', '/images/optimized/commercial-atrium-canopy-entrance.webp', '/images/optimized/railing-floating-staircase-glass.webp', '/images/optimized/corporate-spider-fitting-canopy.webp', '/images/optimized/structural-glazing-double-height-villa.webp']}>
 
       {/* ─── Section 1: Who We Are & Heritage ─── */}
       <section className="py-20 sm:py-28 bg-white relative overflow-hidden" aria-label="Company Heritage">
@@ -118,6 +122,20 @@ export default function AboutPage() {
               </p>
             </div>
           </div>
+        </div>
+      </section>
+
+      {/* Key figures (verified: product range, company register, service area) */}
+      <section className="py-10 sm:py-14" aria-label="Key Figures">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <StatsBand
+            stats={[
+              { label: 'Product categories', to: PRODUCT_CATEGORIES.length },
+              { label: 'Toughened glass thickness', text: '5–19', suffix: ' mm' },
+              { label: 'Incorporated, ROC Jaipur', from: 2015, to: 2025 },
+              { label: 'Districts served from Jodhpur', to: 4, suffix: '+' },
+            ]}
+          />
         </div>
       </section>
 
@@ -556,11 +574,13 @@ export default function AboutPage() {
 
       {/* ─── CTA Banner ─── */}
       <CTABanner
+        glass
         title="Planning an Architectural Glass Project in Jodhpur?"
         description="Share your elevation drawings, window schedules, or rough measurements. Our engineering desk will review the specifications and provide a clear, itemized factory estimate."
         primaryAction={{ label: 'Request Factory Quote', href: '/contact#quote' }}
         secondaryAction={{ label: `Call ${COMPANY.phone}`, href: `tel:${COMPANY.phoneRaw}` }}
       />
+      </DarkCanvas>
     </div>
   );
 }

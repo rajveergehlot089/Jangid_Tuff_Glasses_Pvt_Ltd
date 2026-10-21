@@ -16,9 +16,27 @@ export default function Footer() {
   const year = new Date().getFullYear();
 
   return (
-    <footer className="bg-gradient-to-b from-[#08233f] via-[#05182c] to-[#030e1a] text-slate-300 border-t border-white/10" role="contentinfo">
+    <footer className="relative overflow-hidden bg-[#050b18] text-slate-300" role="contentinfo">
+      {/* Brand poster band: shown edge to edge at its natural ratio so none of the lettering is cropped */}
+      <div className="relative w-full aspect-[1672/478] min-h-[9rem]">
+        <Image
+          src="/images/optimized/footer-poster-brand.webp"
+          alt="Jangid Tuff Glasses Private Limited — Better spaces through better glass"
+          fill
+          sizes="100vw"
+          className="object-cover object-left-top"
+        />
+        <div className="absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-b from-transparent to-[#050b18]" />
+      </div>
+
+      {/* Second poster ("Glass builds a brighter tomorrow") as a dimmed texture behind the links */}
+      <div className="absolute right-0 bottom-0 left-[45%] top-[min(28.6vw,30rem)] pointer-events-none [mask-image:linear-gradient(to_right,transparent,black_35%)]" aria-hidden="true">
+        <Image src="/images/optimized/footer-poster-tagline.webp" alt="" fill sizes="100vw" className="object-cover object-right opacity-30" />
+        <div className="absolute inset-0 bg-gradient-to-b from-[#050b18] via-[#050b18]/70 to-[#050b18]/90" />
+      </div>
+
       {/* Main footer */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-20">
+      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-10 pb-16 sm:pb-20">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-12">
           {/* Column 1 — Brand with Official Logo */}
           <div className="sm:col-span-2 lg:col-span-1">
@@ -33,16 +51,16 @@ export default function Footer() {
                 />
               </div>
               <div className="flex flex-col leading-tight">
-                <span className="text-lg font-black text-white tracking-tight group-hover:text-sky-300 transition duration-500">
+                <span className="text-lg font-black text-white tracking-tight group-hover:text-[var(--royal-bright)] transition duration-500">
                   JANGID TUFF
                 </span>
-                <span className="text-[10px] font-extrabold tracking-[0.2em] text-sky-400 uppercase">
+                <span className="text-[10px] font-extrabold tracking-[0.2em] text-[var(--royal-bright)] uppercase">
                   GLASS PVT LTD
                 </span>
               </div>
             </Link>
 
-            <p className="text-xs text-sky-300 font-semibold mb-3 tracking-wide">
+            <p className="text-xs text-[var(--royal-bright)] font-semibold mb-3 tracking-wide">
               {COMPANY.name}
             </p>
             <p className="text-xs sm:text-sm leading-relaxed text-slate-400 mb-6">
@@ -57,7 +75,7 @@ export default function Footer() {
                   href={url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center justify-center w-10 h-10 rounded-xl bg-white/5 border border-white/10 text-slate-300 hover:bg-gradient-to-tr hover:from-[#0878d1] hover:to-sky-400 hover:text-white hover:-translate-y-0.5 transition-all duration-200 ease-out shadow-sm"
+                  className="flex items-center justify-center w-10 h-10 rounded-xl bg-white/5 border border-white/10 text-slate-300 hover:bg-[var(--royal)] hover:border-[var(--royal)] hover:text-white hover:-translate-y-0.5 transition-all duration-200 ease-out shadow-sm"
                   aria-label={`Follow us on ${platform}`}
                 >
                   <SocialIcon platform={platform} />
@@ -103,7 +121,7 @@ export default function Footer() {
                 <li key={link.href}>
                   <Link
                     href={link.href}
-                    className="text-xs sm:text-sm text-slate-400 hover:text-sky-300 hover:translate-x-1 inline-flex items-center gap-1.5 transition-all duration-200 ease-out"
+                    className="text-xs sm:text-sm text-slate-400 hover:text-[var(--royal-bright)] hover:translate-x-1 inline-flex items-center gap-1.5 transition-all duration-200 ease-out"
                   >
                     <span>{link.label}</span>
                   </Link>
@@ -123,7 +141,7 @@ export default function Footer() {
                   href={`tel:${CONTACT.phoneRaw}`}
                   className="flex items-start gap-2.5 hover:text-white transition-colors duration-200 ease-out group"
                 >
-                  <Phone className="w-4 h-4 mt-0.5 text-sky-400 shrink-0 group-hover:scale-110 transition-transform duration-200 ease-out" />
+                  <Phone className="w-4 h-4 mt-0.5 text-[var(--royal-bright)] shrink-0 group-hover:scale-110 transition-transform duration-200 ease-out" />
                   <span className="font-semibold text-white">{CONTACT.phone}</span>
                 </a>
               </li>
@@ -145,7 +163,7 @@ export default function Footer() {
                   rel="noopener noreferrer"
                   className="flex items-start gap-2.5 hover:text-white transition-colors duration-200 ease-out group"
                 >
-                  <MapPin className="w-4 h-4 mt-0.5 text-sky-400 shrink-0 group-hover:scale-110 transition-transform duration-200 ease-out" />
+                  <MapPin className="w-4 h-4 mt-0.5 text-[var(--royal-bright)] shrink-0 group-hover:scale-110 transition-transform duration-200 ease-out" />
                   <span className="leading-snug">{CONTACT.address}</span>
                 </a>
               </li>
@@ -154,7 +172,7 @@ export default function Footer() {
             <div className="mt-6 pt-5 border-t border-white/10">
               <Link
                 href="/contact#quote"
-                className="btn-gradient w-full py-2.5 px-4 rounded-xl text-center text-xs font-bold text-white flex items-center justify-center gap-2 shadow-md transition-all duration-200 ease-out hover:-translate-y-0.5"
+                className="btn-royal group w-full justify-center !text-xs"
               >
                 <span>Request Project Estimate</span>
                 <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform duration-200 ease-out" />
@@ -164,7 +182,7 @@ export default function Footer() {
         </div>
 
         {/* Bottom bar */}
-        <div className="border-t border-white/10 mt-12 pt-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500">
+        <div className="border-t border-white/10 mt-12 pt-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-white/65">
           <p>© {year} {BUSINESS.name} Pvt Ltd. All rights reserved.</p>
           <div className="flex items-center gap-6">
             <Link href="/privacy" className="hover:text-slate-300 transition-colors duration-200 ease-out">

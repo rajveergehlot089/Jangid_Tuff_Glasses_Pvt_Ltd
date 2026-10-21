@@ -9,3 +9,8 @@ coverage
 playwright-report
 test-results
 .DS_Store
+scripts/.watermark-report.json
+
+# Local tooling
+.playwright-mcp/
+.claude/

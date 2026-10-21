@@ -1,6 +1,7 @@
 import PageHero from '@/components/ui/PageHero';
 import { COMPANY } from '@/lib/constants';
 import { generateMetadata as genMeta } from '@/lib/seo';
+import DarkCanvas from '@/components/layout/DarkCanvas';
 
 export const metadata = genMeta('terms');
 
@@ -14,10 +15,12 @@ export default function TermsPage() {
         description="Standard commercial quotation, fabrication guidelines, and delivery terms for Jangid Tuff Glasses Private Limited."
         primaryAction={{ label: 'Contact Team', href: '/contact' }}
         secondaryAction={{ label: 'Explore Products', href: '/products' }}
-        backgroundImage="https://images.unsplash.com/photo-1511818966892-d7d671e672a2?auto=format&fit=crop&w=2000&q=85"
+        backgroundImage="/images/optimized/corporate-spider-fitting-canopy.webp"
         showCategories={false}
         showWatchWork={false}
       />
+
+      <DarkCanvas images={['/images/optimized/architectural-villa-coastal-estate.webp']}>
 
       <section className="py-16 sm:py-24 bg-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 prose prose-slate max-w-none text-sm sm:text-base leading-relaxed text-slate-600">
@@ -56,6 +59,7 @@ export default function TermsPage() {
           </p>
         </div>
       </section>
+      </DarkCanvas>
     </div>
   );
 }

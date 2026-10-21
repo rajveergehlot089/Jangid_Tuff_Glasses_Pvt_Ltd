@@ -5,7 +5,14 @@ import { MessageSquare } from 'lucide-react';
 import Toast from '@/components/ui/Toast';
 import { PRODUCT_CATEGORIES } from '@/lib/constants';
 import { buildWhatsAppUrl } from '@/lib/utils';
+import GlassSelect from '@/components/ui/GlassSelect';
 import { trackQuoteFormStart, trackQuoteFormSubmit } from '@/lib/analytics';
+
+const PRODUCT_OPTIONS = [
+  ...PRODUCT_CATEGORIES.map((p) => ({ value: p.name, label: p.name })),
+  { value: 'General Consultation', label: 'General Technical Consultation' },
+];
+const TIMELINE_OPTIONS = ['Immediate (1–2 weeks)', 'Within 2–4 weeks', 'Within 1–2 months', 'Just planning / Budget stage'];
 
 export default function ContactQuoteForm({ initialProduct = '' }) {
   const resolveProduct = (param) => {
@@ -207,24 +214,16 @@ export default function ContactQuoteForm({ initialProduct = '' }) {
 
         {/* Product Select */}
         <div>
-          <label htmlFor="product" className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5">
-            Product / Category
-          </label>
-          <select
-            id="product"
+          <GlassSelect
+            label="Product / Category"
             name="product"
             value={formData.product}
-            onChange={handleChange}
-            className="w-full rounded-xl border border-slate-300 bg-white px-4 py-3 text-sm focus:border-[#0878d1] focus:ring-1 focus:ring-[#0878d1] outline-none transition-all duration-200 ease-out"
-          >
-            <option value="">Select a Category</option>
-            {PRODUCT_CATEGORIES.map((p) => (
-              <option key={p.slug} value={p.name}>
-                {p.name}
-              </option>
-            ))}
-            <option value="General Consultation">General Technical Consultation</option>
-          </select>
+            onChange={(value) => handleChange({ target: { name: 'product', value } })}
+            placeholder="Select a Category"
+            options={PRODUCT_OPTIONS}
+            labelClassName="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5"
+            buttonClassName="px-4 py-3"
+          />
         </div>
 
         {/* Project Location */}
@@ -277,21 +276,15 @@ export default function ContactQuoteForm({ initialProduct = '' }) {
 
         {/* Timeline */}
         <div>
-          <label htmlFor="timeline" className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5">
-            Required Timeline
-          </label>
-          <select
-            id="timeline"
+          <GlassSelect
+            label="Required Timeline"
             name="timeline"
             value={formData.timeline}
-            onChange={handleChange}
-            className="w-full rounded-xl border border-slate-300 bg-white px-4 py-3 text-sm focus:border-[#0878d1] focus:ring-1 focus:ring-[#0878d1] outline-none transition-all duration-200 ease-out"
-          >
-            <option value="Immediate (1–2 weeks)">Immediate (1–2 weeks)</option>
-            <option value="Within 2–4 weeks">Within 2–4 weeks</option>
-            <option value="Within 1–2 months">Within 1–2 months</option>
-            <option value="Just planning / Budget stage">Just planning / Budget stage</option>
-          </select>
+            onChange={(value) => handleChange({ target: { name: 'timeline', value } })}
+            options={TIMELINE_OPTIONS}
+            labelClassName="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5"
+            buttonClassName="px-4 py-3"
+          />
         </div>
 
         {/* Project Description */}

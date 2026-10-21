@@ -2,11 +2,12 @@ import PageHero from '@/components/ui/PageHero';
 import GalleryView from '@/components/ui/GalleryView';
 import CTABanner from '@/components/ui/CTABanner';
 import { generateMetadata as genMeta } from '@/lib/seo';
+import DarkCanvas from '@/components/layout/DarkCanvas';
 
 export const metadata = genMeta('gallery');
 
 export default function GalleryPage() {
-  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://jangid-tuff-glasses-pvt-ltd.vercel.app';
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://jangidtuffglassespvtltd.com';
 
   const breadcrumbLd = {
     '@context': 'https://schema.org',
@@ -41,20 +42,24 @@ export default function GalleryPage() {
         description="A curated visual showcase exploring structural facades, bespoke interior mirrors, fluted partitions, and luxury shower cubicles."
         primaryAction={{ label: 'Explore Products', href: '/products' }}
         secondaryAction={{ label: 'Request a Quote', href: '/contact#quote' }}
-        backgroundImage="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=2000&q=85"
+        backgroundImage="/images/optimized/villa-poolside-glass-facade.webp"
         showCategories={true}
         showWatchWork={false}
       />
+
+      <DarkCanvas images={['/images/optimized/structural-glazing-double-height-villa.webp']}>
 
       {/* Gallery Section */}
       <GalleryView />
 
       {/* CTA Banner */}
       <CTABanner
+        glass
         title="Inspired by a Design You See Here?"
         description="Share the screenshot or describe the glass look you want. We will check feasibility, suggest suitable glass variants, and provide an estimate."
         primaryAction={{ label: 'Enquire About a Look', href: '/contact#quote' }}
       />
+      </DarkCanvas>
     </div>
   );
 }

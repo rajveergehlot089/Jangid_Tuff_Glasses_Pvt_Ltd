@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import { CheckCircle2, ArrowRight, MessageSquare, Phone } from 'lucide-react';
 import { COMPANY } from '@/lib/constants';
+import DarkCanvas from '@/components/layout/DarkCanvas';
 
 export const metadata = {
   title: 'Thank You',
@@ -11,6 +12,7 @@ export const metadata = {
 
 export default function ThankYouPage() {
   return (
+    <DarkCanvas images={['/images/optimized/villa-poolside-glass-facade.webp']}>
     <div className="min-h-[70vh] flex items-center justify-center py-20 px-4 bg-[#f6f8fa]">
       <div className="max-w-lg w-full bg-white rounded-3xl p-8 sm:p-10 border border-slate-200 shadow-xl text-center">
         <div className="w-16 h-16 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center mx-auto mb-6">
@@ -48,5 +50,6 @@ export default function ThankYouPage() {
         </div>
       </div>
     </div>
+    </DarkCanvas>
   );
 }

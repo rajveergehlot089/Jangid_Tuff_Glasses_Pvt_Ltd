@@ -5,18 +5,8 @@ const nextConfig = {
   compress: true,
   images: {
     formats: ['image/avif', 'image/webp'],
-    remotePatterns: [
-      {
-        protocol: 'https',
-        hostname: 'images.unsplash.com',
-        pathname: '/**',
-      },
-      {
-        protocol: 'https',
-        hostname: 'fenstermax-weinheim.de',
-        pathname: '/**',
-      },
-    ],
+    // Only one quality level: every <Image> (default 75) snaps up to 92 so product photos stay crisp.
+    qualities: [92],
   },
   async headers() {
     return [
@@ -32,8 +22,9 @@ const nextConfig = {
             value: 'DENY',
           },
           {
+            // Legacy XSS auditor can itself be abused; modern guidance (OWASP) is to disable it.
             key: 'X-XSS-Protection',
-            value: '1; mode=block',
+            value: '0',
           },
           {
             key: 'Referrer-Policy',
@@ -42,6 +33,15 @@ const nextConfig = {
           {
             key: 'Permissions-Policy',
             value: 'camera=(), microphone=(), geolocation=()',
+          },
+          {
+            key: 'Strict-Transport-Security',
+            value: 'max-age=31536000; includeSubDomains',
+          },
+          {
+            // Minimal policy: blocks clickjacking, plugin embeds and <base> hijacking without restricting scripts.
+            key: 'Content-Security-Policy',
+            value: "frame-ancestors 'none'; base-uri 'self'; object-src 'none'; form-action 'self'",
           },
         ],
       },

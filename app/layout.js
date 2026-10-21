@@ -1,8 +1,10 @@
-import { Plus_Jakarta_Sans, Noto_Sans_Devanagari } from 'next/font/google';
+import { ViewTransition } from 'react';
+import { Plus_Jakarta_Sans, Noto_Sans_Devanagari, Fraunces } from 'next/font/google';
 import './globals.css';
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
 import WhatsAppFloat from '@/components/layout/WhatsAppFloat';
+import MobileActionBar from '@/components/layout/MobileActionBar';
 import MotionProvider from '@/components/layout/MotionProvider';
 import { COMPANY } from '@/lib/constants';
 import { generateStructuredData } from '@/lib/utils';
@@ -14,6 +16,15 @@ const plusJakartaSans = Plus_Jakarta_Sans({
   display: 'swap',
 });
 
+// Editorial serif for headlines only; gives the site a crafted, non-template voice.
+const fraunces = Fraunces({
+  subsets: ['latin'],
+  weight: ['400', '500'],
+  style: ['normal', 'italic'],
+  variable: '--font-display',
+  display: 'swap',
+});
+
 const notoSansDevanagari = Noto_Sans_Devanagari({
   subsets: ['devanagari'],
   weight: ['400', '600', '700'],
@@ -21,16 +32,16 @@ const notoSansDevanagari = Noto_Sans_Devanagari({
   display: 'swap',
 });
 
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://jangid-tuff-glasses-pvt-ltd.vercel.app';
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://jangidtuffglassespvtltd.com';
 
 export const metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
-    default: `Toughened Glass & Architectural Glazing Manufacturer in Jodhpur | ${COMPANY.nameShort}`,
+    default: `Toughened Glass Manufacturer in Jodhpur, Rajasthan | ${COMPANY.nameShort}`,
     template: `%s | ${COMPANY.nameShort}`,
   },
   description:
-    'Jangid Tuff Glasses Private Limited: Leading manufacturer of toughened glass, slim partitions, LED vanity mirrors, shower cubicles, and architectural glass hardware in Jodhpur, Rajasthan.',
+    'Factory-direct toughened glass, glass partitions, railings, shower enclosures and LED mirrors from Boranada, Jodhpur. Cut to size. Get a quote on WhatsApp.',
   keywords: [
     'glass manufacturer Jodhpur',
     'toughened glass Jodhpur',
@@ -55,7 +66,7 @@ export const metadata = {
     siteName: COMPANY.nameShort,
     images: [
       {
-        url: 'https://images.unsplash.com/photo-1487958449943-2429e8be8625?auto=format&fit=crop&w=1200&q=85',
+        url: '/og-image.jpg',
         width: 1200,
         height: 630,
         alt: `${COMPANY.name} - Architectural Glass Solutions`,
@@ -66,7 +77,7 @@ export const metadata = {
     card: 'summary_large_image',
     title: COMPANY.name,
     description: COMPANY.description,
-    images: ['https://images.unsplash.com/photo-1487958449943-2429e8be8625?auto=format&fit=crop&w=1200&q=85'],
+    images: ['/og-image.jpg'],
   },
   robots: {
     index: true,
@@ -95,7 +106,7 @@ export default function RootLayout({ children }) {
       lang="en"
       suppressHydrationWarning
       data-scroll-behavior="smooth"
-      className={`${plusJakartaSans.variable} ${notoSansDevanagari.variable} h-full`}
+      className={`${plusJakartaSans.variable} ${notoSansDevanagari.variable} ${fraunces.variable} h-full`}
     >
       <head>
         <script
@@ -129,7 +140,7 @@ export default function RootLayout({ children }) {
       </head>
       <body
         suppressHydrationWarning
-        className="min-h-full flex flex-col font-sans text-[#132b45] bg-white antialiased selection:bg-[#0878d1] selection:text-white"
+        className="min-h-full flex flex-col font-sans text-[#132b45] bg-[#050b18] antialiased selection:bg-[#0b57d0] selection:text-white"
       >
         <a href="#main-content" className="sr-only focus:not-sr-only">
           <span className="fixed top-3 left-3 z-[100] rounded-full bg-[#08233f] px-5 py-3 text-sm font-bold text-white shadow-xl">
@@ -139,10 +150,14 @@ export default function RootLayout({ children }) {
         <MotionProvider>
           <Header />
           <main id="main-content" tabIndex={-1} className="flex-1 outline-none">
-            {children}
+            {/* Route changes crossfade with a slight lift (styles in globals.css) */}
+            <ViewTransition name="page">{children}</ViewTransition>
           </main>
           <Footer />
           <WhatsAppFloat />
+          <MobileActionBar />
+          {/* Keeps the end of the footer clear of the mobile action bar */}
+          <div className="h-24 md:hidden" aria-hidden="true" />
         </MotionProvider>
       </body>
     </html>

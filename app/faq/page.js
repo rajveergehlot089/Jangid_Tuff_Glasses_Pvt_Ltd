@@ -3,11 +3,12 @@ import Accordion from '@/components/ui/Accordion';
 import CTABanner from '@/components/ui/CTABanner';
 import { FAQS, COMPANY } from '@/lib/constants';
 import { generateMetadata as genMeta } from '@/lib/seo';
+import DarkCanvas from '@/components/layout/DarkCanvas';
 
 export const metadata = genMeta('faq');
 
 export default function FAQPage() {
-  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://jangid-tuff-glasses-pvt-ltd.vercel.app';
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://jangidtuffglassespvtltd.com';
 
   const faqSchema = {
     '@context': 'https://schema.org',
@@ -59,10 +60,12 @@ export default function FAQPage() {
         description="Clear answers regarding toughened glass properties, order minimums, custom cutting tolerances, delivery options, and project consultation in Jodhpur."
         primaryAction={{ label: 'Ask a Question', href: '/contact#quote' }}
         secondaryAction={{ label: 'View Products', href: '/products' }}
-        backgroundImage="https://images.unsplash.com/photo-1620626011761-996317b8d101?auto=format&fit=crop&w=2000&q=85"
+        backgroundImage="/images/optimized/structural-glazing-double-height-villa.webp"
         showCategories={true}
         showWatchWork={true}
       />
+
+      <DarkCanvas images={['/images/optimized/partitions-corporate-conference-room.webp', '/images/optimized/architectural-villa-coastal-estate.webp']}>
 
       {/* Accordions Section */}
       <section className="py-16 sm:py-24 bg-[#f6f8fa]" aria-label="FAQ Accordion">
@@ -110,7 +113,8 @@ export default function FAQPage() {
       </section>
 
       {/* CTA Banner */}
-      <CTABanner />
+      <CTABanner glass />
+      </DarkCanvas>
     </div>
   );
 }
