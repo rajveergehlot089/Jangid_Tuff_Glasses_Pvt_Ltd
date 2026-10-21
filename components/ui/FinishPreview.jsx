@@ -16,7 +16,8 @@ const FINISHES = {
     label: 'Fluted',
     note: 'Vertical reeds blur shapes, keep light.',
     img: 'blur(2.5px) brightness(1.05)',
-    overlay: 'repeating-linear-gradient(90deg, rgba(255,255,255,0.20) 0 3px, rgba(0,0,0,0.14) 3px 6px, rgba(255,255,255,0.05) 6px 16px)',
+    // Stops are a share of the preview width, so the reeds keep the same fineness on phones and desktops.
+    overlay: 'repeating-linear-gradient(90deg, rgba(255,255,255,0.20) 0 0.28%, rgba(0,0,0,0.14) 0.28% 0.55%, rgba(255,255,255,0.05) 0.55% 1.47%)',
   },
   bronze: { label: 'Bronze tint', note: 'Warm, cuts glare and heat.', img: 'saturate(0.9)', overlay: 'rgba(92, 56, 24, 0.48)', blend: 'multiply' },
   grey: { label: 'Grey tint', note: 'Cool, calm, reduces glare.', img: 'saturate(0.8)', overlay: 'rgba(28, 34, 42, 0.5)', blend: 'multiply' },
