@@ -1,8 +1,10 @@
+import { ViewTransition } from 'react';
 import { Plus_Jakarta_Sans, Noto_Sans_Devanagari, Fraunces } from 'next/font/google';
 import './globals.css';
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
 import WhatsAppFloat from '@/components/layout/WhatsAppFloat';
+import MobileActionBar from '@/components/layout/MobileActionBar';
 import MotionProvider from '@/components/layout/MotionProvider';
 import { COMPANY } from '@/lib/constants';
 import { generateStructuredData } from '@/lib/utils';
@@ -30,16 +32,16 @@ const notoSansDevanagari = Noto_Sans_Devanagari({
   display: 'swap',
 });
 
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://jangid-tuff-glasses-pvt-ltd.vercel.app';
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://jangidtuffglassespvtltd.com';
 
 export const metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
-    default: `Toughened Glass & Architectural Glazing Manufacturer in Jodhpur | ${COMPANY.nameShort}`,
+    default: `Toughened Glass Manufacturer in Jodhpur, Rajasthan | ${COMPANY.nameShort}`,
     template: `%s | ${COMPANY.nameShort}`,
   },
   description:
-    'Jangid Tuff Glasses Private Limited: Leading manufacturer of toughened glass, slim partitions, LED vanity mirrors, shower cubicles, and architectural glass hardware in Jodhpur, Rajasthan.',
+    'Factory-direct toughened glass, glass partitions, railings, shower enclosures and LED mirrors from Boranada, Jodhpur. Cut to size. Get a quote on WhatsApp.',
   keywords: [
     'glass manufacturer Jodhpur',
     'toughened glass Jodhpur',
@@ -148,10 +150,14 @@ export default function RootLayout({ children }) {
         <MotionProvider>
           <Header />
           <main id="main-content" tabIndex={-1} className="flex-1 outline-none">
-            {children}
+            {/* Route changes crossfade with a slight lift (styles in globals.css) */}
+            <ViewTransition name="page">{children}</ViewTransition>
           </main>
           <Footer />
           <WhatsAppFloat />
+          <MobileActionBar />
+          {/* Keeps the end of the footer clear of the mobile action bar */}
+          <div className="h-24 md:hidden" aria-hidden="true" />
         </MotionProvider>
       </body>
     </html>

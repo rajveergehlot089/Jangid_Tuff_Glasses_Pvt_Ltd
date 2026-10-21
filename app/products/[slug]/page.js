@@ -1,3 +1,4 @@
+import { ViewTransition } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
@@ -13,6 +14,13 @@ export async function generateStaticParams() {
   }));
 }
 
+// Search snippets show ~155 characters: cut at a word boundary so the sentence never ends mid-word.
+function clampDescription(text, max = 155) {
+  if (text.length <= max) return text;
+  const cut = text.slice(0, max - 1);
+  return `${cut.slice(0, cut.lastIndexOf(' ')).replace(/[,;:\s]+$/, '')}…`;
+}
+
 export async function generateMetadata({ params }) {
   const { slug } = await params;
   const product = PRODUCT_CATEGORIES.find((p) => p.slug === slug);
@@ -25,12 +33,12 @@ export async function generateMetadata({ params }) {
   }
 
   const siteUrl =
-    process.env.NEXT_PUBLIC_SITE_URL || 'https://jangid-tuff-glasses-pvt-ltd.vercel.app';
+    process.env.NEXT_PUBLIC_SITE_URL || 'https://jangidtuffglassespvtltd.com';
   const url = `${siteUrl}/products/${slug}`;
 
   return {
-    title: `${product.name} in Jodhpur | Architectural & Interior Glass`,
-    description: `${product.description} Sourced and fabricated for architects, builders, and homes across Jodhpur and Rajasthan.`,
+    title: `${product.name} in Jodhpur | Made to Size`,
+    description: clampDescription(`${product.name} made to size at our Jodhpur factory. ${product.description}`),
     keywords: [
       `${product.name} Jodhpur`,
       `${product.name} manufacturer Rajasthan`,
@@ -43,7 +51,7 @@ export async function generateMetadata({ params }) {
     },
     openGraph: {
       title: `${product.name} in Jodhpur | Jangid Tuff Glasses Private Limited`,
-      description: product.description,
+      description: clampDescription(product.description),
       url,
       images: [
         {
@@ -74,7 +82,7 @@ export default async function ProductDetailPage({ params }) {
   const relatedProducts = PRODUCT_CATEGORIES.filter((p) => p.slug !== slug).slice(0, 3);
 
   const siteUrl =
-    process.env.NEXT_PUBLIC_SITE_URL || 'https://jangid-tuff-glasses-pvt-ltd.vercel.app';
+    process.env.NEXT_PUBLIC_SITE_URL || 'https://jangidtuffglassespvtltd.com';
   const url = `${siteUrl}/products/${slug}`;
 
   const breadcrumbLd = {
@@ -146,14 +154,17 @@ export default async function ProductDetailPage({ params }) {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid lg:grid-cols-2 gap-12 lg:gap-16 items-start">
           {/* Product Image */}
           <div className="relative rounded-3xl overflow-hidden shadow-2xl border border-slate-100 aspect-[4/3] bg-slate-100">
-            <Image
-              src={product.image}
-              alt={product.name}
-              fill
-              sizes="(max-width: 1024px) 100vw, 50vw"
-              className="object-cover"
-              priority
-            />
+            {/* Same name as the product card photo: the browser morphs one into the other */}
+            <ViewTransition name={`product-photo-${product.slug}`}>
+              <Image
+                src={product.image}
+                alt={product.name}
+                fill
+                sizes="(max-width: 1024px) 100vw, 50vw"
+                className="object-cover"
+                priority
+              />
+            </ViewTransition>
             {product.tag && (
               <span className="absolute top-5 left-5 bg-[#08233f]/90 backdrop-blur text-white text-xs font-bold px-3.5 py-1.5 rounded-full uppercase tracking-wider shadow-md">
                 {product.tag}

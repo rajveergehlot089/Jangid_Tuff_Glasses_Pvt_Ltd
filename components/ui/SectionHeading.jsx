@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import { ArrowRight } from 'lucide-react';
 import Reveal from '@/components/ui/Reveal';
+import KineticText from '@/components/ui/KineticText';
 
 export default function SectionHeading({
   eyebrow,
@@ -19,9 +20,9 @@ export default function SectionHeading({
     >
       <Reveal from={centered ? 'center' : 'left'} className={centered ? '' : 'max-w-3xl'}>
         {eyebrow && <p className={dark ? 'kicker kicker--light' : 'kicker'}>{eyebrow}</p>}
-        <h2 className={`font-display mt-4 text-3xl sm:text-4xl md:text-5xl ${dark ? 'text-white' : 'text-[var(--ink)]'} leading-[1.08] tracking-[-0.02em]`}>
+        <KineticText className={`font-display mt-4 text-3xl sm:text-4xl md:text-5xl ${dark ? 'text-white' : 'text-[var(--ink)]'} leading-[1.08] tracking-[-0.02em]`}>
           {title}
-        </h2>
+        </KineticText>
         {description && (
           <p className={`mt-5 text-sm sm:text-base ${dark ? 'text-white/65' : 'text-[var(--muted)]'} leading-relaxed max-w-2xl ${centered ? 'mx-auto' : ''}`}>
             {description}

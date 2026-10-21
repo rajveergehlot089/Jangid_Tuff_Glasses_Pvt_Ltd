@@ -1,7 +1,7 @@
 import { PRODUCT_CATEGORIES } from '@/lib/constants';
 
 export default function sitemap() {
-  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://jangid-tuff-glasses-pvt-ltd.vercel.app';
+  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://jangidtuffglassespvtltd.com';
   const currentDate = new Date().toISOString();
 
   const staticRoutes = [

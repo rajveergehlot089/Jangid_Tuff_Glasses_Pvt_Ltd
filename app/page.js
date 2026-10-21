@@ -12,6 +12,8 @@ import Reveal from '@/components/ui/Reveal';
 import BlueSweep from '@/components/ui/BlueSweep';
 import TiltCard from '@/components/ui/TiltCard';
 import HomeBackdrop from '@/components/ui/HomeBackdrop';
+import FinishPreview from '@/components/ui/FinishPreview';
+import QuoteBuilder from '@/components/ui/QuoteBuilder';
 import { COMPANY, PRODUCT_CATEGORIES, SERVICES } from '@/lib/constants';
 
 const INSPIRATION = [
@@ -94,6 +96,22 @@ export default function HomePage() {
               <ProductCard key={product.slug} product={product} index={index} />
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* ─── Glass finish preview ─── */}
+      <section data-backdrop="/images/optimized/decorative-fluted-reeded-glass.webp" className="relative overflow-hidden py-24 sm:py-32">
+        <BlueSweep dark />
+        <div className="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <SectionHeading
+            dark
+            eyebrow="See the difference"
+            title="How will your glass look?"
+            description="Drag across the room to compare clear glass with frosted, fluted and tinted finishes before you choose."
+          />
+          <Reveal from="center">
+            <FinishPreview />
+          </Reveal>
         </div>
       </section>
 
@@ -286,6 +304,20 @@ export default function HomePage() {
               </Reveal>
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* ─── Instant estimate: list your glass, send it on WhatsApp ─── */}
+      <section id="estimate" data-backdrop="/images/optimized/processing-tempering-furnace-line.webp" className="relative overflow-x-clip py-24 sm:py-32 scroll-mt-24">
+        <BlueSweep dark />
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <SectionHeading
+            dark
+            eyebrow="Instant estimate"
+            title="Get your rate in one message"
+            description="List the glass you need. We calculate the area for you, and your complete list reaches our team on WhatsApp, ready to quote."
+          />
+          <QuoteBuilder />
         </div>
       </section>
 

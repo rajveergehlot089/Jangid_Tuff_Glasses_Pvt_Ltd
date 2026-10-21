@@ -10,7 +10,7 @@ export const metadata = genMeta('contact');
 export default async function ContactPage({ searchParams }) {
   const resolvedParams = await searchParams;
   const initialProduct = resolvedParams?.product || '';
-  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://jangid-tuff-glasses-pvt-ltd.vercel.app';
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://jangidtuffglassespvtltd.com';
 
   const breadcrumbLd = {
     '@context': 'https://schema.org',
@@ -85,7 +85,13 @@ export default async function ContactPage({ searchParams }) {
                   >
                     {COMPANY.phone}
                   </a>
-                  <span className="text-xs text-slate-400">Available Mon - Sat (9:30 AM - 7:30 PM)</span>
+                  <a
+                    href={`tel:${COMPANY.phoneAltRaw}`}
+                    className="text-sm font-semibold text-slate-600 hover:text-[#0878d1] transition-colors duration-200 ease-out block"
+                  >
+                    Office: {COMPANY.phoneAlt}
+                  </a>
+                  <span className="text-xs text-slate-400">Mon – Sat, 10 AM – 7 PM · Sunday closed</span>
                 </div>
               </div>
 

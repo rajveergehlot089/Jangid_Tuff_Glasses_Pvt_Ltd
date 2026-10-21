@@ -1,5 +1,6 @@
 'use client';
 
+import { ViewTransition } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { ArrowRight } from 'lucide-react';
@@ -13,6 +14,7 @@ export default function ProductCard({ product, index = 0 }) {
     <Reveal from={revealFromIndex(index)} delay={(index % 3) * 0.08} className="h-full">
       <TiltCard as="article" className="card-frame flex flex-col h-full p-2.5">
       <Link href={`/products/${slug}`} tabIndex={-1} aria-hidden="true" data-cursor="view" className="media-zoom relative block aspect-[16/10] bg-[var(--paper)]">
+        <ViewTransition name={`product-photo-${slug}`}>
         <Image
           src={image}
           alt={name}
@@ -20,6 +22,7 @@ export default function ProductCard({ product, index = 0 }) {
           sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
           className="object-cover"
         />
+        </ViewTransition>
         <span className="absolute top-3 left-3 rounded-full bg-[var(--ink)] text-white font-display text-base leading-none px-3 py-2">
           {String(index + 1).padStart(2, '0')}
         </span>

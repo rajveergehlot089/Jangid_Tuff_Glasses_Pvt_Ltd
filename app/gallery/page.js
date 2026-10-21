@@ -7,7 +7,7 @@ import DarkCanvas from '@/components/layout/DarkCanvas';
 export const metadata = genMeta('gallery');
 
 export default function GalleryPage() {
-  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://jangid-tuff-glasses-pvt-ltd.vercel.app';
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://jangidtuffglassespvtltd.com';
 
   const breadcrumbLd = {
     '@context': 'https://schema.org',
