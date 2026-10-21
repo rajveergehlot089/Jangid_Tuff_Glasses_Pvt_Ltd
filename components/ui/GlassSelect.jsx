@@ -9,7 +9,7 @@ const EASE = [0.16, 1, 0.3, 1];
 /**
  * Styled replacement for <select> (native option lists cannot be styled).
  * `options` may be strings or { value, label } pairs; `placeholder` shows while value is empty.
- * Listbox pattern: arrows / Home / End move, Enter / Space choose, Esc closes, typing a letter jumps.
+ * Select-only combobox pattern: arrows / Home / End move, Enter / Space choose, Esc closes, typing a letter jumps.
  */
 export default function GlassSelect({
   label,
@@ -86,6 +86,7 @@ export default function GlassSelect({
       <button
         ref={buttonRef}
         type="button"
+        role="combobox"
         aria-haspopup="listbox"
         aria-expanded={open}
         aria-labelledby={`${id}-label ${id}-value`}

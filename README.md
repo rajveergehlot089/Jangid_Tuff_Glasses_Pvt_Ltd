@@ -149,5 +149,5 @@ Before publishing to a custom domain:
 3. Framework Preset: **Next.js**
 4. Build Command: `npm run build`
 5. Output Directory: `.next` (automatic)
-6. Add environment variable: `NEXT_PUBLIC_SITE_URL=https://jangidtuffglasses.in`
-7. Connect custom domain `jangidtuffglasses.in` and configure DNS records.
+6. Add environment variable `NEXT_PUBLIC_SITE_URL`: use the `*.vercel.app` URL until the domain is bought, then change it to `https://jangidtuffglassespvtltd.com` and redeploy.
+7. Connect the custom domain `jangidtuffglassespvtltd.com` and configure DNS records.

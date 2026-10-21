@@ -144,9 +144,9 @@ export default async function ProductDetailPage({ params }) {
         <section className="relative py-10 sm:py-16">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <nav aria-label="Breadcrumb" className="flex items-center gap-2 text-xs text-white/55 mb-8">
-              <Link href="/" className="hover:text-white">Home</Link>
+              <Link href="/" className="py-1.5 hover:text-white">Home</Link>
               <ChevronRight className="w-3.5 h-3.5" aria-hidden="true" />
-              <Link href="/products" className="hover:text-white">Products</Link>
+              <Link href="/products" className="py-1.5 hover:text-white">Products</Link>
               <ChevronRight className="w-3.5 h-3.5" aria-hidden="true" />
               <span className="text-white" aria-current="page">{product.name}</span>
             </nav>

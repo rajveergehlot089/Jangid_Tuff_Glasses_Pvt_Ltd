@@ -31,7 +31,7 @@ export default function Footer() {
 
       {/* Second poster ("Glass builds a brighter tomorrow") as a dimmed texture behind the links */}
       <div className="absolute right-0 bottom-0 left-[45%] top-[min(28.6vw,30rem)] pointer-events-none [mask-image:linear-gradient(to_right,transparent,black_35%)]" aria-hidden="true">
-        <Image src="/images/optimized/footer-poster-tagline.webp" alt="" fill sizes="100vw" className="object-cover object-right opacity-30" />
+        <Image src="/images/optimized/footer-poster-tagline.webp" alt="" fill sizes="(min-width: 768px) 55vw, 100vw" className="object-cover object-right opacity-30" />
         <div className="absolute inset-0 bg-gradient-to-b from-[#050b18] via-[#050b18]/70 to-[#050b18]/90" />
       </div>
 
@@ -185,13 +185,13 @@ export default function Footer() {
         <div className="border-t border-white/10 mt-12 pt-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-white/65">
           <p>© {year} {BUSINESS.name} Pvt Ltd. All rights reserved.</p>
           <div className="flex items-center gap-6">
-            <Link href="/privacy" className="hover:text-slate-300 transition-colors duration-200 ease-out">
+            <Link href="/privacy" className="py-1.5 hover:text-slate-300 transition-colors duration-200 ease-out">
               Privacy Policy
             </Link>
-            <Link href="/terms" className="hover:text-slate-300 transition-colors duration-200 ease-out">
+            <Link href="/terms" className="py-1.5 hover:text-slate-300 transition-colors duration-200 ease-out">
               Terms & Conditions
             </Link>
-            <Link href="/contact" className="hover:text-slate-300 transition-colors duration-200 ease-out">
+            <Link href="/contact" className="py-1.5 hover:text-slate-300 transition-colors duration-200 ease-out">
               Contact
             </Link>
           </div>

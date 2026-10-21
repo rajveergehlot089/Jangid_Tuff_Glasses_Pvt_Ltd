@@ -4,7 +4,7 @@ import { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { usePathname } from 'next/navigation';
-import { motion, AnimatePresence, useScroll, useSpring } from 'framer-motion';
+import { motion, AnimatePresence, useScroll, useSpring, useTransform } from 'framer-motion';
 import { Menu, X, Phone, ChevronRight, ArrowRight } from 'lucide-react';
 import { CONTACT, NAV_LINKS } from '@/lib/constants';
 
@@ -31,6 +31,8 @@ export default function Header() {
   const drawerRef = useRef(null);
   const { scrollYProgress } = useScroll();
   const progress = useSpring(scrollYProgress, { stiffness: 200, damping: 30, mass: 0.3 });
+  // A zero-length arc with a round cap still draws a dot; fade the arc in as scrolling starts.
+  const ringOpacity = useTransform(progress, [0, 0.015], [0, 1]);
 
   // Mobile drawer keyboard behaviour: Esc closes, Tab stays inside, focus returns to the menu button.
   useEffect(() => {
@@ -105,16 +107,16 @@ export default function Header() {
         <motion.div {...capsule(0)} className="justify-self-start pointer-events-auto">
           <div className="capsule flex items-center gap-3 py-2 pl-2 pr-6">
             <Link href="/" className="flex items-center gap-3 group" aria-label="Jangid Tuff Glass Home">
-              <span className="relative grid place-items-center w-11 h-11">
-                <svg className="absolute inset-0 -rotate-90" viewBox="0 0 44 44" aria-hidden="true">
-                  <circle cx="22" cy="22" r="20.5" fill="none" stroke="rgba(255,255,255,0.12)" strokeWidth="1.5" />
-                  <motion.circle cx="22" cy="22" r="20.5" fill="none" stroke="var(--royal-bright)" strokeWidth="1.5" strokeLinecap="round" style={{ pathLength: progress }} />
+              <span className="relative grid place-items-center w-11 h-11 shrink-0">
+                <svg className="absolute inset-0 -rotate-90 overflow-visible" viewBox="0 0 44 44" aria-hidden="true">
+                  <circle cx="22" cy="22" r="20.8" fill="none" stroke="rgba(255,255,255,0.14)" strokeWidth="2.2" />
+                  <motion.circle cx="22" cy="22" r="20.8" fill="none" stroke="var(--royal-bright)" strokeWidth="2.2" strokeLinecap="round" style={{ pathLength: progress, opacity: ringOpacity, filter: "drop-shadow(0 0 3px rgba(125,180,255,0.65))" }} />
                 </svg>
                 <span className="relative w-9 h-9 rounded-full overflow-hidden bg-white">
                   <Image src="/logo.jpg" alt="Jangid Tuff Glass Logo" fill sizes="36px" className="object-contain p-0.5" priority />
                 </span>
               </span>
-              <span className="flex flex-col leading-none">
+              <span className="flex flex-col leading-none whitespace-nowrap">
                 <span className="font-display text-lg text-white">Jangid</span>
                 <span className="mt-1 text-[9px] font-semibold tracking-[0.28em] text-[var(--royal-bright)] uppercase">Tuff Glass</span>
               </span>

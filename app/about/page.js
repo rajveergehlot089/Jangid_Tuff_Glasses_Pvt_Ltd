@@ -262,7 +262,8 @@ export default function AboutPage() {
                 </div>
               </div>
 
-              <div className="grid grid-cols-2 gap-4">
+              {/* 1-column on small phones, 2-column from 480 px up */}
+              <div className="grid grid-cols-1 min-[480px]:grid-cols-2 gap-4">
                 {[
                   {
                     title: 'Hydraulic Floor Springs',
@@ -295,7 +296,7 @@ export default function AboutPage() {
                         src={item.image}
                         alt={item.title}
                         fill
-                        sizes="(max-width: 640px) 100vw, 25vw"
+                        sizes="(max-width: 480px) calc(100vw - 2rem), (max-width: 1024px) 45vw, 22vw"
                         className="object-cover group-hover:scale-105 transition-transform duration-500 ease-out"
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
@@ -420,7 +421,7 @@ export default function AboutPage() {
                   <div className="mt-6 pt-4 border-t border-slate-100 flex items-center justify-between">
                     <Link
                       href={prod.link}
-                      className="text-xs font-bold text-[#0878d1] hover:text-[#08233f] inline-flex items-center gap-1.5 transition-colors duration-200"
+                      className="py-1.5 text-xs font-bold text-[#0878d1] hover:text-[#08233f] inline-flex items-center gap-1.5 transition-colors duration-200"
                     >
                       <span>View Specifications</span>
                       <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform duration-200" />
