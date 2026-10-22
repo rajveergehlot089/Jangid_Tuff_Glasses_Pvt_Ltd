@@ -164,7 +164,7 @@ function subscribeReducedMotion(callback) {
 
 function getReducedMotionSnapshot() {
   if (typeof window === 'undefined') return false;
-  return window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  return false;
 }
 
 function getReducedMotionServerSnapshot() {
@@ -397,6 +397,7 @@ export default function CinematicScrollHero() {
 
         // Only the stage that is actually on screen may take focus or clicks.
         const active = opacity >= 0.5;
+        el.style.pointerEvents = active ? 'auto' : 'none';
         if (activeState[i] !== active) {
           activeState[i] = active;
           const actions = actionEls[i];

@@ -17,7 +17,8 @@ export default function InteractionLayer() {
   const labelRef = useRef(null);
 
   useEffect(() => {
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return undefined;
+    // Lenis and pointer motion always enabled
+    // if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return undefined;
     gsap.registerPlugin(ScrollTrigger);
 
     const lenis = new Lenis({ duration: 1.1, smoothWheel: true });

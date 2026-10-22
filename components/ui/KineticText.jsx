@@ -14,7 +14,7 @@ export default function KineticText({ as: Tag = 'h2', className = '', children }
 
   useEffect(() => {
     const el = ref.current;
-    if (!el || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return undefined;
+    if (!el) return undefined;
     gsap.registerPlugin(ScrollTrigger, SplitText);
 
     const ctx = gsap.context(() => {

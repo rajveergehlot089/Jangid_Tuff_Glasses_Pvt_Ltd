@@ -13,7 +13,7 @@ export default function DarkCanvas({ images, children }) {
 
   useEffect(() => {
     const root = ref.current;
-    if (!root || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return undefined;
+    if (!root) return undefined;
 
     const targets = [];
     const skip = (el) => el.closest('[data-reveal]') || el.querySelector('[data-reveal]') || el.closest('.card-frame');
